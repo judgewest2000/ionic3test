@@ -6,7 +6,7 @@
 -->
 <ion-header>
   <ion-navbar color="primary">
-    <ion-title>james-special</ion-title>
+    <ion-title>Some title</ion-title>
   </ion-navbar>
 </ion-header>
 
@@ -17,13 +17,10 @@
     <ion-item>
       <ion-label>Something to auto set value</ion-label>
 
-    </ion-item>
-    <ion-item>
       <ion-input type="number" [(ngModel)]="value"></ion-input>
     </ion-item>
-    <ion-item>
-      <button ion-button full (click)="setInput()">Set Value</button>
-    </ion-item>
+      <button ion-button block (click)="setInput()">Set Value</button>
+   
     <ion-item>
       <ion-label>Gender</ion-label>
       <ion-select [(ngModel)]="gender">
@@ -31,17 +28,14 @@
         <ion-option value="m">Male</ion-option>
       </ion-select>
     </ion-item>
-    <ion-item>
-      <button ion-button full (click)="setGender()">Update to female</button>
-    </ion-item>
+  
+      <button ion-button block (click)="setGender()">Update to female</button>
+  
   </ion-list>
 
 </ion-content>
 
 <ion-footer no-border>
 
-  <ion-toolbar>
-    <ion-title>I'm a footer</ion-title>
-  </ion-toolbar>
-
+ 
 </ion-footer>

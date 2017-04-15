@@ -2,12 +2,10 @@
   "ExpandedNodes": [
     "",
     "\\src",
+    "\\src\\app",
     "\\src\\pages",
-    "\\src\\pages\\about",
-    "\\src\\pages\\home",
-    "\\src\\pages\\james-special",
     "\\src\\theme"
   ],
-  "SelectedNode": "\\src\\pages\\james-special\\james-special.html",
+  "SelectedNode": "\\src\\app\\app.component.ts",
   "PreviewInSolutionExplorer": false
 }
