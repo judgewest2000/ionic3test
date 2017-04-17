@@ -4,8 +4,10 @@
     "\\src",
     "\\src\\app",
     "\\src\\pages",
+    "\\src\\pages\\home",
+    "\\src\\pages\\james-special",
     "\\src\\theme"
   ],
-  "SelectedNode": "\\src\\app\\app.component.ts",
+  "SelectedNode": "\\config.xml",
   "PreviewInSolutionExplorer": false
 }
