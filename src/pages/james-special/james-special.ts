@@ -27,8 +27,7 @@ export class JamesSpecial {
     }
 
     constructor(public navCtrl: NavController, public navParams: NavParams, private cd: ChangeDetectorRef) {
-
-        window['abc'] = this;
+        alert('hi');
 
     }
 
