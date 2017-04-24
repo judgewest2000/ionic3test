@@ -2,7 +2,8 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, ActionSheetController, ModalController } from 'ionic-angular';
 
 import { ReleaseService } from '../../providers/release-service';
-import { ReleaseDtoViewModel } from '../../models/releasedtoviewmodel';
+
+import { IRelease } from '../../modelInterfaces/IRelease';
 
 /**
  * Generated class for the ReleaseEdit page.
@@ -21,7 +22,7 @@ export class ReleaseEdit {
 
   segment = 'main';
 
-  release: ReleaseDtoViewModel;
+  release: IRelease;
 
   delete() {
     let actionSheet = this.actionSheetController.create({
@@ -63,6 +64,7 @@ export class ReleaseEdit {
 
     let id = parseInt(this.navParams.get('id'));
     this.release = releaseService.get(id);
+    
 
   }
 

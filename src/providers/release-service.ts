@@ -1,7 +1,8 @@
 import { Injectable } from '@angular/core';
 
-import { ReleaseDtoViewModel } from '../models/releasedtoviewmodel';
+import { IRelease } from '../modelInterfaces/IRelease';
 
+import { BaseEntityService } from './baseentity-service';
 
 /*
   Generated class for the ReleaseService provider.
@@ -10,18 +11,33 @@ import { ReleaseDtoViewModel } from '../models/releasedtoviewmodel';
   for more info on providers and Angular 2 DI.
 */
 @Injectable()
-export class ReleaseService {
+export class ReleaseService extends BaseEntityService<IRelease> {
 
-
-  releases: ReleaseDtoViewModel[] = [
-    new ReleaseDtoViewModel({
-      id: 1,
-      name: '1st ever release',
-      headline: '1st ever headline',
-      subheading: '1st ever subheading',
-      displayDate: new Date('2017-06-01').toISOString(),
+  getBlank = () => {
+    var release: IRelease = {
+      id: 0,
+      name: '',
+      headline: '',
+      subheading: '',
       deleted: false,
-      coreCopy: `I have worked alongside Terry for 2 years.
+      coreCopy: '',
+      displayDate: new Date().toISOString()
+    };
+    return release;
+  }
+
+  constructor() {
+    super();
+
+    this.entities = [
+      {
+        id: 1,
+        name: '1st ever release',
+        headline: '1st ever headline',
+        subheading: '1st ever subheading',
+        displayDate: new Date('2017-06-01').toISOString(),
+        deleted: false,
+        coreCopy: `I have worked alongside Terry for 2 years.
 
 During that time we have worked on two different projects, one of which I was lead front-end technical architect. 
 
@@ -40,57 +56,28 @@ For the above project he had to do much liaising with the London team which demo
 It has been an excellent experience working with him and I would very much appreciate being able to work together again in the future.
 
  `
-    }),
-    new ReleaseDtoViewModel({
-      id: 2,
-      name: '2nd ever release',
-      headline: '2nd ever headline',
-      subheading: '2nd ever subheading',
-      displayDate: new Date('2017-06-27').toISOString(),
-      deleted: false,
-      coreCopy: `rgrgrg`
-    }),
-    new ReleaseDtoViewModel({
-      id: 3,
-      name: '3rd ever release',
-      headline: '3rd ever headline',
-      subheading: '3rd ever subheading',
-      displayDate: new Date('2017-06-29').toISOString(),
-      deleted: false,
-      coreCopy: `efmkeowjfie`
-    })
-  ];
-
-
-  get(id: number) {
-
-    if (id === 0) {
-      return new ReleaseDtoViewModel({
-        id: 0,
-        coreCopy: '',
+      },
+      {
+        id: 2,
+        name: '2nd ever release',
+        headline: '2nd ever headline',
+        subheading: '2nd ever subheading',
+        displayDate: new Date('2017-06-27').toISOString(),
         deleted: false,
-        displayDate: new Date().toISOString(),
-        headline: '',
-        name: '',
-        subheading: ''
-      });
-    }
+        coreCopy: `rgrgrg`
+      },
+      {
+        id: 3,
+        name: '3rd ever release',
+        headline: '3rd ever headline',
+        subheading: '3rd ever subheading',
+        displayDate: new Date('2017-06-29').toISOString(),
+        deleted: false,
+        coreCopy: `efmkeowjfie`
+      }
+    ];
 
-    return this.releases.filter(r => r.id === id)[0];
-  }
 
-  save(item: ReleaseDtoViewModel) {
-    if (item.id === 0) {
-      item.id = this.releases.map(r => r.id).sort().reverse()[0] + 1;
-      this.releases.push(item);
-    }
-  }
-
-  delete(item: ReleaseDtoViewModel) {
-    item.deleted = true;
-  }
-
-  constructor() {
   }
 
 

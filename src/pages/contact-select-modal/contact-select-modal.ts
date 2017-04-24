@@ -1,5 +1,9 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, ViewController } from 'ionic-angular';
+import { IonicPage, NavParams, ViewController } from 'ionic-angular';
+
+import { ContactService } from '../../providers/contact-service';
+
+import { IContact } from '../../modelinterfaces/IContact';
 
 /**
  * Generated class for the ContactSelectModal page.
@@ -14,12 +18,16 @@ import { IonicPage, NavController, NavParams, ViewController } from 'ionic-angul
 })
 export class ContactSelectModal {
 
+  _contacts: IContact[];
 
-
-  constructor(public viewCtrl: ViewController, public navParams: NavParams) {
+  constructor(public viewCtrl: ViewController,
+    public navParams: NavParams,
+    public contactService: ContactService
+  ) {
+    this._contacts = contactService.entities;
   }
 
-  dismiss(){
+  dismiss() {
     this.viewCtrl.dismiss('123456');
   }
 

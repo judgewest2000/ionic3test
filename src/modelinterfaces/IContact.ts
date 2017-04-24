@@ -4,6 +4,8 @@ export interface IContact extends IBase {
     name: string;
 
     avatarUrl: string;
+
+    outletName: string;
     
 }
 

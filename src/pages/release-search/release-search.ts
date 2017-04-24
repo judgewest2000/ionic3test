@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 
 import { ReleaseService } from '../../providers/release-service';
-import { ReleaseDtoViewModel } from '../../models/ReleaseDtoViewModel';
+import { IRelease } from '../../modelInterfaces/IRelease';
 
 import { StringHelper } from '../../helpers/string-helper';
 
@@ -20,14 +20,14 @@ import { StringHelper } from '../../helpers/string-helper';
 })
 export class ReleaseSearch {
 
-  releases: ReleaseDtoViewModel[];
+  releases: IRelease[];
 
-  gotoRelease(data: ReleaseDtoViewModel) {
+  gotoRelease(data: IRelease) {
     this.navCtrl.push('ReleaseEdit', { id: data.id });
   }
 
   searchTerm = '';
-  _filteredReleases: ReleaseDtoViewModel[];
+  _filteredReleases: IRelease[];
   getFilteredReleases(searchTerm?: string) {
 
     if (searchTerm === undefined || searchTerm.length < 3) {
@@ -49,7 +49,7 @@ export class ReleaseSearch {
     private releaseService: ReleaseService,
     private stringHelper: StringHelper) {
 
-    this.releases = releaseService.releases;
+    this.releases = releaseService.entities;
  
   }
 
