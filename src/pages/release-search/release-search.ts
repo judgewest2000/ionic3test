@@ -36,10 +36,8 @@ export class ReleaseSearch {
 
     let filteredReleases = this.releases.filter(r => !r.deleted);
 
-    if (this.stringHelper.isNullOrWhiteSpace(searchTerm)) {
-      filteredReleases = this.releases;
-    } else {
-      filteredReleases = this.releases.filter(r => this.stringHelper.contains(r.name, searchTerm));
+    if(this.stringHelper.isNotNullOrWhiteSpace(searchTerm)){
+      filteredReleases = filteredReleases.filter(r => this.stringHelper.contains(r.name, searchTerm));
     }
 
     this._filteredReleases = filteredReleases;
@@ -52,13 +50,15 @@ export class ReleaseSearch {
     private stringHelper: StringHelper) {
 
     this.releases = releaseService.releases;
-    this.getFilteredReleases();
+ 
   }
-
-
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad ReleaseSearch');
+  }
+
+   ionViewWillEnter(){
+    this.getFilteredReleases(this.searchTerm);
   }
 
 }

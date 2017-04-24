@@ -37,12 +37,9 @@
         <button ion-button full (click)="options()" color="light" style="color: blue;">Actions</button>
     </div>
 
-    <div *ngIf="segment === 'content'">
-
+    <div *ngIf="segment === 'corecopy'">
+        <ion-item-divider color="primary">Core Copy</ion-item-divider>
         <ion-card>
-            <ion-card-header>
-                Core Copy
-            </ion-card-header>
             <ion-textarea [(ngModel)]="release.coreCopy"></ion-textarea>
         </ion-card>
 
@@ -58,8 +55,8 @@
             <ion-segment-button value="main">
                 Main
             </ion-segment-button>
-            <ion-segment-button value="content">
-                Content
+            <ion-segment-button value="corecopy">
+                Core Copy
             </ion-segment-button>
             <ion-segment-button value="contacts">
                 Contacts
