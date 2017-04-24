@@ -1,6 +1,7 @@
 ﻿import { Component } from '@angular/core';
 import { IonicPage, NavController } from 'ionic-angular';
 
+
 @IonicPage()
 @Component({
     selector: 'page-home',
@@ -9,11 +10,11 @@ import { IonicPage, NavController } from 'ionic-angular';
 export class HomePage {
 
     constructor(public navCtrl: NavController) {
-
+            
     }
 
-    gotoJamesSpecial() {
-        this.navCtrl.push('JamesSpecial');
+    gotoRelease(){
+        this.navCtrl.push('ReleaseManagement');
     }
 
 }

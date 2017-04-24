@@ -1,0 +1,61 @@
+<!--
+  Generated template for the ReleaseEdit page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+    <ion-navbar color="vuelio-grey">
+        <ion-title>Release Edit</ion-title>
+    </ion-navbar>
+
+</ion-header>
+
+
+<ion-content>
+    <ion-list *ngIf="segment === 'main'">
+        <ion-item-divider color="primary">Content</ion-item-divider>
+        <ion-item>
+            <ion-input type="text" [(ngModel)]="release.name" name="name" placeholder="Name"></ion-input>
+        </ion-item>
+        <ion-item>
+            <ion-input style="font-size: 1.8em;" type="text" [(ngModel)]="release.headline" name="headline" placeholder="Headline"></ion-input>
+        </ion-item>
+        <ion-item>
+            <ion-input type="text" [(ngModel)]="release.subheading" name="subheading" placeholder="Subheading"></ion-input>
+        </ion-item>
+        <ion-item>
+            <ion-datetime displayFormat="DD/MMM/YY" [(ngModel)]="release.displayDate" name="date" placeholder="Date"></ion-datetime>
+        </ion-item>
+        <ion-item-divider color="primary">Options</ion-item-divider>
+        <button ion-item icon-left (click)="clicker()">
+        Delete
+        </button>
+
+    </ion-list>
+
+    <ion-list *ngIf="segment === 'content'">
+
+        <ion-textarea [(ngModel)]="release.coreCopy"></ion-textarea>
+
+    </ion-list>
+
+</ion-content>
+
+
+<ion-footer>
+    <ion-toolbar>
+        <ion-segment [(ngModel)]="segment">
+            <ion-segment-button value="main">
+                Main
+            </ion-segment-button>
+            <ion-segment-button value="content">
+                Content
+            </ion-segment-button>
+            <ion-segment-button value="contacts">
+                Contacts
+            </ion-segment-button>
+        </ion-segment>
+    </ion-toolbar>
+</ion-footer>
