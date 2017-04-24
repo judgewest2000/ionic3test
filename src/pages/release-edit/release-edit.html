@@ -7,14 +7,20 @@
 <ion-header>
 
     <ion-navbar color="vuelio-grey" hideBackButton>
+        <ion-buttons start left>
+            <button ion-button (click)="save()">Save</button>
+        </ion-buttons>
         <ion-title>Release Edit</ion-title>
+        <ion-buttons start right>
+            <button ion-button (click)="cancel()">Cancel</button>
+        </ion-buttons>
     </ion-navbar>
 
 </ion-header>
 
 <ion-content>
     <div *ngIf="segment === 'main'">
-        <ion-list *ngIf="segment === 'main'">
+        <ion-list>
 
             <ion-item>
                 <ion-label stacked>Name</ion-label>
@@ -34,7 +40,7 @@
             </ion-item>
         </ion-list>
 
-        <button ion-button full (click)="options()" color="light" style="color: blue;">Actions</button>
+        <button *ngIf="displayDelete()" ion-button full (click)="delete()" color="light" style="color: red;">Delete</button>
     </div>
 
     <div *ngIf="segment === 'corecopy'">
@@ -43,6 +49,11 @@
             <ion-textarea [(ngModel)]="release.coreCopy"></ion-textarea>
         </ion-card>
 
+    </div>
+
+    <div *ngIf="segment === 'contactsection'">
+        <ion-item-divider color="primary">Contacts</ion-item-divider>
+        <button ion-button full color="light" style="color: blue;" (click)="selectContacts()">Add Contacts</button>
     </div>
 
 </ion-content>
@@ -58,7 +69,7 @@
             <ion-segment-button value="corecopy">
                 Core Copy
             </ion-segment-button>
-            <ion-segment-button value="contacts">
+            <ion-segment-button value="contactsection">
                 Contacts
             </ion-segment-button>
         </ion-segment>

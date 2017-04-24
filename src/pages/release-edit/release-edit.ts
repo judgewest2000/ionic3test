@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, ActionSheetController } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, ActionSheetController, ModalController } from 'ionic-angular';
 
 import { ReleaseService } from '../../providers/release-service';
 import { ReleaseDtoViewModel } from '../../models/releasedtoviewmodel';
@@ -23,43 +23,42 @@ export class ReleaseEdit {
 
   release: ReleaseDtoViewModel;
 
-  options() {
-    let actionSheet = this.actionSheetController.create();
-
-    actionSheet.addButton({
-      text: 'Save Changes',
-      handler: () => {
-        this.releaseService.save(this.release);
-        this.navCtrl.pop();
-      }
+  delete() {
+    let actionSheet = this.actionSheetController.create({
+      title: 'Confirm Deletion',
+      buttons: [
+        {
+          text: 'Confirm',
+          role: 'destructive',
+          handler: () => {
+            this.releaseService.delete(this.release);
+            this.navCtrl.pop();
+          }
+        }, {
+          text: 'Cancel',
+          role: 'cancel',
+          handler: () => { }
+        }]
     });
-
-    if (this.release.id !== 0) {
-      actionSheet.addButton({
-        text: 'Delete Release',
-        role: 'destructive',
-        handler: () => {
-          this.releaseService.delete(this.release);
-          this.navCtrl.pop();
-        }
-      });
-    }
-
-    actionSheet.addButton({
-      text: 'Cancel',
-      role: 'cancel',
-      handler: () => {
-        this.navCtrl.pop();
-      }
-    });
-
     actionSheet.present();
   }
+
+  cancel() {
+    this.navCtrl.pop();
+  }
+
+  save() {
+    this.releaseService.save(this.release);
+    this.navCtrl.pop();
+  }
+
+  displayDelete() { return this.release.id !== 0; }
 
   constructor(
     public navCtrl: NavController,
     public navParams: NavParams,
     public actionSheetController: ActionSheetController,
+    public modalCtrl: ModalController,
     public releaseService: ReleaseService) {
 
     let id = parseInt(this.navParams.get('id'));
@@ -70,6 +69,11 @@ export class ReleaseEdit {
   ionViewDidLoad() {
     console.log('ionViewDidLoad ReleaseEdit');
 
+  }
+
+  selectContacts() {
+    let contactModal = this.modalCtrl.create('ContactSelectModal');
+    contactModal.present();
   }
 
 }
