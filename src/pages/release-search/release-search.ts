@@ -6,6 +6,7 @@ import { ReleaseDtoViewModel } from '../../models/ReleaseDtoViewModel';
 
 import { StringHelper } from '../../helpers/string-helper';
 
+
 /**
  * Generated class for the ReleaseSearch page.
  *
