@@ -11,6 +11,8 @@ export class ReleaseDtoViewModel extends BaseDtoViewModel<IRelease> implements I
 
     coreCopy: string;
 
+    deleted: boolean;
+
     constructor(data: IRelease) {
         super(data);
     }

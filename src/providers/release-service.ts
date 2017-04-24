@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 
 import { ReleaseDtoViewModel } from '../models/releasedtoviewmodel';
 
+
 /*
   Generated class for the ReleaseService provider.
 
@@ -19,6 +20,7 @@ export class ReleaseService {
       headline: '1st ever headline',
       subheading: '1st ever subheading',
       displayDate: new Date('2017-06-01').toISOString(),
+      deleted: false,
       coreCopy: `I have worked alongside Terry for 2 years.
 
 During that time we have worked on two different projects, one of which I was lead front-end technical architect. 
@@ -45,6 +47,7 @@ It has been an excellent experience working with him and I would very much appre
       headline: '2nd ever headline',
       subheading: '2nd ever subheading',
       displayDate: new Date('2017-06-27').toISOString(),
+      deleted: false,
       coreCopy: `rgrgrg`
     }),
     new ReleaseDtoViewModel({
@@ -53,18 +56,41 @@ It has been an excellent experience working with him and I would very much appre
       headline: '3rd ever headline',
       subheading: '3rd ever subheading',
       displayDate: new Date('2017-06-29').toISOString(),
+      deleted: false,
       coreCopy: `efmkeowjfie`
     })
   ];
 
 
   get(id: number) {
+
+    if (id === 0) {
+      return new ReleaseDtoViewModel({
+        id: 0,
+        coreCopy: '',
+        deleted: false,
+        displayDate: new Date().toISOString(),
+        headline: '',
+        name: '',
+        subheading: ''
+      });
+    }
+
     return this.releases.filter(r => r.id === id)[0];
   }
 
+  save(item: ReleaseDtoViewModel) {
+    if (item.id === 0) {
+      item.id = this.releases.map(r => r.id).sort().reverse()[0] + 1;
+      this.releases.push(item);
+    }
+  }
+
+  delete(item: ReleaseDtoViewModel) {
+    item.deleted = true;
+  }
+
   constructor() {
-
-
   }
 
 

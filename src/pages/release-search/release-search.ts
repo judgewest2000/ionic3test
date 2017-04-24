@@ -33,12 +33,15 @@ export class ReleaseSearch {
       searchTerm = '';
     }
 
+    let filteredReleases = this.releases.filter(r => !r.deleted);
 
     if (this.stringHelper.isNullOrWhiteSpace(searchTerm)) {
-      this._filteredReleases = this.releases;
+      filteredReleases = this.releases;
     } else {
-      this._filteredReleases = this.releases.filter(r => this.stringHelper.contains(r.name, searchTerm));
+      filteredReleases = this.releases.filter(r => this.stringHelper.contains(r.name, searchTerm));
     }
+
+    this._filteredReleases = filteredReleases;
 
   }
 

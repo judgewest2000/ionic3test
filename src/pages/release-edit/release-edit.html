@@ -6,45 +6,53 @@
 -->
 <ion-header>
 
-    <ion-navbar color="vuelio-grey">
+    <ion-navbar color="vuelio-grey" hideBackButton>
         <ion-title>Release Edit</ion-title>
     </ion-navbar>
 
 </ion-header>
 
-
 <ion-content>
-    <ion-list *ngIf="segment === 'main'">
-        <ion-item-divider color="primary">Content</ion-item-divider>
-        <ion-item>
-            <ion-input type="text" [(ngModel)]="release.name" name="name" placeholder="Name"></ion-input>
-        </ion-item>
-        <ion-item>
-            <ion-input style="font-size: 1.8em;" type="text" [(ngModel)]="release.headline" name="headline" placeholder="Headline"></ion-input>
-        </ion-item>
-        <ion-item>
-            <ion-input type="text" [(ngModel)]="release.subheading" name="subheading" placeholder="Subheading"></ion-input>
-        </ion-item>
-        <ion-item>
-            <ion-datetime displayFormat="DD/MMM/YY" [(ngModel)]="release.displayDate" name="date" placeholder="Date"></ion-datetime>
-        </ion-item>
-        <ion-item-divider color="primary">Options</ion-item-divider>
-        <button ion-item icon-left (click)="clicker()">
-        Delete
-        </button>
+    <div *ngIf="segment === 'main'">
+        <ion-list *ngIf="segment === 'main'">
 
-    </ion-list>
+            <ion-item>
+                <ion-label stacked>Name</ion-label>
+                <ion-input type="text" [(ngModel)]="release.name" name="name"></ion-input>
+            </ion-item>
+            <ion-item>
+                <ion-label stacked>Headline</ion-label>
+                <ion-input style="font-size: 1.8em;" type="text" [(ngModel)]="release.headline" name="headline"></ion-input>
+            </ion-item>
+            <ion-item>
+                <ion-label stacked>Subheading</ion-label>
+                <ion-input type="text" [(ngModel)]="release.subheading" name="subheading"></ion-input>
+            </ion-item>
+            <ion-item>
+                <ion-label stacked>Date</ion-label>
+                <ion-datetime displayFormat="DD/MMM/YY" [(ngModel)]="release.displayDate" name="date"></ion-datetime>
+            </ion-item>
+        </ion-list>
 
-    <ion-list *ngIf="segment === 'content'">
+        <button ion-button full (click)="options()" color="light" style="color: blue;">Actions</button>
+    </div>
 
-        <ion-textarea [(ngModel)]="release.coreCopy"></ion-textarea>
+    <div *ngIf="segment === 'content'">
 
-    </ion-list>
+        <ion-card>
+            <ion-card-header>
+                Core Copy
+            </ion-card-header>
+            <ion-textarea [(ngModel)]="release.coreCopy"></ion-textarea>
+        </ion-card>
+
+    </div>
 
 </ion-content>
 
 
 <ion-footer>
+
     <ion-toolbar>
         <ion-segment [(ngModel)]="segment">
             <ion-segment-button value="main">
@@ -58,4 +66,6 @@
             </ion-segment-button>
         </ion-segment>
     </ion-toolbar>
+
+
 </ion-footer>

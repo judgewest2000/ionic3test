@@ -21,8 +21,12 @@ export class ReleaseManagement {
     console.log('ionViewDidLoad ReleaseManagement');
   }
 
-  gotoSearch(){
+  gotoSearch() {
     this.navCtrl.push('ReleaseSearch');
+  }
+
+  createNewRelease() {
+    this.navCtrl.push('ReleaseEdit', { id: 0 });
   }
 
 }

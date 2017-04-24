@@ -15,7 +15,9 @@ import { StringHelper } from '../helpers/string-helper'
     ],
     imports: [
         BrowserModule,
-        IonicModule.forRoot(MyApp, {swipeBackEnabled:false})
+        IonicModule.forRoot(MyApp, {
+            swipeBackEnabled: false
+        })
     ],
     bootstrap: [IonicApp],
     entryComponents: [
