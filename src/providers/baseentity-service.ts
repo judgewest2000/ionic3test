@@ -1,4 +1,5 @@
 import { IBase } from '../modelInterfaces/IBase';
+import { FormBuilder, FormGroup } from '@angular/forms';
 
 export abstract class BaseEntityService<T extends IBase> {
 
@@ -25,6 +26,8 @@ export abstract class BaseEntityService<T extends IBase> {
         item.deleted = true;
     }
 
-    constructor() { }
+    constructor(public formBuilder: FormBuilder) {
+
+    }
 
 }

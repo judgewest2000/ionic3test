@@ -7,7 +7,9 @@ import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { ReleaseService } from '../providers/release-service';
 
-import { StringHelper } from '../helpers/string-helper'
+
+import { HelpersModule } from '../helpers/helpers.module';
+import { FormBuildersModule } from '../formbuilders/formbuilders.module';
 
 @NgModule({
     declarations: [
@@ -17,7 +19,9 @@ import { StringHelper } from '../helpers/string-helper'
         BrowserModule,
         IonicModule.forRoot(MyApp, {
             swipeBackEnabled: false
-        })
+        }),
+        HelpersModule,
+        FormBuildersModule
     ],
     bootstrap: [IonicApp],
     entryComponents: [
@@ -27,7 +31,6 @@ import { StringHelper } from '../helpers/string-helper'
         StatusBar,
         SplashScreen,
         { provide: ErrorHandler, useClass: IonicErrorHandler },
-        StringHelper,
         ReleaseService
     ]
 })

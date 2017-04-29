@@ -1,9 +1,10 @@
 import { Injectable } from '@angular/core';
 
-
 import { IContact } from '../modelInterfaces/IContact';
 
 import { BaseEntityService } from './baseentity-service';
+
+import { FormBuilder } from '@angular/forms';
 
 /*
   Generated class for the ReleaseService provider.
@@ -25,8 +26,12 @@ export class ContactService extends BaseEntityService<IContact> {
         return blank;
     }
 
-    constructor() {
-        super();
+    getForm() {
+
+    }
+
+    constructor(formBuilder: FormBuilder) {
+        super(formBuilder);
 
         this.entities = [
             {

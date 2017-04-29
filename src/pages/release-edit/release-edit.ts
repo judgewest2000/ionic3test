@@ -24,6 +24,9 @@ export class ReleaseEdit {
 
   release: IRelease;
 
+  myname = "";
+
+
   delete() {
     let actionSheet = this.actionSheetController.create({
       title: 'Confirm Deletion',
@@ -64,7 +67,7 @@ export class ReleaseEdit {
 
     let id = parseInt(this.navParams.get('id'));
     this.release = releaseService.get(id);
-    
+
 
   }
 
