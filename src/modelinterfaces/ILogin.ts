@@ -1,4 +1,4 @@
-export interface IRelease {
+export interface ILogin {
     ".expires": string;
     ".issued": string;
     access_token: string;

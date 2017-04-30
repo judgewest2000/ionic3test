@@ -23,7 +23,7 @@ export class Login {
 
   async login() {
     const loginDetails = await this.loginService.login(this.username, this.password);
-    alert(loginDetails);
+    alert(JSON.stringify(loginDetails));
   }
 
 
