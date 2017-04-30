@@ -14,6 +14,8 @@ export interface IForm<T extends IBase> {
 export interface ISearch{
     id: number;
     name: string;
-    description: string;
-    imageUrl?: string;
+    description1?: string;
+    description2?: string;
+    description3?: string;
+    avatarUrl?: string;
 }

@@ -16,8 +16,13 @@
 <ion-content>
     <ion-list>
         <button ion-item *ngFor="let data of _filteredReleases" (click)="goto(data)">
-    <h2>{{data.name}}</h2>
-    <p>{{data.description}}</p>
-  </button>
+            <ion-avatar item-left *ngIf="data.avatarUrl !== undefined && data.avatarUrl !== null">
+                <img src="{{data.avatarUrl}}"  />
+            </ion-avatar>
+            <h2>{{data.name}}</h2>
+            <p *ngIf="data.description1 !== undefined && data.description1 !== null">{{data.description1}}</p>
+            <p *ngIf="data.description2 !== undefined && data.description2 !== null">{{data.description2}}</p>
+            <p *ngIf="data.description3 !== undefined && data.description3 !== null">{{data.description3}}</p>
+            </button>
     </ion-list>
 </ion-content>

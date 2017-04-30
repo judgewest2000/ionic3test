@@ -1,10 +1,6 @@
 import { IBase, IForm, ISearch } from '../modelInterfaces/IBase';
-
 import { BaseFormModel } from '../formmodels/base-formmodel';
-
 import { StringHelper } from '../helpers/string-helper';
-
-
 
 export abstract class BaseEntityService<T extends IBase> {
 
@@ -69,7 +65,6 @@ export abstract class BaseEntityService<T extends IBase> {
 
             const mappedItems = items.map(e => <ISearch>({
                 id: e.id,
-                description: '',
                 name: e.name,
             }))
 

@@ -20,6 +20,10 @@ import { ReleaseService } from '../../providers/release-service';
 })
 export class ReleaseSearch {
 
+  constructor(public navCtrl: NavController,
+    public navParams: NavParams,
+    private releaseService: ReleaseService) {
+  }
   goto(data: ISearch) {
     this.navCtrl.push('ReleaseEdit', { id: data.id });
   }
@@ -31,11 +35,6 @@ export class ReleaseSearch {
       .then(results => {
         this._filteredReleases = results;
       });
-  }
-
-  constructor(public navCtrl: NavController,
-    public navParams: NavParams,
-    private releaseService: ReleaseService) {
   }
 
   ionViewDidLoad() {
