@@ -14,10 +14,10 @@ import { BaseSearch } from '../base-search/base-search';
  */
 @IonicPage()
 @Component({
-  selector: 'page-release-search',
+  selector: 'page-base-search',
   templateUrl: '../base-search/base-search.html',
 })
-export class ReleaseSearch extends BaseSearch{
+export class ReleaseSearch extends BaseSearch {
 
   constructor(navCtrl: NavController, releaseService: ReleaseService) {
     super(navCtrl, releaseService, 'ReleaseEdit', 'Release Search');

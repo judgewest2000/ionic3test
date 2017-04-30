@@ -6,13 +6,37 @@
 -->
 <ion-header>
 
-  <ion-navbar>
-    <ion-title>Login</ion-title>
-  </ion-navbar>
+    <ion-navbar>
+        <ion-title>Login</ion-title>
+    </ion-navbar>
 
 </ion-header>
 
 
 <ion-content padding>
 
+    <form #loginForm="ngForm">
+        <ion-row>
+            <ion-col>
+                <ion-list>
+                    <ion-item>
+                        <ion-label>UserName</ion-label>
+                        <ion-input [(ngModel)]="username" name="username"></ion-input>
+                    </ion-item>
+
+                    <ion-item>
+                        <ion-label>Password</ion-label>
+                        <ion-input [(ngModel)]="password" name="password" type="password"></ion-input>
+                    </ion-item>
+
+
+                </ion-list>
+            </ion-col>
+        </ion-row>
+        <ion-row>
+            <ion-col>
+                <button full ion-button color="primary" (click)="login()">Login</button>
+            </ion-col>
+        </ion-row>
+    </form>
 </ion-content>

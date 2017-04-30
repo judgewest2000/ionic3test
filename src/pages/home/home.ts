@@ -17,4 +17,8 @@ export class HomePage {
         this.navCtrl.push('ReleaseManagement');
     }
 
+    gotoLogin(){
+        this.navCtrl.push('Login');
+    }
+
 }

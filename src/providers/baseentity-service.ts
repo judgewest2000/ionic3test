@@ -22,16 +22,17 @@ export abstract class BaseEntityService<T extends IBase> {
         });
     }
 
-    getForm(id: number) {
-        return new Promise<IForm<T>>((resolve, err) => {
-            this.get(id).then(entity => {
-                const myForm: IForm<T> = {
-                    viewModel: entity,
-                    form: this.baseFormModel.create(entity)
-                };
-                resolve(myForm);
-            })
-        });
+    async getForm(id: number) {
+
+        const data = await this.get(id);
+
+        const myForm: IForm<T> = {
+            viewModel: data,
+            form: this.baseFormModel.create(data)
+        };
+
+        return myForm;
+
     }
 
     save(item: T) {

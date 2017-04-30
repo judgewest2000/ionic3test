@@ -1,6 +1,10 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 
+import { LoginService } from '../../providers/login-service';
+
+import { NgForm } from '@angular/forms';
+
 /**
  * Generated class for the Login page.
  *
@@ -14,7 +18,16 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 })
 export class Login {
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  username = "james.west@westdarley";
+  password = "Password1*";
+
+  async login() {
+    const loginDetails = await this.loginService.login(this.username, this.password);
+    alert(loginDetails);
+  }
+
+
+  constructor(public navCtrl: NavController, public navParams: NavParams, private loginService: LoginService) {
   }
 
   ionViewDidLoad() {
