@@ -2,9 +2,8 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 
 import { ISearch } from '../../modelInterfaces/IBase';
-
 import { ReleaseService } from '../../providers/release-service';
-
+import { BaseSearch } from '../base-search/base-search';
 
 
 /**
@@ -16,33 +15,13 @@ import { ReleaseService } from '../../providers/release-service';
 @IonicPage()
 @Component({
   selector: 'page-release-search',
-  templateUrl: 'release-search.html',
+  templateUrl: '../base-search/base-search.html',
 })
-export class ReleaseSearch {
+export class ReleaseSearch extends BaseSearch{
 
-  constructor(public navCtrl: NavController,
-    public navParams: NavParams,
-    private releaseService: ReleaseService) {
-  }
-  goto(data: ISearch) {
-    this.navCtrl.push('ReleaseEdit', { id: data.id });
+  constructor(navCtrl: NavController, releaseService: ReleaseService) {
+    super(navCtrl, releaseService, 'ReleaseEdit', 'Release Search');
   }
 
-  searchTerm = '';
-  _filteredReleases: ISearch[];
-  getFilteredReleases(searchTerm?: string) {
-    this.releaseService.search(searchTerm)
-      .then(results => {
-        this._filteredReleases = results;
-      });
-  }
-
-  ionViewDidLoad() {
-    console.log('ionViewDidLoad ReleaseSearch');
-  }
-
-  ionViewWillEnter() {
-    this.getFilteredReleases(this.searchTerm);
-  }
 
 }
