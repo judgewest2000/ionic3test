@@ -66,8 +66,8 @@ export class ReleaseEdit {
     public releaseService: ReleaseService) {
 
     let id = parseInt(this.navParams.get('id'));
-    this.release = releaseService.get(id);
 
+    releaseService.get(id).then(value => this.release = value);
 
   }
 

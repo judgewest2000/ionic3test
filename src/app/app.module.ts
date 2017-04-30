@@ -7,9 +7,7 @@ import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { ReleaseService } from '../providers/release-service';
 
-
-import { HelpersModule } from '../helpers/helpers.module';
-import { FormBuildersModule } from '../formbuilders/formbuilders.module';
+import { FormModelsModule } from '../formmodels/formmodels.module';
 
 @NgModule({
     declarations: [
@@ -20,8 +18,7 @@ import { FormBuildersModule } from '../formbuilders/formbuilders.module';
         IonicModule.forRoot(MyApp, {
             swipeBackEnabled: false
         }),
-        HelpersModule,
-        FormBuildersModule
+        FormModelsModule
     ],
     bootstrap: [IonicApp],
     entryComponents: [

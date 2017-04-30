@@ -1,10 +1,10 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 
-import { ReleaseService } from '../../providers/release-service';
-import { IRelease } from '../../modelInterfaces/IRelease';
+import { ISearch } from '../../modelInterfaces/IBase';
 
-import { StringHelper } from '../../helpers/string-helper';
+import { ReleaseService } from '../../providers/release-service';
+
 
 
 /**
@@ -20,44 +20,29 @@ import { StringHelper } from '../../helpers/string-helper';
 })
 export class ReleaseSearch {
 
-  releases: IRelease[];
-
-  gotoRelease(data: IRelease) {
+  goto(data: ISearch) {
     this.navCtrl.push('ReleaseEdit', { id: data.id });
   }
 
   searchTerm = '';
-  _filteredReleases: IRelease[];
+  _filteredReleases: ISearch[];
   getFilteredReleases(searchTerm?: string) {
-
-    if (searchTerm === undefined || searchTerm.length < 3) {
-      searchTerm = '';
-    }
-
-    let filteredReleases = this.releases.filter(r => !r.deleted);
-
-    if(this.stringHelper.isNotNullOrWhiteSpace(searchTerm)){
-      filteredReleases = filteredReleases.filter(r => this.stringHelper.contains(r.name, searchTerm));
-    }
-
-    this._filteredReleases = filteredReleases;
-
+    this.releaseService.search(searchTerm)
+      .then(results => {
+        this._filteredReleases = results;
+      });
   }
 
   constructor(public navCtrl: NavController,
     public navParams: NavParams,
-    private releaseService: ReleaseService,
-    private stringHelper: StringHelper) {
-
-    this.releases = releaseService.entities;
- 
+    private releaseService: ReleaseService) {
   }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad ReleaseSearch');
   }
 
-   ionViewWillEnter(){
+  ionViewWillEnter() {
     this.getFilteredReleases(this.searchTerm);
   }
 

@@ -1,8 +1,9 @@
 import { Injectable } from '@angular/core';
+import { IForm } from '../modelInterfaces/ibase';
 import { IRelease } from '../modelInterfaces/IRelease';
 import { BaseEntityService } from './baseentity-service';
-import { FormBuilder} from '@angular/forms';
 
+import { ReleaseFormModel } from '../formmodels/release-formmodel';
 
 /*
   Generated class for the ReleaseService provider.
@@ -14,7 +15,7 @@ import { FormBuilder} from '@angular/forms';
 export class ReleaseService extends BaseEntityService<IRelease> {
 
   getBlank = () => {
-    var release: IRelease = {
+    const release: IRelease = {
       id: 0,
       name: '',
       headline: '',
@@ -26,8 +27,8 @@ export class ReleaseService extends BaseEntityService<IRelease> {
     return release;
   }
 
-  constructor(formBuilder: FormBuilder) {
-    super(formBuilder);
+  constructor(releaseFormModel: ReleaseFormModel) {
+    super(releaseFormModel);
 
     this.entities = [
       {

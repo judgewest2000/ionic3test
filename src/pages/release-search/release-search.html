@@ -15,10 +15,9 @@
 
 <ion-content>
     <ion-list>
-        <button ion-item *ngFor="let data of _filteredReleases" (click)="gotoRelease(data)">
+        <button ion-item *ngFor="let data of _filteredReleases" (click)="goto(data)">
     <h2>{{data.name}}</h2>
-    <p>{{data.headline}}</p>
-    <p>{{data.displayDate | date: 'dd/MM/yyyy'}}</p>
+    <p>{{data.description}}</p>
   </button>
     </ion-list>
 </ion-content>

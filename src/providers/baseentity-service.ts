@@ -1,32 +1,84 @@
-import { IBase } from '../modelInterfaces/IBase';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { IBase, IForm, ISearch } from '../modelInterfaces/IBase';
+
+import { BaseFormModel } from '../formmodels/base-formmodel';
+
+import { StringHelper } from '../helpers/string-helper';
+
+
 
 export abstract class BaseEntityService<T extends IBase> {
 
-    entities: T[];
+    protected entities: T[];
 
     protected abstract getBlank: () => T
 
-    get(id: number): T {
-        if (id === 0) {
-            return this.getBlank();
-        }
+    get(id: number) {
+        return new Promise<T>((resolve, err) => {
+            let item: T;
 
-        return this.entities.filter(r => r.id === id)[0];
+            if (id === 0) {
+                item = this.getBlank();
+            } else {
+                item = this.entities.filter(r => r.id === id)[0];
+            }
+
+            resolve(item);
+        });
+    }
+
+    getForm(id: number) {
+        return new Promise<IForm<T>>((resolve, err) => {
+            this.get(id).then(entity => {
+                const myForm: IForm<T> = {
+                    viewModel: entity,
+                    form: this.baseFormModel.create(entity)
+                };
+                resolve(myForm);
+            })
+        });
     }
 
     save(item: T) {
-        if (item.id === 0) {
-            item.id = this.entities.map(r => r.id).sort().reverse()[0] + 1;
-            this.entities.push(item);
-        }
+        return new Promise<void>(resolve => {
+            if (item.id === 0) {
+                item.id = this.entities.map(r => r.id).sort().reverse()[0] + 1;
+                this.entities.push(item);
+            }
+            resolve();
+        });
     }
 
     delete(item: T) {
-        item.deleted = true;
+        return new Promise<void>(resolve => {
+            item.deleted = true;
+            resolve();
+        });
     }
 
-    constructor(public formBuilder: FormBuilder) {
+    search(searchTerm?: string) {
+        return new Promise<ISearch[]>(resolve => {
+
+            let items = this.entities
+                .filter(e => !e.deleted);
+
+            if (StringHelper.isNotNullOrWhiteSpace(searchTerm)) {
+                searchTerm.split(' ').forEach(chunk => {
+                    items = items.filter(i => StringHelper.contains(i.name, chunk));
+                });
+            }
+
+            const mappedItems = items.map(e => <ISearch>({
+                id: e.id,
+                description: '',
+                name: e.name,
+            }))
+
+            resolve(mappedItems);
+        });
+    }
+
+
+    constructor(public baseFormModel: BaseFormModel<T>) {
 
     }
 
