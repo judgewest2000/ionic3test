@@ -13,6 +13,11 @@ export class HomePage {
 
     constructor(public navCtrl: NavController, private loginService: LoginService, private modalService: ModalService) {
 
+        loginService.getLoginUsername()
+            .then(username => {
+                this.logoutText = `${username}`;
+            });
+
     }
 
     gotoRelease() {
@@ -31,5 +36,7 @@ export class HomePage {
             }
         });
     }
+
+    logoutText = 'Logout';
 
 }

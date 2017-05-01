@@ -67,4 +67,9 @@ export class LoginService {
     await this.keyValueService.remove(loginTokenKvp);
   }
 
+  async getLoginUsername() {
+    const loginToken = await this.keyValueService.get<ILogin>(loginTokenKvp);
+    return loginToken.userName;
+  }
+
 }

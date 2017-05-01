@@ -36,15 +36,7 @@ export class ModalService {
     private createModal(definition) {
         const modal = this.alertController.create({
             title: definition.title,
-            message: definition.body,
-            buttons: [{
-                text: 'OK',
-                handler: () => {
-                    if (definition.confirmCallback !== undefined) {
-                        definition.confirmCallback();
-                    }
-                }
-            }]
+            message: definition.body
         });
 
         if (definition.subTitle !== undefined) {
@@ -59,6 +51,15 @@ export class ModalService {
 
         const modal = this.createModal(definition);
 
+        modal.addButton({
+            text: 'OK',
+            handler: () => {
+                if (definition.confirmCallback !== undefined) {
+                    definition.confirmCallback();
+                }
+            }
+        });
+
         modal.present();
 
     }
@@ -68,12 +69,22 @@ export class ModalService {
 
         modal.addButton({
             text: 'Cancel',
+            role: 'cancel',
             handler: () => {
                 if (definition.cancelCallback !== undefined) {
                     definition.cancelCallback();
                 }
             }
-        })
+        });
+
+        modal.addButton({
+            text: 'OK',
+            handler: () => {
+                if (definition.confirmCallback !== undefined) {
+                    definition.confirmCallback();
+                }
+            }
+        });
 
         modal.present();
     }
