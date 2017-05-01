@@ -2,7 +2,7 @@
 export module ConfigHelper {
 
     export function getApiUrl(){
-        return 'http://localhost:59019';
+        return 'https://baltictestapi.vuelio.co.uk';
     }
 
 };

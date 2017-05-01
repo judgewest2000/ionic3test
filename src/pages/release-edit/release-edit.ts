@@ -24,9 +24,6 @@ export class ReleaseEdit {
   release: IForm<AIMC.Baltic.Dto.MediaDatabase.ReleaseDto>;
   releaseLoaded = false;
 
-  myname = "";
-
-
   delete() {
     this.modalService.confirm({
       title: 'Confirm Deletion',
