@@ -28,10 +28,8 @@ export abstract class BaseEntityService<T extends AIMC.Baltic.Dto.RestrictedVisi
 
     async getForm(id: number) {
 
-        debugger;
-        
         const data = await this.get(id);
-
+        
         const myForm: IForm<T> = {
             viewModel: data,
             form: this.params.baseFormModel.create(data)
@@ -41,10 +39,12 @@ export abstract class BaseEntityService<T extends AIMC.Baltic.Dto.RestrictedVisi
 
     }
 
-    async save(item: T) {
+    async save(item: IForm<T>) {
+
+        let amalgamated = Object.assign({}, item.viewModel, item.form.getRawValue());
 
         try {
-            await this.params.dataAccessService.post(this.params.endPoint, item);
+            await this.params.dataAccessService.post(this.params.endPoint, amalgamated);
             return true;
         }
         catch (err) {

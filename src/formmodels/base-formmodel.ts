@@ -13,7 +13,7 @@ export abstract class BaseFormModel<T extends AIMC.Baltic.Dto.RestrictedVisibili
 
         const myForm = this.params.formBuilder.group(this.params.formDefinition);
 
-        myForm.setValue(viewModel);
+        myForm.patchValue(viewModel);
 
         return myForm;
     }

@@ -14,7 +14,7 @@ export class ReleaseFormModel extends BaseFormModel<AIMC.Baltic.Dto.MediaDatabas
                 name: ['', Validators.required],
                 headline: ['', Validators.required],
                 subheading: ['', Validators.required],
-                displayDate: ['', Validators.required],
+                displayDateTime: ['', Validators.required],
                 coreCopy: ['']
             }
         });

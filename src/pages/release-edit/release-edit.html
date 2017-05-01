@@ -18,40 +18,25 @@
 
 <ion-content>
     <div *ngIf="segment === 'main'">
-        <ion-list>
 
-            <ion-item>
-                <ion-label stacked>Name</ion-label>
-                <ion-input type="text" [(ngModel)]="release.name" name="name"></ion-input>
-            </ion-item>
-            <ion-item>
-                <ion-label stacked>Headline</ion-label>
-                <ion-input style="font-size: 1.8em;" type="text" [(ngModel)]="release.headline" name="headline"></ion-input>
-            </ion-item>
-            <ion-item>
-                <ion-label stacked>Subheading</ion-label>
-                <ion-input type="text" [(ngModel)]="release.subheading" name="subheading"></ion-input>
-            </ion-item>
-            <ion-item>
-                <ion-label stacked>Date</ion-label>
-                <ion-datetime displayFormat="DD/MMM/YY" [(ngModel)]="release.displayDate" name="date"></ion-datetime>
-            </ion-item>
-        </ion-list>
+        <form *ngIf="releaseLoaded" [formGroup]="release.form">
+            <ion-list>
+                <ion-item>
+                    <ion-label stacked>Name</ion-label>
+                    <ion-input type="text" formControlName="name"></ion-input>
+                </ion-item>
+                <ion-item>
+                    <ion-label stacked>Headline</ion-label>
+                    <ion-input style="font-size: 1.8em;" type="text" formControlName="headline" name="headline"></ion-input>
+                </ion-item>
+
+                <ion-item>
+
+                </ion-item>
+            </ion-list>
+        </form>
 
         <button *ngIf="displayDelete()" ion-button full (click)="delete()" color="light" style="color: red;">Delete</button>
-    </div>
-
-    <div *ngIf="segment === 'corecopy'">
-        <ion-item-divider color="primary">Core Copy</ion-item-divider>
-        <ion-card>
-            <ion-textarea [(ngModel)]="release.coreCopy"></ion-textarea>
-        </ion-card>
-
-    </div>
-
-    <div *ngIf="segment === 'contactsection'">
-        <ion-item-divider color="primary">Contacts</ion-item-divider>
-        <button ion-button full color="light" style="color: blue;" (click)="selectContacts()">Add Contacts</button>
     </div>
 
 </ion-content>
@@ -63,12 +48,6 @@
         <ion-segment [(ngModel)]="segment">
             <ion-segment-button value="main">
                 Main
-            </ion-segment-button>
-            <ion-segment-button value="corecopy">
-                Core Copy
-            </ion-segment-button>
-            <ion-segment-button value="contactsection">
-                Contacts
             </ion-segment-button>
         </ion-segment>
     </ion-toolbar>
