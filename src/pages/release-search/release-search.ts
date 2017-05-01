@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, NavController } from 'ionic-angular';
 
 import { SearchService } from '../../providers/search-service';
 import { BaseSearch } from '../base-search/base-search';

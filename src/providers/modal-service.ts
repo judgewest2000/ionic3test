@@ -23,8 +23,10 @@ export class ModalService {
 
     loading: Loading
 
-    turnOnLoading() {
-        this.loading = this.loadingController.create();
+    turnOnLoading(message?: string) {
+        this.loading = this.loadingController.create({
+            content: message !== undefined ? message : 'Please wait'
+        });
         this.loading.present();
     }
 

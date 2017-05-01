@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, ActionSheetController, ModalController } from 'ionic-angular';
+import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { ReleaseService } from '../../providers/release-service';
 import { ModalService } from '../../providers/modal-service';
 import { IForm } from '../../modelinterfaces/ibase';
@@ -56,16 +56,17 @@ export class ReleaseEdit {
   constructor(
     public navCtrl: NavController,
     private navParams: NavParams,
-    private actionSheetController: ActionSheetController,
-    private modalCtrl: ModalController,
     private releaseService: ReleaseService,
     private modalService: ModalService) {
+
+    modalService.turnOnLoading();
 
     let id = parseInt(this.navParams.get('id'));
 
     releaseService.getForm(id).then(value => {
       this.release = value;
       this.releaseLoaded = true;
+      modalService.turnOffLoading();
     });
 
   }

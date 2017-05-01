@@ -3,8 +3,6 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 
 import { LoginService } from '../../providers/login-service';
 
-import { NgForm } from '@angular/forms';
-
 import { ModalService } from '../../providers/modal-service';
 
 
@@ -15,8 +13,8 @@ import { ModalService } from '../../providers/modal-service';
 })
 export class Login {
 
-  username = "james.west@westdarley";
-  password = "Password1*";
+  username = "";
+  password = "";
 
   async login() {
 
@@ -37,7 +35,10 @@ export class Login {
   }
 
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, private loginService: LoginService, private modalService: ModalService) {
+  constructor(public navCtrl: NavController,
+    public navParams: NavParams,
+    private loginService: LoginService,
+    private modalService: ModalService) {
   }
 
   ionViewDidLoad() {
