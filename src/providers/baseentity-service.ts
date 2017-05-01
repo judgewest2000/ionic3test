@@ -6,7 +6,9 @@ export abstract class BaseEntityService<T extends IBase> {
 
     protected entities: T[];
 
-    protected abstract getBlank: () => T
+    protected abstract getBlank: () => T;
+
+    protected abstract mapForSearch: (item:T) => ISearch;
 
     get(id: number) {
         return new Promise<T>((resolve, err) => {
@@ -52,6 +54,7 @@ export abstract class BaseEntityService<T extends IBase> {
         });
     }
 
+
     search(searchTerm?: string) {
         return new Promise<ISearch[]>(resolve => {
 
@@ -64,10 +67,7 @@ export abstract class BaseEntityService<T extends IBase> {
                 });
             }
 
-            const mappedItems = items.map(e => <ISearch>({
-                id: e.id,
-                name: e.name,
-            }))
+            const mappedItems = items.map(e => this.mapForSearch(e));
 
             resolve(mappedItems);
         });

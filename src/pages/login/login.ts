@@ -5,12 +5,9 @@ import { LoginService } from '../../providers/login-service';
 
 import { NgForm } from '@angular/forms';
 
-/**
- * Generated class for the Login page.
- *
- * See http://ionicframework.com/docs/components/#navigation for more info
- * on Ionic pages and navigation.
- */
+import { ModalService } from '../../providers/modal-service';
+
+
 @IonicPage()
 @Component({
   selector: 'page-login',
@@ -22,12 +19,25 @@ export class Login {
   password = "Password1*";
 
   async login() {
-    const loginDetails = await this.loginService.login(this.username, this.password);
-    alert(JSON.stringify(loginDetails));
+
+    this.modalService.turnOnLoading();
+
+    const loginStatus = await this.loginService.login(this.username, this.password);
+
+    this.modalService.turnOffLoading();
+
+    if (loginStatus.success) {
+      this.navCtrl.setRoot('HomePage');
+    } else {
+      this.modalService.alert({
+        title: 'Could not log in',
+        body: loginStatus.message
+      });
+    }
   }
 
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, private loginService: LoginService) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, private loginService: LoginService, private modalService: ModalService) {
   }
 
   ionViewDidLoad() {

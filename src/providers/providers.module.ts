@@ -3,6 +3,7 @@ import { NgModule } from '@angular/core';
 import { LoginService } from './login-service';
 import { ReleaseService } from './release-service';
 import { KeyValueService } from './key-value-service';
+import { ModalService } from './modal-service'
 
 import { HttpModule } from '@angular/http';
 
@@ -16,7 +17,8 @@ import { IonicStorageModule } from '@ionic/storage';
     providers: [
         LoginService,
         ReleaseService,
-        KeyValueService
+        KeyValueService,
+        ModalService
     ]
 })
 export class ProvidersModule { }

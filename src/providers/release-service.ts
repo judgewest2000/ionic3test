@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { IForm } from '../modelInterfaces/ibase';
+import { ISearch } from '../modelinterfaces/ibase';
 import { IRelease } from '../modelInterfaces/IRelease';
 import { BaseEntityService } from './baseentity-service';
 
@@ -26,6 +27,13 @@ export class ReleaseService extends BaseEntityService<IRelease> {
     };
     return release;
   }
+
+  mapForSearch = (item: IRelease) => <ISearch>({
+    id: item.id,
+    name: item.name,
+    description1: item.headline,
+    description2: item.displayDate
+  });
 
   constructor(releaseFormModel: ReleaseFormModel) {
     super(releaseFormModel);

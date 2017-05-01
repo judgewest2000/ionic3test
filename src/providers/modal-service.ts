@@ -1,0 +1,81 @@
+import { Injectable } from '@angular/core';
+import { AlertController, LoadingController, Loading } from 'ionic-angular';
+
+
+export interface AlertDefinition {
+    title: string;
+    subTitle?: string;
+    body: string;
+    confirmCallback?: () => any;
+}
+
+export interface ConfirmDefinition extends AlertDefinition {
+    cancelCallback?: () => any;
+}
+
+
+@Injectable()
+export class ModalService {
+
+    constructor(private alertController: AlertController, private loadingController: LoadingController) {
+
+    }
+
+    loading: Loading
+
+    turnOnLoading() {
+        this.loading = this.loadingController.create();
+        this.loading.present();
+    }
+
+    turnOffLoading() {
+        this.loading.dismiss();
+        delete this.loading;
+    }
+
+    private createModal(definition) {
+        const modal = this.alertController.create({
+            title: definition.title,
+            message: definition.body,
+            buttons: [{
+                text: 'OK',
+                handler: () => {
+                    if (definition.confirmCallback !== undefined) {
+                        definition.confirmCallback();
+                    }
+                }
+            }]
+        });
+
+        if (definition.subTitle !== undefined) {
+            modal.setSubTitle(definition.subTitle);
+        }
+
+        return modal;
+
+    }
+
+    alert(definition: AlertDefinition) {
+
+        const modal = this.createModal(definition);
+
+        modal.present();
+
+    }
+
+    confirm(definition: ConfirmDefinition) {
+        const modal = this.createModal(definition);
+
+        modal.addButton({
+            text: 'Cancel',
+            handler: () => {
+                if (definition.cancelCallback !== undefined) {
+                    definition.cancelCallback();
+                }
+            }
+        })
+
+        modal.present();
+    }
+
+}
