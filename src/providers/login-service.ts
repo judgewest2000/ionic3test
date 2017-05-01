@@ -24,9 +24,9 @@ export class LoginService {
     const headers = new Headers();
     headers.append('Content-Type', 'application/x-www-form-urlencoded');
 
-    var body = `userName=${username}&password=${password}&grant_type=password`;
+    const body = `userName=${username}&password=${password}&grant_type=password`;
 
-    var url = ConfigHelper.getApiUrl() + '/token';
+    const url = ConfigHelper.getApiUrl() + '/token';
 
     const data = await this.http.post(url, body, { headers: headers })
       .toPromise();
@@ -70,6 +70,11 @@ export class LoginService {
   async getLoginUsername() {
     const loginToken = await this.keyValueService.get<ILogin>(loginTokenKvp);
     return loginToken.userName;
+  }
+
+  async getAuthToken(){
+    const loginToken = await this.keyValueService.get<ILogin>(loginTokenKvp);
+    return loginToken.access_token;
   }
 
 }

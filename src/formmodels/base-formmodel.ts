@@ -1,21 +1,17 @@
+import { FormBuilder } from '@angular/forms'
 
-import { IBase } from '../modelinterfaces/IBase';
-import { FormBuilder, Validators } from '@angular/forms'
+export abstract class BaseFormModel<T extends AIMC.Baltic.Dto.RestrictedVisibilityDtoRootBase> {
 
-import { Injectable } from '@angular/core';
+    constructor(private params: {
+        formBuilder: FormBuilder,
+        formDefinition: { [key: string]: any }
+    }) {
 
-import { IRelease } from '../modelinterfaces/irelease';
-
-
-export abstract class BaseFormModel<T extends IBase> {
-
-    constructor(public formBuilder: FormBuilder) { }
-
-    protected abstract formDefinition: { [key: string]: any; };
+    }
 
     public create(viewModel: T) {
 
-        const myForm = this.formBuilder.group(this.formDefinition);
+        const myForm = this.params.formBuilder.group(this.params.formDefinition);
 
         myForm.setValue(viewModel);
 

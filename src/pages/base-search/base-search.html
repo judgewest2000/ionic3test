@@ -9,13 +9,13 @@
     <ion-navbar>
         <ion-title>{{title}}</ion-title>
     </ion-navbar>
-    <ion-searchbar [ngModel]="searchTerm" (ngModelChange)="getFilteredItems($event)"></ion-searchbar>
+    <ion-searchbar [ngModel]="searchText" (ngModelChange)="getFilteredItems($event)"></ion-searchbar>
 </ion-header>
 
 
 <ion-content>
     <ion-list>
-        <button ion-item *ngFor="let data of _filteredItems" (click)="goto(data)">
+        <button ion-item *ngFor="let data of _filteredItems" (click)="redirect(data)">
             <ion-avatar item-left *ngIf="data.avatarUrl !== undefined && data.avatarUrl !== null">
                 <img src="{{data.avatarUrl}}"  />
             </ion-avatar>

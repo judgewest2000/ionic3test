@@ -1,27 +1,31 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 
-import { ISearch } from '../../modelInterfaces/IBase';
-import { ReleaseService } from '../../providers/release-service';
+import { SearchService } from '../../providers/search-service';
 import { BaseSearch } from '../base-search/base-search';
 
-
-/**
- * Generated class for the ReleaseSearch page.
- *
- * See http://ionicframework.com/docs/components/#navigation for more info
- * on Ionic pages and navigation.
- */
 @IonicPage()
 @Component({
   selector: 'page-base-search',
   templateUrl: '../base-search/base-search.html',
 })
-export class ReleaseSearch extends BaseSearch {
+export class ReleaseSearch extends BaseSearch<AIMC.Baltic.Dto.Kendo.ReleaseKendoAzDto> {
 
-  constructor(navCtrl: NavController, releaseService: ReleaseService) {
-    super(navCtrl, releaseService, 'ReleaseEdit', 'Release Search');
+  constructor(navController: NavController, searchService: SearchService) {
+    super({
+      endPoint: 'release/search',
+      navGoto: 'ReleaseEdit',
+      mapResult: item => ({
+        id: item.id,
+        name: item.name,
+        description1: item.headline
+      }),
+      navcontroller: navController,
+      searchService: searchService,
+      title: 'Release'
+    });
   }
+
 
 
 }

@@ -1,31 +1,52 @@
 import { NavController } from 'ionic-angular';
-import { IBase, ISearch } from '../../modelInterfaces/IBase';
-import { BaseEntityService } from '../../providers/baseentity-service';
+import { ISearch } from '../../modelInterfaces/IBase';
+import { SearchService, SortField, SearchRequest } from '../../providers/search-service';
 
-export abstract class BaseSearch {
+export abstract class BaseSearch<T> {
 
-  constructor(private navCtrl: NavController,
-    private baseEntityService: BaseEntityService<IBase>,
-    private navGoto: string,
-    public title: string) {
+  constructor(private params: {
+    navcontroller: NavController,
+    searchService: SearchService,
+    navGoto: string,
+    title: string,
+    endPoint: string,
+    mapResult: (item: T) => ISearch,
+    defaultSortField?: SortField
+  }
+  ) {
+    this.title = params.title;
   }
 
-  goto(data: ISearch) {
-    this.navCtrl.push(this.navGoto, { id: data.id });
+  title: string;
+
+  redirect(data: ISearch) {
+    this.params.navcontroller.push(this.params.navGoto, { id: data.id });
   }
 
-  searchTerm = '';
+  searchText = '';
   _filteredItems: ISearch[];
+  async getFilteredItems(searchText?: string) {
 
-  getFilteredItems(searchTerm?: string) {
-    this.baseEntityService.search(searchTerm)
-      .then(results => {
-        this._filteredItems = results;
-      });
+    if (searchText.length !== 0 && searchText.length < 3) {
+      return;
+    }
+
+    const searchRequest: SearchRequest = {
+      endPoint: this.params.endPoint,
+      searchText: searchText
+    }
+
+    if (this.params.defaultSortField !== undefined) {
+      searchRequest.sortField = this.params.defaultSortField;
+    }
+
+    const result = await this.params.searchService.search<T>(searchRequest)
+
+    this._filteredItems = result.data.map(d => this.params.mapResult(d));
   }
 
   ionViewWillEnter() {
-    this.getFilteredItems(this.searchTerm);
+    this.getFilteredItems(this.searchText);
   }
 
 }

@@ -1,50 +1,55 @@
-import { IBase, IForm, ISearch } from '../modelInterfaces/IBase';
+import { IForm } from '../modelInterfaces/IBase';
 import { BaseFormModel } from '../formmodels/base-formmodel';
-import { StringHelper } from '../helpers/string-helper';
+import { TemplateGetHelper } from '../helpers/template-helper';
+import { DataAccessService } from './data-access-service';
 
-export abstract class BaseEntityService<T extends IBase> {
+export abstract class BaseEntityService<T extends AIMC.Baltic.Dto.RestrictedVisibilityDtoRootBase> {
 
-    protected entities: T[];
+    constructor(private params: {
+        baseFormModel: BaseFormModel<T>,
+        dataAccessService: DataAccessService,
+        endPoint: string,
+        templateName: string
+    }) {
 
-    protected abstract getBlank: () => T;
+    }
 
-    protected abstract mapForSearch: (item:T) => ISearch;
+    async get(id: number) {
 
-    get(id: number) {
-        return new Promise<T>((resolve, err) => {
-            let item: T;
+        if (id === 0) {
+            return TemplateGetHelper<T>(this.params.templateName);
+        }
 
-            if (id === 0) {
-                item = this.getBlank();
-            } else {
-                item = this.entities.filter(r => r.id === id)[0];
-            }
+        const item = await this.params.dataAccessService.get<T>(this.params.endPoint, { id: id });
 
-            resolve(item);
-        });
+        return item;
+
     }
 
     async getForm(id: number) {
 
+        debugger;
+        
         const data = await this.get(id);
 
         const myForm: IForm<T> = {
             viewModel: data,
-            form: this.baseFormModel.create(data)
+            form: this.params.baseFormModel.create(data)
         };
 
         return myForm;
 
     }
 
-    save(item: T) {
-        return new Promise<void>(resolve => {
-            if (item.id === 0) {
-                item.id = this.entities.map(r => r.id).sort().reverse()[0] + 1;
-                this.entities.push(item);
-            }
-            resolve();
-        });
+    async save(item: T) {
+
+        try {
+            await this.params.dataAccessService.post(this.params.endPoint, item);
+            return true;
+        }
+        catch (err) {
+            return false;
+        }
     }
 
     delete(item: T) {
@@ -54,28 +59,5 @@ export abstract class BaseEntityService<T extends IBase> {
         });
     }
 
-
-    search(searchTerm?: string) {
-        return new Promise<ISearch[]>(resolve => {
-
-            let items = this.entities
-                .filter(e => !e.deleted);
-
-            if (StringHelper.isNotNullOrWhiteSpace(searchTerm)) {
-                searchTerm.split(' ').forEach(chunk => {
-                    items = items.filter(i => StringHelper.contains(i.name, chunk));
-                });
-            }
-
-            const mappedItems = items.map(e => this.mapForSearch(e));
-
-            resolve(mappedItems);
-        });
-    }
-
-
-    constructor(public baseFormModel: BaseFormModel<T>) {
-
-    }
 
 }

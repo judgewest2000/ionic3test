@@ -1,9 +1,7 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, ActionSheetController, ModalController } from 'ionic-angular';
-
 import { ReleaseService } from '../../providers/release-service';
-
-import { IRelease } from '../../modelInterfaces/IRelease';
+import { ModalService } from '../../providers/modal-service';
 
 /**
  * Generated class for the ReleaseEdit page.
@@ -22,29 +20,20 @@ export class ReleaseEdit {
 
   segment = 'main';
 
-  release: IRelease;
+  release: AIMC.Baltic.Dto.MediaDatabase.ReleaseDto;
 
   myname = "";
 
 
   delete() {
-    let actionSheet = this.actionSheetController.create({
+    this.modalService.confirm({
       title: 'Confirm Deletion',
-      buttons: [
-        {
-          text: 'Confirm',
-          role: 'destructive',
-          handler: () => {
-            this.releaseService.delete(this.release);
-            this.navCtrl.pop();
-          }
-        }, {
-          text: 'Cancel',
-          role: 'cancel',
-          handler: () => { }
-        }]
+      body: 'Confirm delete of this release',
+      confirmCallback: () =>{
+        this.releaseService.delete(this.release);
+        this.navCtrl.pop();
+      }
     });
-    actionSheet.present();
   }
 
   cancel() {
@@ -60,11 +49,12 @@ export class ReleaseEdit {
 
   constructor(
     public navCtrl: NavController,
-    public navParams: NavParams,
-    public actionSheetController: ActionSheetController,
-    public modalCtrl: ModalController,
-    public releaseService: ReleaseService) {
-
+    private navParams: NavParams,
+    private actionSheetController: ActionSheetController,
+    private modalCtrl: ModalController,
+    private releaseService: ReleaseService,
+    private modalService: ModalService) {
+    
     let id = parseInt(this.navParams.get('id'));
 
     releaseService.get(id).then(value => this.release = value);

@@ -1,17 +1,11 @@
 import { FormGroup } from '@angular/forms';
 
-export interface IBase {
-    id: number;
-    deleted: boolean;
-    name: string;
-}
-
-export interface IForm<T extends IBase> {
+export interface IForm<T extends AIMC.Baltic.Dto.RestrictedVisibilityDtoRootBase> {
     viewModel: T,
     form: FormGroup
 }
 
-export interface ISearch{
+export interface ISearch {
     id: number;
     name: string;
     description1?: string;
