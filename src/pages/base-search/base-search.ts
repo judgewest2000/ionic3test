@@ -19,6 +19,8 @@ export abstract class BaseSearch<T> {
 
   title: string;
 
+  performingSearch = true;
+
   redirect(data: ISearch) {
     this.params.navcontroller.push(this.params.navGoto, { id: data.id });
   }
@@ -26,6 +28,8 @@ export abstract class BaseSearch<T> {
   searchText = '';
   _filteredItems: ISearch[];
   async getFilteredItems(searchText?: string) {
+
+    this.performingSearch = true;
 
     if (searchText.length !== 0 && searchText.length < 3) {
       return;
@@ -42,7 +46,9 @@ export abstract class BaseSearch<T> {
 
     const result = await this.params.searchService.search<T>(searchRequest)
 
+    this.performingSearch = false;
     this._filteredItems = result.data.map(d => this.params.mapResult(d));
+
   }
 
   ionViewWillEnter() {
