@@ -20,7 +20,7 @@ import { ProvidersModule } from '../providers/providers.module';
             swipeBackEnabled: false,
             platforms: {
                 ios: {
-                    backButtonText: ''
+                    //backButtonText: ''
                 }
             }
         }),
