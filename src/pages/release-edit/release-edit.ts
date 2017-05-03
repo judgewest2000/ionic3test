@@ -69,6 +69,7 @@ export class ReleaseEdit {
 
       if (id === 0) {
         value.form.controls['displayDateTime'].setValue(new Date().toISOString());
+        value.form.controls['scheduledDateTime'].setValue(new Date().toISOString());
       }
       
       this.release = value;

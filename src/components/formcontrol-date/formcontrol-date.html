@@ -1,0 +1,6 @@
+<ion-item>
+    <ion-label stacked>{{title}}</ion-label>
+    <ion-datetime [placeholder]="title" [pickerFormat]="getPickerFormat()" [formControl]="formControlItem"></ion-datetime>
+</ion-item>
+
+<formcontrol-validation [formControlItem]="formControlItem"></formcontrol-validation>

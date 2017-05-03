@@ -34,10 +34,23 @@ export module StringHelper {
         return value.charAt(0).toUpperCase() + value.slice(1);
     }
 
-    export function capitalizeFirstLetterEachWord(value: string){
+    export function capitalizeFirstLetterEachWord(value: string) {
         return value.split(' ')
-        .map(v => capitalizeFirstLetter(v))
-        .join(' ');
+            .map(v => this.capitalizeFirstLetter(v))
+            .join(' ');
+    }
+
+    export function isTrue(value: string) {
+
+        if (this.isNullOrWhiteSpace(value)) {
+            return false;
+        }
+
+        let lower = value.toLowerCase();
+        
+        let istrue = lower === '1' || lower === 'true' || lower === 'yes';
+        
+        return istrue;
     }
 
 };

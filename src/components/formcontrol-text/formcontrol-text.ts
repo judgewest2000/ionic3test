@@ -16,7 +16,6 @@ export class FormcontrolText {
 
   //THIS EVENT DOES HIT
   ngOnInit() {
-    console.log('hit here');
   }
 
 }
