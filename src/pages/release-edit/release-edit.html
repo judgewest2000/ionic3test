@@ -17,19 +17,33 @@
 </ion-header>
 
 <ion-content>
-
-
-
     <form *ngIf="releaseLoaded" [formGroup]="release.form">
-
         <formcontrol-text title="Name" [formControlItem]="release.form.controls.name"></formcontrol-text>
         <formcontrol-text title="Headline" [formControlItem]="release.form.controls.headline"></formcontrol-text>
         <formcontrol-text title="Subheading" [formControlItem]="release.form.controls.subheading"></formcontrol-text>
         <formcontrol-date title="Display Date" [formControlItem]="release.form.controls.displayDateTime"></formcontrol-date>
         <formcontrol-date title="Schedule Date Time" [formControlItem]="release.form.controls.scheduledDateTime" showTime="true"></formcontrol-date>
-
     </form>
 
     <button *ngIf="displayDelete()" ion-button full (click)="delete()" color="light" style="color: red;">Delete</button>
 
 </ion-content>
+
+<ion-footer>
+    <ion-toolbar>
+        <ion-segment [(ngModel)]="segment">
+            <ion-segment-button value="main">
+                Main
+            </ion-segment-button>
+            <ion-segment-button value="corecopy">
+                Core Copy
+            </ion-segment-button>
+            <ion-segment-button value="notestoeditor">
+                Editor
+            </ion-segment-button>
+            <ion-segment-button value="boilerplate">
+                Boilerplate
+            </ion-segment-button>
+        </ion-segment>
+    </ion-toolbar>
+</ion-footer>
