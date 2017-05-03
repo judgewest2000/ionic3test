@@ -11,7 +11,7 @@ export class ReleaseFormModel extends BaseFormModel<AIMC.Baltic.Dto.MediaDatabas
         super({
             formBuilder: formBuilder,
             formDefinition: {
-                name: ['', Validators.required],
+                name: ['', Validators.compose([Validators.required])],
                 headline: ['', Validators.required],
                 subheading: ['', Validators.required],
                 displayDateTime: ['', Validators.required],

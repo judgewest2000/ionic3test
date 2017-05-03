@@ -1,3 +1,9 @@
-<ion-item [formGroup]="form">
-    <ion-input [placeholder]="title" type="text" [formControlName]="fieldName"></ion-input>
+<ion-item>
+    <ion-input [placeholder]="title" type="text" [formControl]="formControlItem">
+    </ion-input>
 </ion-item>
+<div *ngIf="displayValidationMessages()">
+    <p class="validationerror" *ngFor="let item of getListOfErrors()">
+        {{item}}
+    </p>
+</div>

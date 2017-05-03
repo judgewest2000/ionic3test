@@ -19,20 +19,13 @@
 <ion-content>
 
 
+
     <form *ngIf="releaseLoaded" [formGroup]="release.form">
 
-        <formcontrol-text title="Name" fieldName='name' [form]="release.form"></formcontrol-text>
-        <formcontrol-text title="Headline" fieldName='headline' [form]="release.form"></formcontrol-text>
-        <formcontrol-text title="Subheading" fieldName='subheading' [form]="release.form"></formcontrol-text>
+        <formcontrol-text title="Name" [formControlItem]="release.form.controls.name"></formcontrol-text>
+        <formcontrol-text title="Headline" [formControlItem]="release.form.controls.headline"></formcontrol-text>
+        <formcontrol-text title="Subheading" [formControlItem]="release.form.controls.subheading"></formcontrol-text>
 
-        <ion-item>
-            <ion-label stacked>Display Date</ion-label>
-            <ion-datetime placeholder="Display Date" displayForm="DD/MMM/YYYY" pickerFormat="DD MMM YYYY" formControlName="displayDateTime"></ion-datetime>
-        </ion-item>
-        <ion-item>
-            <ion-label stacked>Core Copy</ion-label>
-            <ion-textarea type="text" placeholder="Core Copy" rows="10" formControlName="coreCopy"></ion-textarea>
-        </ion-item>
     </form>
 
     <button *ngIf="displayDelete()" ion-button full (click)="delete()" color="light" style="color: red;">Delete</button>
