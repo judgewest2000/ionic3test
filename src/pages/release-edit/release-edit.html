@@ -21,29 +21,18 @@
 
     <form *ngIf="releaseLoaded" [formGroup]="release.form">
 
+        <formcontrol-text title="Name" fieldName='name' [form]="release.form"></formcontrol-text>
+        <formcontrol-text title="Headline" fieldName='headline' [form]="release.form"></formcontrol-text>
+        <formcontrol-text title="Subheading" fieldName='subheading' [form]="release.form"></formcontrol-text>
 
-        <ion-item-divider color="primary">Release Content</ion-item-divider>
-        <ion-list>
-            <ion-item>
-                <ion-input placeholder="Name" type="text" formControlName="name"></ion-input>
-            </ion-item>
-            <ion-item>
-                <ion-input placeholder="Headline" style="font-size: 1.8em;" type="text" formControlName="headline"></ion-input>
-            </ion-item>
-            <ion-item>
-                <ion-input placeholder="Subheading" type="text" formControlName="subheading"></ion-input>
-            </ion-item>
-            <ion-item>
-                <ion-label stacked>Display Date</ion-label>
-                <ion-datetime placeholder="Display Date" displayForm="DD/MMM/YYYY" pickerFormat="DD MMM YYYY" formControlName="displayDateTime"></ion-datetime>
-            </ion-item>
-            <ion-item>
-                <ion-label stacked>Core Copy</ion-label>
-                <ion-textarea type="text" placeholder="Core Copy" rows="10" formControlName="coreCopy"></ion-textarea>
-            </ion-item>
-        </ion-list>
-
-
+        <ion-item>
+            <ion-label stacked>Display Date</ion-label>
+            <ion-datetime placeholder="Display Date" displayForm="DD/MMM/YYYY" pickerFormat="DD MMM YYYY" formControlName="displayDateTime"></ion-datetime>
+        </ion-item>
+        <ion-item>
+            <ion-label stacked>Core Copy</ion-label>
+            <ion-textarea type="text" placeholder="Core Copy" rows="10" formControlName="coreCopy"></ion-textarea>
+        </ion-item>
     </form>
 
     <button *ngIf="displayDelete()" ion-button full (click)="delete()" color="light" style="color: red;">Delete</button>
