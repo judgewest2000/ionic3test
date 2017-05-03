@@ -1,7 +1,6 @@
 import { Injectable } from '@angular/core';
 import { AlertController, LoadingController, Loading } from 'ionic-angular';
 
-
 export interface AlertDefinition {
     title: string;
     subTitle?: string;

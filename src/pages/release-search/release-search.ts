@@ -4,6 +4,8 @@ import { IonicPage, NavController } from 'ionic-angular';
 import { SearchService } from '../../providers/search-service';
 import { BaseSearch } from '../base-search/base-search';
 
+import { StringHelper } from '../../helpers/string-helper';
+
 @IonicPage()
 @Component({
   selector: 'page-base-search',
@@ -18,7 +20,8 @@ export class ReleaseSearch extends BaseSearch<AIMC.Baltic.Dto.Kendo.ReleaseKendo
       mapResult: item => ({
         id: item.id,
         name: item.name,
-        description1: item.headline
+        description1: item.headline,
+        description2: item.displayDateTime !== null ? StringHelper.formatDate(item.displayDateTime) : ''
       }),
       navcontroller: navController,
       searchService: searchService,

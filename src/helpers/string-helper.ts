@@ -1,4 +1,6 @@
 
+import * as moment from 'moment';
+
 export module StringHelper {
 
     export function contains(source: string, lookupValue: string): boolean {
@@ -22,6 +24,10 @@ export module StringHelper {
 
     export function isNullOrWhiteSpace(value: any) {
         return !this.isNotNullOrWhiteSpace(value);
+    }
+
+    export function formatDate(value: any) {
+        return moment(value).format('DD-MMM-YYYY');
     }
 
 
