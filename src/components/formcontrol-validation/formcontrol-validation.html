@@ -1,0 +1,5 @@
+<div *ngIf="displayValidationMessages()">
+    <p class="validationerror" *ngFor="let item of getListOfErrors()">
+        {{item}}
+    </p>
+</div>
