@@ -13,7 +13,7 @@
         <ion-title>{{title}}</ion-title>
     </ion-navbar>
 
-    <ion-searchbar (ionInput)="getFilteredItems($event.target.value)"></ion-searchbar>
+    <ion-searchbar #searchElement placeholder="Search Releases..." (ionInput)="getFilteredItems($event.target.value)"></ion-searchbar>
 
 </ion-header>
 

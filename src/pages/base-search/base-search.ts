@@ -1,8 +1,11 @@
 import { NavController } from 'ionic-angular';
 import { ISearch } from '../../modelInterfaces/IBase';
 import { SearchService, SortField, SearchRequest } from '../../providers/search-service';
+import { ViewChild } from '@angular/core';
 
 export abstract class BaseSearch<T> {
+
+  @ViewChild('searchElement') searchElement: any;
 
   constructor(private params: {
     navcontroller: NavController,
@@ -25,29 +28,21 @@ export abstract class BaseSearch<T> {
     this.params.navcontroller.push(this.params.navGoto, { id: data.id });
   }
 
-  _lastSuccessfulSearch = '';
   _filteredItems: ISearch[];
   async getFilteredItems(searchText?: string) {
+
 
     if (searchText === undefined) {
       searchText = '';
     }
 
-    if (this._lastSuccessfulSearch === undefined) {
-      this._lastSuccessfulSearch = '';
-    }
-
-    if (searchText.length === 0 && this._lastSuccessfulSearch.length !== 0) {
-      searchText = this._lastSuccessfulSearch;
-    }
-
-    if (searchText !== undefined && searchText.length !== 0 && searchText.length < 3) {
+    if (searchText.length !== 0 && searchText.length < 3) {
       return;
     }
 
     this.performingSearch = true;
 
-    const searchRequest: SearchRequest = {
+    let searchRequest: SearchRequest = {
       endPoint: this.params.endPoint,
       searchText: searchText
     }
@@ -60,15 +55,14 @@ export abstract class BaseSearch<T> {
 
     this._filteredItems = result.data.map(d => this.params.mapResult(d));
 
-    this._lastSuccessfulSearch = searchText;
-
     this.performingSearch = false;
-
-
   }
 
   ionViewDidEnter() {
-    this.getFilteredItems();
+
+    let previousSearchValue = this.searchElement.value as string;
+
+    this.getFilteredItems(previousSearchValue);
   }
 
 }
