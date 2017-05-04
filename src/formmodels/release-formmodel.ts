@@ -13,7 +13,7 @@ export class ReleaseFormModel extends BaseFormModel<AIMC.Baltic.Dto.MediaDatabas
             formDefinition: {
                 name: ['', Validators.compose([Validators.required])],
                 headline: ['', Validators.required],
-                subheading: ['', Validators.required],
+                subheading: [''],
                 displayDateTime: ['', Validators.required],
                 scheduledDateTime: ['', Validators.required],
                 coreCopy: [''],
