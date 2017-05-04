@@ -13,7 +13,8 @@
         <ion-title>{{title}}</ion-title>
     </ion-navbar>
 
-    <ion-searchbar [ngModel]="searchText" (ngModelChange)="getFilteredItems($event)"></ion-searchbar>
+    <ion-searchbar (ionInput)="getFilteredItems($event.target.value)"></ion-searchbar>
+
 </ion-header>
 
 

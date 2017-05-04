@@ -32,6 +32,14 @@
         <div *ngIf="segment === 'corecopy'">
             <formcontrol-richtext title="Core Copy" [formControlItem]="release.form.controls.coreCopy"></formcontrol-richtext>
         </div>
+
+        <div *ngIf="segment === 'notestoeditor'">
+            <formcontrol-richtext title="Core Copy" [formControlItem]="release.form.controls.notesToEditor"></formcontrol-richtext>
+        </div>
+
+        <div *ngIf="segment === 'boilerplate'">
+            <formcontrol-richtext title="Core Copy" [formControlItem]="release.form.controls.boilerPlate"></formcontrol-richtext>
+        </div>
     </form>
 
 </ion-content>

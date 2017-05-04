@@ -25,15 +25,19 @@ export abstract class BaseSearch<T> {
     this.params.navcontroller.push(this.params.navGoto, { id: data.id });
   }
 
-  searchText = '';
+  _lastSuccessfulSearch = '';
   _filteredItems: ISearch[];
   async getFilteredItems(searchText?: string) {
 
-    this.performingSearch = true;
+    if (searchText === undefined && this._lastSuccessfulSearch.length !== 0) {
+      searchText = this._lastSuccessfulSearch;
+    }
 
-    if (searchText.length !== 0 && searchText.length < 3) {
+    if (searchText !== undefined && searchText.length !== 0 && searchText.length < 3) {
       return;
     }
+
+    this.performingSearch = true;
 
     const searchRequest: SearchRequest = {
       endPoint: this.params.endPoint,
@@ -46,13 +50,17 @@ export abstract class BaseSearch<T> {
 
     const result = await this.params.searchService.search<T>(searchRequest)
 
-    this.performingSearch = false;
     this._filteredItems = result.data.map(d => this.params.mapResult(d));
+
+    this._lastSuccessfulSearch=searchText;
+
+    this.performingSearch = false;
+
 
   }
 
-  ionViewWillEnter() {
-    this.getFilteredItems(this.searchText);
+  ionViewDidEnter() {
+    this.getFilteredItems();
   }
 
 }
