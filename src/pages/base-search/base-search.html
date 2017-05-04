@@ -22,7 +22,7 @@
 
     <custom-spinner *ngIf="performingSearch"></custom-spinner>
 
-    <ion-list>
+    <ion-list *ngIf="!performingSearch">
         <button ion-item *ngFor="let data of _filteredItems" (click)="redirect(data)">
             <ion-avatar item-left *ngIf="data.avatarUrl !== undefined && data.avatarUrl !== null">
                 <img src="{{data.avatarUrl}}"  />

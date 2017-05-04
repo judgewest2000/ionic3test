@@ -29,7 +29,15 @@ export abstract class BaseSearch<T> {
   _filteredItems: ISearch[];
   async getFilteredItems(searchText?: string) {
 
-    if (searchText === undefined && this._lastSuccessfulSearch.length !== 0) {
+    if (searchText === undefined) {
+      searchText = '';
+    }
+
+    if (this._lastSuccessfulSearch === undefined) {
+      this._lastSuccessfulSearch = '';
+    }
+
+    if (searchText.length === 0 && this._lastSuccessfulSearch.length !== 0) {
       searchText = this._lastSuccessfulSearch;
     }
 
@@ -52,7 +60,7 @@ export abstract class BaseSearch<T> {
 
     this._filteredItems = result.data.map(d => this.params.mapResult(d));
 
-    this._lastSuccessfulSearch=searchText;
+    this._lastSuccessfulSearch = searchText;
 
     this.performingSearch = false;
 
