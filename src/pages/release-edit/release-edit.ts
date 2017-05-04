@@ -35,7 +35,7 @@ export class ReleaseEdit {
     this.navCtrl.pop();
   }
 
-  save() {
+  async save() {
 
     if (this.release.form.invalid) {
       this.modalService.alert({
@@ -43,8 +43,23 @@ export class ReleaseEdit {
         body: 'Please check all fields are valid'
       });
     } else {
-      this.releaseService.save(this.release);
-      this.navCtrl.pop();
+      try {
+        await this.releaseService.save(this.release);
+        this.modalService.alert({
+          title: 'Release saved',
+          body: 'Your release has been saved',
+          confirmCallback: () => {
+            this.navCtrl.pop();
+          }
+        });
+
+      } catch (ex) {
+        this.modalService.alert({
+          title: 'Issue saving your release',
+          body: `Could not save release: ${JSON.stringify(ex)}`
+        });
+      }
+
     }
   }
 
@@ -71,7 +86,7 @@ export class ReleaseEdit {
         value.form.controls['displayDateTime'].setValue(new Date().toISOString());
         value.form.controls['scheduledDateTime'].setValue(new Date().toISOString());
       }
-      
+
       this.release = value;
       this.releaseLoaded = true;
       modalService.turnOffLoading();
