@@ -1,9 +1,3 @@
- 
- 
-
-
- 
-
 /// <reference path="Enums.ts" />
 
 declare module AIMC.Baltic.Dto {

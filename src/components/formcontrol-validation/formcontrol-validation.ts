@@ -1,6 +1,5 @@
 import { Component, Input } from '@angular/core';
-import { FormControl } from '@angular/forms';
-
+import { IFormControlDefinition } from '../../modelinterfaces/ibase';
 
 @Component({
   selector: 'formcontrol-validation',
@@ -8,15 +7,14 @@ import { FormControl } from '@angular/forms';
 })
 export class FormcontrolValidation {
 
-  @Input() formControlItem: FormControl;
+  @Input() definition: IFormControlDefinition;
 
   constructor() {
   }
 
   displayValidationMessages() {
 
-    if (this.formControlItem.invalid && this.formControlItem.dirty) {
-      console.log('invalid');
+    if ((this.definition.formControlItem.dirty || this.definition.submitAttemptMade) && !this.definition.formControlItem.valid) {
       return true;
     }
     return false;
@@ -24,23 +22,19 @@ export class FormcontrolValidation {
 
   getListOfErrors() {
 
-    if (!this.formControlItem.touched) {
-      return [];
-    }
-
     var errors: string[] = [];
 
-    Object.keys(this.formControlItem.errors).forEach(errDescription => {
+    Object.keys(this.definition.formControlItem.errors).forEach(errDescription => {
 
       switch (errDescription) {
         case 'required':
           errors.push(`This is a required field`)
           break;
         case 'maxlength':
-          errors.push(`Maximum length: ${this.formControlItem.errors.maxlength.requiredLength} - currently ${this.formControlItem.errors.maxlength.actualLength}`);
+          errors.push(`Maximum length: ${this.definition.formControlItem.errors.maxlength.requiredLength} - currently ${this.definition.formControlItem.errors.maxlength.actualLength}`);
           break;
         case 'minlength':
-          errors.push(`Minimum length: ${this.formControlItem.errors.minlength.requiredLength} - currently ${this.formControlItem.errors.minlength.actualLength}`);
+          errors.push(`Minimum length: ${this.definition.formControlItem.errors.minlength.requiredLength} - currently ${this.definition.formControlItem.errors.minlength.actualLength}`);
           break;
         case 'email':
           errors.push('Require a valid email address');

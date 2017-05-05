@@ -1,9 +1,3 @@
-<!--
-  Generated template for the ReleaseEdit page.
-
-  See http://ionicframework.com/docs/components/#navigation for more info on
-  Ionic pages and navigation.
--->
 <ion-header>
     <ion-navbar hideBackButton>
         <ion-buttons start left>
@@ -33,28 +27,28 @@
 </ion-header>
 
 <ion-content>
-    <form *ngIf="releaseLoaded" [formGroup]="release.form">
+    <form *ngIf="releaseLoaded" [formGroup]="item.form">
         <div *ngIf="segment === 'main'">
 
-            <formcontrol-text title="Name" [formControlItem]="release.form.controls.name"></formcontrol-text>
-            <formcontrol-text title="Headline" [formControlItem]="release.form.controls.headline"></formcontrol-text>
-            <formcontrol-text title="Subheading" [formControlItem]="release.form.controls.subheading"></formcontrol-text>
-            <formcontrol-date title="Display Date" [formControlItem]="release.form.controls.displayDateTime"></formcontrol-date>
-            <formcontrol-date title="Schedule Date Time" [formControlItem]="release.form.controls.scheduledDateTime" showTime="true"></formcontrol-date>
+            <formcontrol-text [definition]="createFormControlDefinition('Name', item.form.controls['name'])"></formcontrol-text>
+            <formcontrol-text [definition]="createFormControlDefinition('Headline', item.form.controls['headline'])"></formcontrol-text>
+            <formcontrol-text [definition]="createFormControlDefinition('Subheading', item.form.controls['subheading'])"></formcontrol-text>
+            <formcontrol-date [definition]="createFormControlDefinition('Display Date Time', item.form.controls['displayDateTime'])"></formcontrol-date>
+            <formcontrol-date showTime="true" [definition]="createFormControlDefinition('Scheduled', item.form.controls['scheduledDateTime'])"></formcontrol-date>
 
             <button *ngIf="displayDelete()" ion-button full (click)="delete()" color="light" style="color: red;">Delete</button>
         </div>
 
         <div *ngIf="segment === 'corecopy'">
-            <formcontrol-richtext title="Core Copy" [formControlItem]="release.form.controls.coreCopy"></formcontrol-richtext>
+            <formcontrol-richtext [definition]="createFormControlDefinition('Core Copy', item.form.controls['coreCopy'])"></formcontrol-richtext>
         </div>
 
         <div *ngIf="segment === 'notestoeditor'">
-            <formcontrol-richtext title="Core Copy" [formControlItem]="release.form.controls.notesToEditor"></formcontrol-richtext>
+            <formcontrol-richtext [definition]="createFormControlDefinition('Notes to Editor', item.form.controls['notesToEditor'])"></formcontrol-richtext>
         </div>
 
         <div *ngIf="segment === 'boilerplate'">
-            <formcontrol-richtext title="Core Copy" [formControlItem]="release.form.controls.boilerPlate"></formcontrol-richtext>
+            <formcontrol-richtext [definition]="createFormControlDefinition('BoilerPlate', item.form.controls['boilerPlate'])"></formcontrol-richtext>
         </div>
     </form>
 

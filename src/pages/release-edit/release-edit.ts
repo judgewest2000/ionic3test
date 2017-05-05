@@ -2,7 +2,9 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { ReleaseService } from '../../providers/release-service';
 import { ModalService } from '../../providers/modal-service';
-import { IForm } from '../../modelinterfaces/ibase';
+import { IForm, IFormControlDefinition } from '../../modelinterfaces/ibase';
+import { FormControl } from '@angular/forms';
+
 
 @IonicPage({
   segment: 'release-edit/:id'
@@ -15,7 +17,8 @@ export class ReleaseEdit {
 
   segment = 'main';
 
-  release: IForm<AIMC.Baltic.Dto.MediaDatabase.ReleaseDto>;
+  item: IForm<AIMC.Baltic.Dto.MediaDatabase.ReleaseDto>;
+  submitAttemptMade = false;
 
   releaseLoaded = false;
 
@@ -36,12 +39,20 @@ export class ReleaseEdit {
         value.form.controls['scheduledDateTime'].setValue(new Date().toISOString());
       }
 
-      this.release = value;
+      this.item = value;
       this.releaseLoaded = true;
       modalService.turnOffLoading();
       this.updateHeadline();
     });
 
+  }
+
+  createFormControlDefinition(title: string, formControlItem: FormControl) {
+    return <IFormControlDefinition>{
+      title: title,
+      formControlItem: formControlItem,
+      submitAttemptMade: this.submitAttemptMade
+    };
   }
 
 
@@ -50,7 +61,7 @@ export class ReleaseEdit {
       title: 'Confirm Deletion',
       body: 'Confirm delete of this release',
       confirmCallback: () => {
-        this.releaseService.delete(this.release.viewModel)
+        this.releaseService.delete(this.item.viewModel)
           .then(() => {
             this.navCtrl.pop();
           });
@@ -62,9 +73,12 @@ export class ReleaseEdit {
     this.navCtrl.pop();
   }
 
+
   async save() {
 
-    if (this.release.form.invalid) {
+    this.submitAttemptMade = true;
+
+    if (this.item.form.invalid) {
       this.modalService.alert({
         title: 'Cannot save release',
         body: 'Please check all fields are valid'
@@ -72,8 +86,8 @@ export class ReleaseEdit {
     } else {
       try {
         this.modalService.turnOnLoading();
-        let release = await this.releaseService.save(this.release);
-        this.release.viewModel = release;
+        let release = await this.releaseService.save(this.item);
+        this.item.viewModel = release;
         this.modalService.turnOffLoading();
 
         this.modalService.alert({
@@ -92,19 +106,19 @@ export class ReleaseEdit {
   }
 
   displayDelete() {
- 
-    return this.release.viewModel.id !== 0;
+
+    return this.item.viewModel.id !== 0;
   }
 
   //KEEP THE HEADLINE AND NAME INLINE WITH EACH OTHER SAME AS NORMAL SYSTEM
   _previousName = '';
   updateHeadline() {
 
-    this._previousName = this.release.form.controls['name'].value;
+    this._previousName = this.item.form.controls['name'].value;
 
-    this.release.form.controls['name'].valueChanges.subscribe((name: string) => {
-      if (this.release.form.controls['headline'].value === this._previousName) {
-        this.release.form.controls['headline'].setValue(name);
+    this.item.form.controls['name'].valueChanges.subscribe((name: string) => {
+      if (this.item.form.controls['headline'].value === this._previousName) {
+        this.item.form.controls['headline'].setValue(name);
       }
       this._previousName = name;
     });

@@ -1,5 +1,5 @@
 import { Component, Input } from '@angular/core';
-import { FormControl } from '@angular/forms';
+import { IFormControlDefinition } from '../../modelinterfaces/ibase';
 
 @Component({
   selector: 'formcontrol-text',
@@ -7,8 +7,7 @@ import { FormControl } from '@angular/forms';
 })
 export class FormcontrolText {
 
-  @Input() title: string;
-  @Input() formControlItem: FormControl;
+  @Input() definition: IFormControlDefinition;
 
   constructor() {
   }

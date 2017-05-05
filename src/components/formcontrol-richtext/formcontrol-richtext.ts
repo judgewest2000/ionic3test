@@ -1,5 +1,5 @@
 import { Component, Input } from '@angular/core';
-import { FormControl } from '@angular/forms';
+import { IFormControlDefinition } from '../../modelinterfaces/ibase';
 
 /**
  * Generated class for the FormcontrolRichtext component.
@@ -13,12 +13,10 @@ import { FormControl } from '@angular/forms';
 })
 export class FormcontrolRichtext {
 
-  @Input() title: string;
-  @Input() formControlItem: FormControl;
-
+  @Input() definition: IFormControlDefinition;
 
   constructor() {
-  
+
   }
 
 }
