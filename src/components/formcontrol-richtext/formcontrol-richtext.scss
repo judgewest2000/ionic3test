@@ -1,3 +1,5 @@
 formcontrol-richtext {
-
+    *[contenteditable] {
+        -webkit-user-select: auto !important;
+    }
 }

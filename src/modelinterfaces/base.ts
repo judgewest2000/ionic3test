@@ -1,8 +1,8 @@
 import { FormGroup, FormControl } from '@angular/forms';
 
 export interface IForm<T extends AIMC.Baltic.Dto.RestrictedVisibilityDtoRootBase> {
-    viewModel: T,
-    form: FormGroup
+    viewModel: T;
+    form: FormGroup;
 }
 
 export interface ISearch {
