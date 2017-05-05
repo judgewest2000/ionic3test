@@ -7,13 +7,29 @@
 <ion-header>
     <ion-navbar hideBackButton>
         <ion-buttons start left>
-            <button ion-button (click)="cancel()">Cancel</button>
+            <button ion-button (click)="cancel()">Close</button>
         </ion-buttons>
         <ion-title>Release Edit</ion-title>
         <ion-buttons start right>
             <button ion-button (click)="save()">Save</button>
         </ion-buttons>
     </ion-navbar>
+    <ion-toolbar>
+        <ion-segment [(ngModel)]="segment">
+            <ion-segment-button value="main">
+                Main
+            </ion-segment-button>
+            <ion-segment-button value="corecopy">
+                Core Copy
+            </ion-segment-button>
+            <ion-segment-button value="notestoeditor">
+                Editor
+            </ion-segment-button>
+            <ion-segment-button value="boilerplate">
+                Boilerplate
+            </ion-segment-button>
+        </ion-segment>
+    </ion-toolbar>
 </ion-header>
 
 <ion-content>
@@ -43,22 +59,3 @@
     </form>
 
 </ion-content>
-
-<ion-footer>
-    <ion-toolbar>
-        <ion-segment [(ngModel)]="segment">
-            <ion-segment-button value="main">
-                Main
-            </ion-segment-button>
-            <ion-segment-button value="corecopy">
-                Core Copy
-            </ion-segment-button>
-            <ion-segment-button value="notestoeditor">
-                Editor
-            </ion-segment-button>
-            <ion-segment-button value="boilerplate">
-                Boilerplate
-            </ion-segment-button>
-        </ion-segment>
-    </ion-toolbar>
-</ion-footer>

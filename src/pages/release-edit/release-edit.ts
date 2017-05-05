@@ -16,7 +16,34 @@ export class ReleaseEdit {
   segment = 'main';
 
   release: IForm<AIMC.Baltic.Dto.MediaDatabase.ReleaseDto>;
+
   releaseLoaded = false;
+
+  constructor(
+    public navCtrl: NavController,
+    private navParams: NavParams,
+    private releaseService: ReleaseService,
+    private modalService: ModalService) {
+
+    modalService.turnOnLoading();
+
+    let id = parseInt(this.navParams.get('id'));
+
+    releaseService.getForm(id).then(value => {
+
+      if (id === 0) {
+        value.form.controls['displayDateTime'].setValue(new Date().toISOString());
+        value.form.controls['scheduledDateTime'].setValue(new Date().toISOString());
+      }
+
+      this.release = value;
+      this.releaseLoaded = true;
+      modalService.turnOffLoading();
+      this.updateHeadline();
+    });
+
+  }
+
 
   delete() {
     this.modalService.confirm({
@@ -44,13 +71,14 @@ export class ReleaseEdit {
       });
     } else {
       try {
-        await this.releaseService.save(this.release);
+        this.modalService.turnOnLoading();
+        let release = await this.releaseService.save(this.release);
+        this.release.viewModel = release;
+        this.modalService.turnOffLoading();
+
         this.modalService.alert({
           title: 'Release saved',
           body: 'Your release has been saved',
-          confirmCallback: () => {
-            this.navCtrl.pop();
-          }
         });
 
       } catch (ex) {
@@ -64,35 +92,8 @@ export class ReleaseEdit {
   }
 
   displayDelete() {
-    if (this.release === undefined) {
-      return false;
-    }
+ 
     return this.release.viewModel.id !== 0;
-  }
-
-  constructor(
-    public navCtrl: NavController,
-    private navParams: NavParams,
-    private releaseService: ReleaseService,
-    private modalService: ModalService) {
-
-    modalService.turnOnLoading();
-
-    let id = parseInt(this.navParams.get('id'));
-
-    releaseService.getForm(id).then(value => {
-
-      if (id === 0) {
-        value.form.controls['displayDateTime'].setValue(new Date().toISOString());
-        value.form.controls['scheduledDateTime'].setValue(new Date().toISOString());
-      }
-
-      this.release = value;
-      this.releaseLoaded = true;
-      modalService.turnOffLoading();
-      this.updateHeadline();
-    });
-
   }
 
   //KEEP THE HEADLINE AND NAME INLINE WITH EACH OTHER SAME AS NORMAL SYSTEM

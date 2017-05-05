@@ -35,10 +35,10 @@ export class DataAccessService {
 
     let paramToPass = JSON.stringify(params);
 
-    const data = await this.http.post(apiUrl, paramToPass, { headers: headers })
+    let data = await this.http.post(apiUrl, paramToPass, { headers: headers })
       .toPromise();
 
-    const tObj = data.json() as T;
+    let tObj = data.json() as T;
 
     return tObj;
 

@@ -43,7 +43,7 @@ export abstract class BaseEntityService<T extends AIMC.Baltic.Dto.RestrictedVisi
 
         let amalgamated = Object.assign({}, item.viewModel, item.form.getRawValue());
 
-        let returnedItem = await this.params.dataAccessService.post(this.params.endPoint, amalgamated);
+        let returnedItem = await this.params.dataAccessService.post<T>(this.params.endPoint, amalgamated);
 
         return returnedItem;
     }
