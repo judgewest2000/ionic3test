@@ -2,7 +2,8 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { ReleaseService } from '../../providers/release-service';
 import { ModalService } from '../../providers/modal-service';
-import { IForm, IFormControlDefinition } from '../../modelinterfaces/ibase';
+import { IForm } from '../../modelinterfaces/ibase';
+import { IFormControlDefinition } from '../../modelinterfaces/IFormControlDefinition';
 import { FormControl } from '@angular/forms';
 
 

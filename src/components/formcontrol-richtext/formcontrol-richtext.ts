@@ -1,5 +1,5 @@
 import { Component, Input } from '@angular/core';
-import { IFormControlDefinition } from '../../modelinterfaces/ibase';
+import { IFormControlDefinition } from '../../modelinterfaces/IFormControlDefinition';
 
 /**
  * Generated class for the FormcontrolRichtext component.

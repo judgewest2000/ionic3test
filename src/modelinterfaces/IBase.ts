@@ -1,4 +1,4 @@
-import { FormGroup, FormControl } from '@angular/forms';
+import { FormGroup } from '@angular/forms';
 
 export interface IForm<T extends AIMC.Baltic.Dto.RestrictedVisibilityDtoRootBase> {
     viewModel: T,
@@ -13,10 +13,3 @@ export interface ISearch {
     description3?: string;
     avatarUrl?: string;
 }
-
-export interface IFormControlDefinition {
-    title: string;
-    formControlItem: FormControl;
-    submitAttemptMade: boolean;
-};
-
