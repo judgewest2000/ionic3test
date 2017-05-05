@@ -4,7 +4,7 @@ import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/catch';
 import 'rxjs/add/operator/toPromise';
 import { ConfigHelper } from '../helpers/config-helper';
-import { ILogin } from '../modelInterfaces/ILogin';
+import { ILogin } from '../modelInterfaces/base';
 import { KeyValueService } from './key-value-service';
 
 const loginTokenKvp = 'logintoken';

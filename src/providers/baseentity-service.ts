@@ -1,4 +1,4 @@
-import { IForm } from '../modelInterfaces/IBase';
+import { IForm } from '../modelInterfaces/base';
 import { BaseFormModel } from '../formmodels/base-formmodel';
 import { TemplateGetHelper } from '../helpers/template-helper';
 import { DataAccessService } from './data-access-service';

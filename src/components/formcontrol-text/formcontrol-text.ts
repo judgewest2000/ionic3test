@@ -1,5 +1,5 @@
 import { Component, Input } from '@angular/core';
-import { IFormControlDefinition } from '../../modelinterfaces/IFormControlDefinition';
+import { IFormControlDefinition } from '../../modelinterfaces/base';
 
 @Component({
   selector: 'formcontrol-text',

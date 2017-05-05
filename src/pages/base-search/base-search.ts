@@ -1,5 +1,5 @@
 import { NavController } from 'ionic-angular';
-import { ISearch } from '../../modelInterfaces/IBase';
+import { ISearch } from '../../modelinterfaces/base';
 import { SearchService, SortField, SearchRequest } from '../../providers/search-service';
 import { ViewChild } from '@angular/core';
 
