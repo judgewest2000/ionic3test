@@ -27,7 +27,7 @@
 </ion-header>
 
 <ion-content>
-    <form *ngIf="releaseLoaded" [formGroup]="item.form">
+    <form *ngIf="itemLoaded" [formGroup]="item.form">
         <div *ngIf="segment === 'main'">
 
             <formcontrol-text [definition]="createFormControlDefinition('Name', item.form.controls['name'])"></formcontrol-text>
