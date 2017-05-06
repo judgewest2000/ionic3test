@@ -1,4 +1,22 @@
 <div #editor contenteditable="true">
 </div>
 
+<!--https://developer.mozilla.org/en-US/docs/Web/API/Document/execCommand-->
+<div #decorate class="decorator">
+    <button data-command="bold"><strong>B</strong></button>
+    <button data-command="italic"><i>I</i></button>
+    <button data-command="underline"><u>U</u></button> &nbsp;
+    <button data-command="formatBlock|<h1>">H1</button>
+    <button data-command="formatBlock|<h2>">H2</button>
+    <button data-command="formatBlock|<h3>">H3</button>
+    <button data-command="formatBlock|<p>">Normal</button> &nbsp;
+    <button data-command="justifyLeft">Left</button>
+    <button data-command="justifyCenter">Center</button>
+    <button data-command="justifyRight">Right</button>
+    <button data-command="justifyFull">Full</button> &nbsp;
+    <button data-command="insertOrderedList">OL</button>
+    <button data-command="insertUnorderedList">UL</button>
+
+</div>
+
 <formcontrol-validation [definition]="definition"></formcontrol-validation>

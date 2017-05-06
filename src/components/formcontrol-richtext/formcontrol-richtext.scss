@@ -1,6 +1,5 @@
 formcontrol-richtext {
     *[contenteditable] {
-        height: 300px;
         -webkit-user-select: auto !important;
         padding: 5px;
         margin: 5px;
@@ -8,5 +7,17 @@ formcontrol-richtext {
         overflow-x: scroll;
         overflow-y: auto;
         word-wrap: normal;
+    }
+    div.decorator {
+        background: #444;
+        margin: 5px;
+        padding-left: 5px;
+        button {
+            background: #444;
+            color: #fff;
+            font-size: 1.1em;
+            height: 35px;
+            padding-left: 3px;
+        }
     }
 }
