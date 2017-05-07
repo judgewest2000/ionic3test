@@ -1,4 +1,5 @@
-﻿import { NgModule, ErrorHandler } from '@angular/core';
+﻿import { SelectModule } from './../pages/select.module';
+import { NgModule, ErrorHandler } from '@angular/core';
 
 import { BrowserModule } from '@angular/platform-browser';
 import { IonicApp, IonicModule, IonicErrorHandler } from 'ionic-angular';
@@ -26,7 +27,8 @@ import { ProvidersModule } from '../providers/providers.module';
             }
         }),
         ProvidersModule,
-        FormModelsModule
+        FormModelsModule,
+        SelectModule
     ],
     bootstrap: [IonicApp],
     entryComponents: [

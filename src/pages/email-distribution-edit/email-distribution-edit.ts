@@ -1,7 +1,8 @@
+import { ContactSelect } from './../contact-select/contact-select';
 import { ReleaseService } from './../../providers/release-service';
 import { EmailDistributionService } from './../../providers/email-distribution-service';
 import { Component } from '@angular/core';
-import { NavController, NavParams, IonicPage } from 'ionic-angular';
+import { NavController, NavParams, IonicPage, ModalController } from 'ionic-angular';
 import { ModalService } from '../../providers/modal-service';
 import { BaseEdit } from '../base-edit/base-edit';
 
@@ -26,7 +27,8 @@ export class EmailDistributionEdit extends BaseEdit<AIMC.Baltic.Dto.MediaDatabas
     private navParams: NavParams,
     private emailDistributionService: EmailDistributionService,
     private releaseService: ReleaseService,
-    private modalService: ModalService) {
+    private modalService: ModalService,
+    private modalController: ModalController) {
 
     super({
       navCtrl: navCtrl,
@@ -63,6 +65,11 @@ export class EmailDistributionEdit extends BaseEdit<AIMC.Baltic.Dto.MediaDatabas
       this.item.form.controls['sendFromReplyToDomain'].setValue(this.emailDistributionClientDetails.sendFromEmailDomain.split(',')[0].split('|').pop());
     }
 
+  }
+
+  getContacts(){
+    let contactSelect = this.modalController.create(ContactSelect);
+    contactSelect.present();
   }
 
   updateSendFromEmailDomain() {
