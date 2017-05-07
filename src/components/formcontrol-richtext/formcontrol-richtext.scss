@@ -7,6 +7,10 @@ formcontrol-richtext {
         overflow-x: scroll;
         overflow-y: auto;
         word-wrap: normal;
+        img {
+            padding-left: 2px;
+            max-width: 95%;
+        }
     }
     div.decorator {
         background: #444;
