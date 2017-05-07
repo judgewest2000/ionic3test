@@ -20,8 +20,12 @@ export class HomePage {
 
     }
 
-    gotoRelease() {
+    gotoReleases() {
         this.navCtrl.push('ReleaseManagement');
+    }
+
+    gotoContacts(){
+        this.navCtrl.push('ContactSearch');
     }
 
     async logout() {

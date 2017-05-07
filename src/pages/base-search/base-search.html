@@ -13,7 +13,7 @@
         <ion-title>{{title}}</ion-title>
     </ion-navbar>
 
-    <ion-searchbar #searchElement placeholder="Search Releases..." (ionInput)="getFilteredItems($event.target.value)"></ion-searchbar>
+    <ion-searchbar #searchElement placeholder="Search..." (ionInput)="getFilteredItems($event.target.value)"></ion-searchbar>
 
 </ion-header>
 
@@ -25,7 +25,7 @@
     <ion-list *ngIf="!performingSearch">
         <button ion-item *ngFor="let data of _filteredItems" (click)="redirect(data)">
             <ion-avatar item-left *ngIf="data.avatarUrl !== undefined && data.avatarUrl !== null">
-                <img src="{{data.avatarUrl}}"  />
+                <img src="{{data.avatarUrl}}" onerror="this.style.display = 'none'" />
             </ion-avatar>
             <h2>{{data.name}}</h2>
             <p *ngIf="data.description1 !== undefined && data.description1 !== null">{{data.description1}}</p>
