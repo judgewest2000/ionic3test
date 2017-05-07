@@ -9,7 +9,7 @@ export abstract class BaseEntityService<T extends AIMC.Baltic.Dto.RestrictedVisi
         baseFormModel: BaseFormModel<T>,
         dataAccessService: DataAccessService,
         endPoint: string,
-        templateName: string
+        templateName: string,
     }) {
 
     }
@@ -20,7 +20,9 @@ export abstract class BaseEntityService<T extends AIMC.Baltic.Dto.RestrictedVisi
             return TemplateGetHelper<T>(this.params.templateName);
         }
 
-        const item = await this.params.dataAccessService.get<T>(this.params.endPoint, { id: id });
+        let endPoint = this.params.endPoint;
+
+        const item = await this.params.dataAccessService.get<T>(endPoint, { id: id });
 
         return item;
 

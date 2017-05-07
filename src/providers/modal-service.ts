@@ -12,6 +12,15 @@ export interface ConfirmDefinition extends AlertDefinition {
     cancelCallback?: () => any;
 }
 
+export interface SelectSingleItemDefinition {
+    title: string;
+    selectedId?: any;
+    list: {
+        id: any;
+        displayText: string;
+    }[],
+    confirmCallback: (id: any) => any;
+}
 
 @Injectable()
 export class ModalService {
@@ -90,4 +99,36 @@ export class ModalService {
         modal.present();
     }
 
+    selectSingleItem(definition: SelectSingleItemDefinition) {
+        let alert = this.alertController.create();
+
+        alert.setTitle(definition.title);
+
+        definition.list.forEach(l => {
+            let checked = definition.selectedId !== undefined && definition.selectedId === l.id;
+
+            alert.addInput({
+                type: 'radio',
+                label: l.displayText,
+                value: l.id,
+                checked: checked
+            });
+        });
+     
+        alert.addButton({
+            text: 'Cancel',
+            role: 'cancel',
+        });
+
+        alert.addButton({
+            text: 'OK',
+            handler: id => {
+                definition.confirmCallback(id);
+            }
+        });
+
+        alert.present();
+    }
+
+    
 }

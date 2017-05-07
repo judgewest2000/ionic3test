@@ -5,6 +5,7 @@ import { BaseEntityService } from './baseentity-service';
 import { EmailDistributionFormModel } from '../formmodels/emaildistribution-formmodel';
 
 import { DataAccessService } from './data-access-service';
+import { TemplateGetHelper } from "../helpers/template-helper";
 
 @Injectable()
 export class EmailDistributionService extends BaseEntityService<AIMC.Baltic.Dto.MediaDatabase.EmailDistributionDto> {
@@ -21,28 +22,25 @@ export class EmailDistributionService extends BaseEntityService<AIMC.Baltic.Dto.
 
   }
 
+  async getEmailDistributionClientDetails() {
+    return await this.dataAccessService.get<AIMC.Baltic.Dto.MediaDatabase.EmailDistributionClientDetailsDto>('emaildistribution/emaildistributionclientdetails');
+  }
+
+  async getEmailTemplates() {
+    return await this.dataAccessService.post<AIMC.Baltic.Dto.MediaDatabase.EmailTemplateDto[]>('emailtemplate/find', { take: 5000 });
+  }
+
   async get(id: number) {
-    if (id === 0) {
-      return await super.get(id);
+    let endPoint = 'emaildistribution/byrelease';
+
+    const item = await this.dataAccessService.get<AIMC.Baltic.Dto.MediaDatabase.EmailDistributionDto[]>(endPoint, { id: id });
+
+    if (item.length === 0) {
+      return TemplateGetHelper<AIMC.Baltic.Dto.MediaDatabase.EmailDistributionDto>('emaildistribution');
     }
 
-    let item = await this.dataAccessService.get<AIMC.Baltic.Dto.MediaDatabase.EmailDistributionDto>('emaildistribution/byrelease', { id: id });
-
-    return item;
+    return item[0];
 
   }
-
-  async getAncillary() {
-
-    let all = await Promise.all(
-      [
-        this.dataAccessService.get<AIMC.Baltic.Dto.MediaDatabase.EmailDistributionClientDetailsDto>('emaildistribution/emaildistributionclientdetails'),
-        this.dataAccessService.post<AIMC.Baltic.Dto.MediaDatabase.EmailTemplateDto[]>('emailtemplate/find', { take: 5000 })
-      ]);
-
-    return all;
-
-  }
-
 
 }

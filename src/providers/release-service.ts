@@ -1,4 +1,3 @@
-import { BehaviorSubject } from 'rxjs/Rx';
 import { Injectable } from '@angular/core';
 
 import { BaseEntityService } from './baseentity-service';
