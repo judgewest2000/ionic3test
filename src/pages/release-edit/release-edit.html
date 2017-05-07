@@ -27,7 +27,7 @@
 </ion-header>
 
 <ion-content>
-    <form *ngIf="itemLoaded" [formGroup]="item.form">
+    <form *ngIf="itemLoaded.getValue()" [formGroup]="item.form">
         <div *ngIf="segment === 'main'">
 
             <formcontrol-text [definition]="createFormControlDefinition('Name', item.form.controls['name'])"></formcontrol-text>
@@ -36,7 +36,10 @@
             <formcontrol-date [definition]="createFormControlDefinition('Display Date Time', item.form.controls['displayDateTime'])"></formcontrol-date>
             <formcontrol-date showTime="true" [definition]="createFormControlDefinition('Scheduled', item.form.controls['scheduledDateTime'])"></formcontrol-date>
 
-            <button *ngIf="displayDelete()" ion-button full (click)="delete()" color="light" style="color: red;">Delete</button>
+            <div *ngIf="displayDelete()">
+                <button ion-button full (click)="delete()" color="light" style="color: red; height: 60px;">Delete</button>
+                <button ion-button full icon-left (click)="gotoEmailDistribution()" style="height: 60px;"><ion-icon name="mail" ></ion-icon>Email Distribution</button>
+            </div>
         </div>
 
         <div *ngIf="segment === 'corecopy'">

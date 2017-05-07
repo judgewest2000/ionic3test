@@ -2,9 +2,9 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { ReleaseService } from '../../providers/release-service';
 import { ModalService } from '../../providers/modal-service';
-
-
 import { BaseEdit } from '../base-edit/base-edit';
+
+
 
 @IonicPage({
   segment: 'release-edit/:id'
@@ -31,13 +31,18 @@ export class ReleaseEdit extends BaseEdit<AIMC.Baltic.Dto.MediaDatabase.ReleaseD
       entityTitle: 'Release'
     });
 
-    super.getUsingNavId().then(() => {
+    let id = parseInt(this.navParams.get('id'));
+
+    this.modalService.turnOnLoading();
+    super.get(id).then(() => {
       if (this.item.viewModel.id === 0) {
         this.item.form.controls['displayDateTime'].setValue(new Date().toISOString());
         this.item.form.controls['scheduledDateTime'].setValue(new Date().toISOString());
-        this.updateHeadline();
       }
+      this.updateHeadline();
+      this.modalService.turnOffLoading();
     });
+
   }
 
 
@@ -55,6 +60,10 @@ export class ReleaseEdit extends BaseEdit<AIMC.Baltic.Dto.MediaDatabase.ReleaseD
       }
       this._previousName = name;
     });
+  }
+
+  gotoEmailDistribution() {
+    this.navCtrl.push('EmailDistributionEdit', { id: this.item.viewModel.id });
   }
 
 }

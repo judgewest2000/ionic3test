@@ -1,0 +1,24 @@
+<!--
+  Generated template for the EmailDistributionEdit page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+    <ion-navbar>
+        <ion-title>Email Distribution Edit</ion-title>
+    </ion-navbar>
+
+</ion-header>
+
+
+<ion-content>
+
+    <form [formGroup]="item.form" *ngIf="everythingLoaded">
+        <ion-list>
+            <formcontrol-text [definition]="createFormControlDefinition('From Name', item.form.controls['sendFromEmailPrefix'])"></formcontrol-text>
+        </ion-list>
+    </form>
+
+</ion-content>

@@ -1,3 +1,4 @@
+import { EmailDistributionService } from './email-distribution-service';
 import { NgModule } from '@angular/core';
 
 import { DataAccessService } from './data-access-service';
@@ -22,7 +23,8 @@ import { IonicStorageModule } from '@ionic/storage';
         ReleaseService,
         KeyValueService,
         ModalService,
-        SearchService
+        SearchService,
+        EmailDistributionService
     ]
 })
 export class ProvidersModule { }

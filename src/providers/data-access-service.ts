@@ -50,7 +50,7 @@ export class DataAccessService {
 
     const headers = await this.getHeaders();
     headers.append('Content-Type', 'application/json');
-
+    
     if (params !== undefined) {
       if (params.id !== undefined) {
         apiUrl += `/${params.id}`;
@@ -58,7 +58,7 @@ export class DataAccessService {
       }
 
       Object.keys(params).forEach((key, index) => {
-        apiUrl += (index === 0 ? '?' : '&') + params[key];
+        apiUrl += `${(index === 0) ? '?' : '&'}${key}:${params[key]}`;
       });
     }
 

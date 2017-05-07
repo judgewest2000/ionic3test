@@ -1,3 +1,4 @@
+import { BehaviorSubject } from 'rxjs/Rx';
 import { Injectable } from '@angular/core';
 
 import { BaseEntityService } from './baseentity-service';
@@ -16,16 +17,15 @@ import { DataAccessService } from './data-access-service';
 export class ReleaseService extends BaseEntityService<AIMC.Baltic.Dto.MediaDatabase.ReleaseDto> {
 
 
-  constructor(releaseFormModel: ReleaseFormModel, dataAccessService: DataAccessService) {
+  constructor(releaseFormModel: ReleaseFormModel, private dataAccessService: DataAccessService) {
     super({
       baseFormModel: releaseFormModel,
       dataAccessService: dataAccessService,
       endPoint: 'release',
       templateName: 'release'
     });
+  }
 
-
-}
 
 
 }

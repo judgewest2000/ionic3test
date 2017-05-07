@@ -3,11 +3,12 @@ import { ModalService } from '../../providers/modal-service';
 import { IForm, IFormControlDefinition } from '../../modelinterfaces/base';
 import { FormControl } from '@angular/forms';
 import { BaseEntityService } from '../../providers/baseentity-service';
+import { BehaviorSubject } from "rxjs/Rx";
 
 export abstract class BaseEdit<T extends AIMC.Baltic.Dto.RestrictedVisibilityDtoRootBase> {
 
     item: IForm<T>;
-    itemLoaded = false;
+    itemLoaded = new BehaviorSubject(false);
 
     constructor(private params: {
         navCtrl: NavController,
@@ -28,19 +29,16 @@ export abstract class BaseEdit<T extends AIMC.Baltic.Dto.RestrictedVisibilityDto
         };
     }
 
-    async getUsingNavId() {
-        this.params.modalService.turnOnLoading();
-        let id = parseInt(this.params.navParams.get('id'));
+    async get(id: number) {
         let form = await this.params.baseEntityService.getForm(id);
         this.item = form;
-        this.itemLoaded = true;
-        this.params.modalService.turnOffLoading();
+        this.itemLoaded.next(true);
     }
 
     delete() {
         this.params.modalService.confirm({
             title: 'Confirm Deletion',
-            body: 'Confirm delete of this release',
+            body: `Confirm delete of this ${this.params.entityTitle}`,
             confirmCallback: () => {
                 this.params.baseEntityService.delete(this.item.viewModel)
                     .then(() => {
