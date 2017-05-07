@@ -1,14 +1,16 @@
-import {  ViewController } from 'ionic-angular';
+import { ViewController, Checkbox, NavParams } from 'ionic-angular';
 import { ISearch } from '../../modelinterfaces/base';
 import { SearchService, SortField, SearchRequest } from '../../providers/search-service';
-import { ViewChild } from '@angular/core';
+
+export interface BaseSelectParameters {
+  idsToExclude: number[];
+}
 
 export abstract class BaseSelect<T> {
 
-  @ViewChild('searchElement') searchElement: any;
-
   constructor(private params: {
     viewController: ViewController,
+    navParams: NavParams,
     searchService: SearchService,
     title: string,
     endPoint: string,
@@ -21,8 +23,11 @@ export abstract class BaseSelect<T> {
 
   title: string;
 
-  performingSearch = true;
+  idsToExclude: number[];
 
+  idsToSendBack: number[] = [];
+
+  performingSearch = true;
   _filteredItems: ISearch[];
   async getFilteredItems(searchText?: string) {
 
@@ -53,11 +58,42 @@ export abstract class BaseSelect<T> {
     this.performingSearch = false;
   }
 
+  close() {
+    this.params.viewController.dismiss();
+  }
+
+  addAndGoBack() {
+    this.params.viewController.dismiss(this.idsToSendBack);
+  }
+
+  add(evt: Checkbox, data: ISearch) {
+    if (evt.checked) {
+      this.idsToSendBack.push(data.id);
+    } else {
+      this.idsToSendBack = this.idsToSendBack.filter(i => i !== data.id);
+    }
+  }
+
+  amIChecked(item: ISearch) {
+    let checked = this.idsToSendBack.some(id => id === item.id);
+    return checked;
+  }
+
+  showCheckbox(item: ISearch) {
+    if (this.idsToExclude === undefined) {
+      return true;
+    }
+
+    let show = !this.idsToExclude.some(id => id === item.id);
+
+    return show;
+  }
+
   ionViewDidEnter() {
 
-    let previousSearchValue = this.searchElement.value as string;
+    this.idsToExclude = this.params.navParams.get('idsToExclude') as number[];
 
-    this.getFilteredItems(previousSearchValue);
+    this.getFilteredItems();
   }
 
 }

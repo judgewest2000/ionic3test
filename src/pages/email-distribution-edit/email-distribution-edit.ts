@@ -1,3 +1,4 @@
+import { BaseSelectParameters } from './../base-select/base-select';
 import { ContactSelect } from './../contact-select/contact-select';
 import { ReleaseService } from './../../providers/release-service';
 import { EmailDistributionService } from './../../providers/email-distribution-service';
@@ -67,8 +68,13 @@ export class EmailDistributionEdit extends BaseEdit<AIMC.Baltic.Dto.MediaDatabas
 
   }
 
-  getContacts(){
-    let contactSelect = this.modalController.create(ContactSelect);
+  getContacts() {
+
+    let params: BaseSelectParameters = {
+      idsToExclude: [94822]
+    };
+
+    let contactSelect = this.modalController.create(ContactSelect, params);
     contactSelect.present();
   }
 

@@ -10,10 +10,16 @@
 <ion-header>
 
     <ion-navbar>
+        <ion-buttons start left>
+            <button ion-button (click)="close()">Close</button>
+        </ion-buttons>
         <ion-title>{{title}}</ion-title>
+        <ion-buttons start right>
+            <button ion-button (click)="addAndGoBack()">Add</button>
+        </ion-buttons>
     </ion-navbar>
 
-    <ion-searchbar #searchElement placeholder="Search..." (ionInput)="getFilteredItems($event.target.value)"></ion-searchbar>
+    <ion-searchbar placeholder="Search..." (ionInput)="getFilteredItems($event.target.value)"></ion-searchbar>
 
 </ion-header>
 
@@ -34,7 +40,7 @@
                 <p *ngIf="data.description2 !== undefined && data.description2 !== null">{{data.description2}}</p>
                 <p *ngIf="data.description3 !== undefined && data.description3 !== null">{{data.description3}}</p>
             </ion-label>
-            <ion-checkbox item-right></ion-checkbox>
+            <ion-checkbox item-right *ngIf="showCheckbox(data)" [checked]="amIChecked(data)" (ionChange)="add($event, data)"></ion-checkbox>
         </ion-item>
     </ion-list>
 </ion-content>
