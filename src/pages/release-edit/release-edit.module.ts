@@ -6,7 +6,7 @@ import { ReleaseEdit } from './release-edit';
 
 
 import { ComponentsModule } from '../../components/components.module';
-import { FormcontrolRichtextModule } from '../../components/formcontrol-richtext/formcontrol-richtext.module';
+
 
 
 @NgModule({
@@ -15,8 +15,7 @@ import { FormcontrolRichtextModule } from '../../components/formcontrol-richtext
   ],
   imports: [
     IonicPageModule.forChild(ReleaseEdit),
-    ComponentsModule,
-    FormcontrolRichtextModule
+    ComponentsModule
   ],
   exports: [
     ReleaseEdit

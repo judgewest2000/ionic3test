@@ -1,3 +1,4 @@
+import { FormcontrolRichtextModule } from './formcontrol-richtext/formcontrol-richtext.module';
 import { NgModule } from '@angular/core';
 import { CustomSpinnerModule } from './custom-spinner/custom-spinner.module';
 import { FormcontrolTextModule } from './formcontrol-text/formcontrol-text.module';
@@ -10,13 +11,15 @@ import { IonicModule } from 'ionic-angular';
         IonicModule,
         CustomSpinnerModule,
         FormcontrolTextModule,
-        FormcontrolDateModule
+        FormcontrolDateModule,
+        FormcontrolRichtextModule
 
     ],
     exports: [
         CustomSpinnerModule,
         FormcontrolTextModule,
-        FormcontrolDateModule
+        FormcontrolDateModule,
+        FormcontrolRichtextModule
     ]
 })
 export class ComponentsModule { }
