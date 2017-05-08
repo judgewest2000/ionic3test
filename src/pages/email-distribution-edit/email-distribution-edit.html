@@ -16,8 +16,8 @@
             <ion-col col-5>
                 <formcontrol-text [definition]="createFormControlDefinition('From Email Address i.e. username@', item.form.controls['sendFromEmailPrefix'])"></formcontrol-text>
             </ion-col>
-            <ion-col col-1 style="text-align: center;">
-                <ion-icon style="font-size: 3.0em;" name="at"></ion-icon>
+            <ion-col col-1 style="text-align: center; margin-top: 7px;">
+                <ion-icon style="font-size: 2.2em;" name="at"></ion-icon>
             </ion-col>
             <ion-col col-6>
                 <button (click)="updateSendFromEmailDomain()" ion-item>{{item.form.controls['sendFromEmailDomain'].value}}</button>
