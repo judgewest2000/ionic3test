@@ -10,7 +10,7 @@
 <ion-content>
 
     <form [formGroup]="item.form" *ngIf="everythingLoaded">
-        <ion-item-divider color="light">Email From Details</ion-item-divider>
+        <ion-item-divider color="primary">Email From Details</ion-item-divider>
         <formcontrol-text [definition]="createFormControlDefinition('From Name', item.form.controls['sendFromName'])"></formcontrol-text>
         <ion-row>
             <ion-col col-5>

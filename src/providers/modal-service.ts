@@ -1,5 +1,7 @@
+import { ContactSelect } from './../pages/contact-select/contact-select';
+import { BaseSelectParameters } from './../pages/base-select/base-select';
 import { Injectable } from '@angular/core';
-import { AlertController, LoadingController, Loading } from 'ionic-angular';
+import { AlertController, LoadingController, Loading, ModalController } from 'ionic-angular';
 
 export interface AlertDefinition {
     title: string;
@@ -25,7 +27,10 @@ export interface SelectSingleItemDefinition {
 @Injectable()
 export class ModalService {
 
-    constructor(private alertController: AlertController, private loadingController: LoadingController) {
+    constructor(
+        private alertController: AlertController,
+        private loadingController: LoadingController,
+        private modalController: ModalController) {
 
     }
 
@@ -114,7 +119,7 @@ export class ModalService {
                 checked: checked
             });
         });
-     
+
         alert.addButton({
             text: 'Cancel',
             role: 'cancel',
@@ -130,5 +135,19 @@ export class ModalService {
         alert.present();
     }
 
-    
+    getContacts(params: BaseSelectParameters) {
+
+        let contactSelect = this.modalController.create(ContactSelect, params);
+        contactSelect.present();
+
+        return new Promise(resolve => {
+            contactSelect.onWillDismiss((items: number[]) => {
+                resolve(items);
+            });
+        });
+
+
+    }
+
+
 }

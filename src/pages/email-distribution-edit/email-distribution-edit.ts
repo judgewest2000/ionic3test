@@ -1,5 +1,3 @@
-import { BaseSelectParameters } from './../base-select/base-select';
-import { ContactSelect } from './../contact-select/contact-select';
 import { ReleaseService } from './../../providers/release-service';
 import { EmailDistributionService } from './../../providers/email-distribution-service';
 import { Component } from '@angular/core';
@@ -68,14 +66,13 @@ export class EmailDistributionEdit extends BaseEdit<AIMC.Baltic.Dto.MediaDatabas
 
   }
 
-  getContacts() {
-
-    let params: BaseSelectParameters = {
+  async getContacts() {
+    let ids = await this.modalService.getContacts({
       idsToExclude: [94822]
-    };
+    });
 
-    let contactSelect = this.modalController.create(ContactSelect, params);
-    contactSelect.present();
+    alert(`Received: ${ids} back`);
+
   }
 
   updateSendFromEmailDomain() {
