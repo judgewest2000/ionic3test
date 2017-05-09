@@ -15,6 +15,8 @@ import { BaseEdit } from '../base-edit/base-edit';
 })
 export class EmailDistributionEdit extends BaseEdit<AIMC.Baltic.Dto.MediaDatabase.EmailDistributionDto> {
 
+  segment = 'main';
+
   release: AIMC.Baltic.Dto.MediaDatabase.ReleaseDto;
   emailDistributionClientDetails: AIMC.Baltic.Dto.MediaDatabase.EmailDistributionClientDetailsDto;
   emailTemplates: AIMC.Baltic.Dto.MediaDatabase.EmailTemplateDto[];

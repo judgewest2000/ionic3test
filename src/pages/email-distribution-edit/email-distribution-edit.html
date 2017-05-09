@@ -3,29 +3,55 @@
     <ion-navbar>
         <ion-title>Email Distribution Edit</ion-title>
     </ion-navbar>
-
+    <ion-toolbar>
+        <ion-segment [(ngModel)]="segment">
+            <ion-segment-button value="main">
+                Main
+            </ion-segment-button>
+            <ion-segment-button value="manual">
+                Manual
+            </ion-segment-button>
+            <ion-segment-button value="outlet">
+                Outlets
+            </ion-segment-button>
+            <ion-segment-button value="contact">
+                Contacts
+            </ion-segment-button>
+        </ion-segment>
+    </ion-toolbar>
 </ion-header>
 
 
 <ion-content>
 
     <form [formGroup]="item.form" *ngIf="everythingLoaded">
-        <ion-item-divider color="primary">Email From Details</ion-item-divider>
-        <formcontrol-text [definition]="createFormControlDefinition('From Name', item.form.controls['sendFromName'])"></formcontrol-text>
-        <ion-row>
-            <ion-col col-5>
-                <formcontrol-text [definition]="createFormControlDefinition('From Email Address i.e. username@', item.form.controls['sendFromEmailPrefix'])"></formcontrol-text>
-            </ion-col>
-            <ion-col col-1 style="text-align: center; margin-top: 7px;">
-                <ion-icon style="font-size: 2.2em;" name="at"></ion-icon>
-            </ion-col>
-            <ion-col col-6>
-                <button (click)="updateSendFromEmailDomain()" ion-item>{{item.form.controls['sendFromEmailDomain'].value}}</button>
-            </ion-col>
-        </ion-row>
+        <div *ngIf="segment === 'main'">
+            <ion-item-divider color="primary">Email From Details</ion-item-divider>
+            <formcontrol-text [definition]="createFormControlDefinition('From Name', item.form.controls['sendFromName'])"></formcontrol-text>
+            <ion-row>
+                <ion-col col-5>
+                    <formcontrol-text [definition]="createFormControlDefinition('From Email Address i.e. username@', item.form.controls['sendFromEmailPrefix'])"></formcontrol-text>
+                </ion-col>
+                <ion-col col-1 style="text-align: center; margin-top: 7px;">
+                    <ion-icon style="font-size: 2.2em;" name="at"></ion-icon>
+                </ion-col>
+                <ion-col col-6>
+                    <button (click)="updateSendFromEmailDomain()" ion-item>{{item.form.controls['sendFromEmailDomain'].value}}</button>
+                </ion-col>
+            </ion-row>
+        </div>
 
-        <button (click)="getContacts()" ion-button>Get Contacts</button>
+        <div *ngIf="segment === 'manual'">
+            <email-distribution-editor-manual-recipients [formArrayDefinition]="createFormArrayDefinition('manualRecipients')"></email-distribution-editor-manual-recipients>
+        </div>
+
+        <div *ngIf="segment === 'contact'">
+            <button (click)="getContacts()" ion-button>Get Contacts</button>
+        </div>
 
     </form>
+
+
+
 
 </ion-content>

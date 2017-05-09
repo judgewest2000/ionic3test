@@ -1,0 +1,12 @@
+<ion-card *ngFor="let item of formArrayDefinition.formArray.controls">
+    <formcontrol-text [definition]="createFormControlDefinition('Email', item.controls['emailAddress'])"></formcontrol-text>
+
+    <formcontrol-text [definition]="createFormControlDefinition('First', item.controls['firstName'])"></formcontrol-text>
+
+    <formcontrol-text [definition]="createFormControlDefinition('Last', item.controls['lastName'])"></formcontrol-text>
+
+
+    <formcontrol-text [definition]="createFormControlDefinition('Salutation', item.controls['salutation'])"></formcontrol-text>
+
+</ion-card>
+<button ion-button (click)="add()">Add</button>

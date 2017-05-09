@@ -13,7 +13,6 @@ import { IonicModule } from 'ionic-angular';
         FormcontrolTextModule,
         FormcontrolDateModule,
         FormcontrolRichtextModule
-
     ],
     exports: [
         CustomSpinnerModule,
