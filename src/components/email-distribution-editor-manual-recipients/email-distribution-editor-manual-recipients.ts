@@ -1,4 +1,6 @@
-import { FormControl, FormArray } from '@angular/forms';
+import { ModalService } from './../../providers/modal-service';
+import { EmailDistributionManualRecipientFormModel } from './../../formmodels/emaildistribution-manualrecipient-formmodel';
+import { FormControl, FormGroup } from '@angular/forms';
 import { IFormControlDefinition, IFormArrayDefinition } from './../../modelinterfaces/base';
 import { Component, Input } from '@angular/core';
 
@@ -17,22 +19,30 @@ export class EmailDistributionEditorManualRecipients {
 
   @Input() formArrayDefinition: IFormArrayDefinition<AIMC.Baltic.Dto.MediaDatabase.EmailDistributionManualRecipientDto>;
 
-  constructor() {
+  filtered() {
+    let items = this.formArrayDefinition.formArray.controls.filter(c => !((c as FormGroup).controls['deleted'].value));
+    return items;
+  }
+
+  constructor(
+    private emailDistributionManualRecipientFormModel: EmailDistributionManualRecipientFormModel,
+    private modalService: ModalService
+  ) {
   }
 
   add() {
-    //let newForm = this.emailDistributionManualRecipientFormChildModel.getForm();
-    //this.data.controls.push(newForm);
+    this.emailDistributionManualRecipientFormModel.addNewRow(this.formArrayDefinition);
   }
 
-  remove() {
-
+  remove(item: FormGroup) {
+    this.modalService.confirm({
+      title: 'Confirm Deletion',
+      body: `Confirm deletion of ${item.controls['emailAddress'].value}`,
+      confirmCallback: () => {
+        this.emailDistributionManualRecipientFormModel.softOrHardDeleteFromArray(this.formArrayDefinition, item);
+      }
+    });
   }
-
-  clickme() {
-    
-  }
-
 
   createFormControlDefinition(title: string, formControlItem: FormControl) {
     return <IFormControlDefinition>{

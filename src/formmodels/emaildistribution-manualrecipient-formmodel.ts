@@ -1,4 +1,4 @@
-import { FormBuilder } from '@angular/forms';
+import { FormBuilder, Validators } from '@angular/forms';
 import { Injectable } from '@angular/core';
 import { BaseFormModel } from "./base-formmodel";
 
@@ -8,14 +8,15 @@ export class EmailDistributionManualRecipientFormModel extends BaseFormModel<AIM
     constructor(formBuilder: FormBuilder) {
         super({
             formBuilder: formBuilder,
-            formDefinition: {
+            formDefinition: () =>  ({
                 id: [0],
                 deleted: [false],
                 salutation: [''],
                 firstName: [''],
                 lastName: [''],
-                emailAddress: ['']
-            },
+                emailAddress: ['', Validators.email ]
+            }),
+            templateName: 'emaildistributionmanualrecipient'
         })
     }
 

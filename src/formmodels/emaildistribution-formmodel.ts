@@ -13,7 +13,7 @@ export class EmailDistributionFormModel extends BaseFormModel<AIMC.Baltic.Dto.Me
     ) {
         super({
             formBuilder: formBuilder,
-            formDefinition: {
+            formDefinition: () => ({
                 id: [0],
                 greetingPrefix: [''],
                 greetingSuffix: [''],
@@ -29,10 +29,11 @@ export class EmailDistributionFormModel extends BaseFormModel<AIMC.Baltic.Dto.Me
                 }),
 
                 manualRecipients: formBuilder.array([])
-            },
+            }),
             complexMapper: {
                 manualRecipients: emailDistributionManualRecipientFormModel
-            }
+            },
+            templateName: 'emaildistribution'
         });
     }
 

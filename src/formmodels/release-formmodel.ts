@@ -10,7 +10,7 @@ export class ReleaseFormModel extends BaseFormModel<AIMC.Baltic.Dto.MediaDatabas
     constructor(formBuilder: FormBuilder) {
         super({
             formBuilder: formBuilder,
-            formDefinition: {
+            formDefinition: () => ({
                 name: ['', Validators.compose([Validators.required])],
                 headline: ['', Validators.required],
                 subheading: [''],
@@ -19,7 +19,8 @@ export class ReleaseFormModel extends BaseFormModel<AIMC.Baltic.Dto.MediaDatabas
                 coreCopy: [''],
                 notesToEditor: [''],
                 boilerPlate: ['']
-            }
+            }),
+            templateName: 'release'
         });
     }
 

@@ -1,13 +1,16 @@
 import { IArray } from './../modelinterfaces/base';
 import { FormArray } from '@angular/forms/forms';
-import { FormBuilder } from '@angular/forms'
+import { FormBuilder, FormGroup } from '@angular/forms'
+import { TemplateGetHelper } from "../helpers/template-helper";
 
 export abstract class BaseFormModel<T> {
 
     constructor(private params: {
         formBuilder: FormBuilder,
-        formDefinition: { [key: string]: any },
-        complexMapper?: { [key: string]: BaseFormModel<any> }
+        //formDefinition: { [key: string]: any },
+        formDefinition: () => { [key: string]: any },
+        complexMapper?: { [key: string]: BaseFormModel<any> },
+        templateName: string
     }) { }
 
     create(viewModel: T) {
@@ -20,11 +23,13 @@ export abstract class BaseFormModel<T> {
             return (S4() + S4() + "-" + S4() + "-" + S4() + "-" + S4() + "-" + S4() + S4() + S4());
         }
 
+        let formDefinition = this.params.formDefinition();
+
         viewModel['___uuid'] = guidGenerator();
 
-        this.params.formDefinition.___uuid = [''];
+        formDefinition.___uuid = [];
 
-        let myForm = this.params.formBuilder.group(this.params.formDefinition);
+        let myForm = this.params.formBuilder.group(formDefinition);
 
         myForm.patchValue(viewModel);
 
@@ -47,6 +52,37 @@ export abstract class BaseFormModel<T> {
     }
 
     addNewRow(arr: IArray<T>) {
-        
+        let rawViewModel = TemplateGetHelper<T>(this.params.templateName);
+        let form = this.create(rawViewModel);
+        arr.array.push(rawViewModel);
+        arr.formArray.controls.push(form);
+    }
+
+    softOrHardDeleteFromArray(arr: IArray<T>, item: FormGroup) {
+
+        if (item.controls['id'].value !== 0) {
+            item.controls['deleted'].setValue(true);
+        } else {
+            let uuid = item.controls['___uuid'].value;
+
+            for (let i = 0; i < arr.formArray.controls.length; i++) {
+                let current = arr.formArray.controls[i] as FormGroup;
+                if (current.controls['___uuid'].value === uuid) {
+                    arr.formArray.controls.splice(i, 1);
+                    break;
+                }
+            }
+
+            for (let i = 0; i < arr.array.length; i++) {
+                let current = arr.array[i];
+                if (current['___uuid'] === uuid) {
+                    arr.array.splice(i, 1);
+                    break;
+                }
+            }
+        }
+
+
+
     }
 }
