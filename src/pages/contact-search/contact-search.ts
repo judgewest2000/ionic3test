@@ -24,7 +24,7 @@ export class ContactSearch extends BaseSearch<AIMC.Baltic.Dto.Kendo.ContactKendo
         id: item.id,
         name: item.name,
         avatarUrl: item.avatarUrl,
-        description1: `Organisation: ${item.outletName}`
+        description1: item.outletName
       }),
       navcontroller: navController,
       searchService: searchService,

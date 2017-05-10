@@ -27,7 +27,7 @@
             <ion-avatar item-left *ngIf="data.avatarUrl !== undefined && data.avatarUrl !== null">
                 <img src="{{data.avatarUrl}}" onerror="this.style.display = 'none'" />
             </ion-avatar>
-            <h2>{{data.name}}</h2>
+            {{data.name}}
             <p *ngIf="data.description1 !== undefined && data.description1 !== null">{{data.description1}}</p>
             <p *ngIf="data.description2 !== undefined && data.description2 !== null">{{data.description2}}</p>
             <p *ngIf="data.description3 !== undefined && data.description3 !== null">{{data.description3}}</p>
