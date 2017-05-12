@@ -1,20 +1,26 @@
 <ion-card *ngFor="let item of filtered(); let i = index">
-
     <ion-card-content>
         <formcontrol-text [definition]="createFormControlDefinition('Email', item.controls['emailAddress'])"></formcontrol-text>
         <formcontrol-text [definition]="createFormControlDefinition('First', item.controls['firstName'])"></formcontrol-text>
         <formcontrol-text [definition]="createFormControlDefinition('Last', item.controls['lastName'])"></formcontrol-text>
         <formcontrol-text [definition]="createFormControlDefinition('Salutation', item.controls['salutation'])"></formcontrol-text>
     </ion-card-content>
-
-    <ion-row>
-        <ion-col text-right>
-            <button ion-button clear small color="danger" icon-left (click)="remove(item)">
-          <ion-icon name='close'></ion-icon>
-          Remove
-        </button>
-        </ion-col>
-    </ion-row>
-
 </ion-card>
 <button ion-button (click)="add()">Add</button>
+
+<div padding>
+    <ion-list>
+        <ion-item-sliding *ngFor="let item of filtered();">
+            <button ion-item>
+            <h2>{{item.controls['emailAddress'].value}}</h2>
+            <p>
+                {{item.controls['salutation'].value}} {{item.controls['firstName'].value}} {{item.controls['lastName'].value}}
+            </p>
+        </button>
+            <ion-item-options side="right">
+                <button ion-button color="danger">Remove</button>
+            </ion-item-options>
+        </ion-item-sliding>
+
+    </ion-list>
+</div>
