@@ -26,14 +26,14 @@
 
     <form [formGroup]="item.form" *ngIf="everythingLoaded">
         <div *ngIf="segment === 'main'">
-            <ion-item-divider color="light">From Details</ion-item-divider>
+            <ion-item-divider>From Details</ion-item-divider>
             <formcontrol-text [definition]="createFormControlDefinition('From Name', item.form.controls['sendFromName'])"></formcontrol-text>
 
             <ion-row no-padding>
-                <ion-col col-6 no-padding>
+                <ion-col col-4 no-padding>
                     <formcontrol-text [definition]="createFormControlDefinition('From Email Address i.e. username@', item.form.controls['sendFromEmailPrefix'])"></formcontrol-text>
                 </ion-col>
-                <ion-col col-6 no-padding>
+                <ion-col col-8 no-padding>
                     <button (click)="updateSendFromEmailDomain()" style="text-align:center;" ion-item>@{{item.form.controls['sendFromEmailDomain'].value}}</button>
                 </ion-col>
             </ion-row>

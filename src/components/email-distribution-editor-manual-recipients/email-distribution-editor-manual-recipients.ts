@@ -37,7 +37,7 @@ export class EmailDistributionEditorManualRecipients {
   remove(item: FormGroup) {
     this.modalService.confirm({
       title: 'Confirm Deletion',
-      body: `Confirm deletion of ${item.controls['emailAddress'].value}`,
+      body: `Confirm deletion ${item.controls['emailAddress'].value !== null ? ' of ' + item.controls['emailAddress'].value : ''}`,
       confirmCallback: () => {
         this.emailDistributionManualRecipientFormModel.softOrHardDeleteFromArray(this.formArrayDefinition, item);
       }
