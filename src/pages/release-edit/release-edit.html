@@ -30,15 +30,20 @@
     <form *ngIf="itemLoaded.getValue()" [formGroup]="item.form">
         <div *ngIf="segment === 'main'">
 
-            <formcontrol-text [definition]="createFormControlDefinition('Name', item.form.controls['name'])"></formcontrol-text>
-            <formcontrol-text [definition]="createFormControlDefinition('Headline', item.form.controls['headline'])"></formcontrol-text>
-            <formcontrol-text [definition]="createFormControlDefinition('Subheading', item.form.controls['subheading'])"></formcontrol-text>
-            <formcontrol-date [definition]="createFormControlDefinition('Display Date Time', item.form.controls['displayDateTime'])"></formcontrol-date>
-            <formcontrol-date showTime="true" [definition]="createFormControlDefinition('Scheduled', item.form.controls['scheduledDateTime'])"></formcontrol-date>
-
-            <div *ngIf="displayDelete()" padding>
-                <button ion-button full (click)="delete()" color="light" style="color: red; height: 60px;">Delete</button>
-                <button ion-button full icon-left (click)="gotoEmailDistribution()" style="height: 60px;"><ion-icon name="mail" ></ion-icon>Email Distribution</button>
+            <ion-list class="fullwidth">
+                <formcontrol-text [definition]="createFormControlDefinition('Name', item.form.controls['name'])"></formcontrol-text>
+                <formcontrol-text [definition]="createFormControlDefinition('Headline', item.form.controls['headline'])"></formcontrol-text>
+                <formcontrol-text [definition]="createFormControlDefinition('Subheading', item.form.controls['subheading'])"></formcontrol-text>
+                <formcontrol-date [definition]="createFormControlDefinition('Display Date Time', item.form.controls['displayDateTime'])"></formcontrol-date>
+                <formcontrol-date showTime="true" [definition]="createFormControlDefinition('Scheduled', item.form.controls['scheduledDateTime'])"></formcontrol-date>
+            </ion-list>
+            <div *ngIf="displayDelete()">
+                <ion-list>
+                    <button ion-item (click)="gotoEmailDistribution()"><ion-icon name="mail" item-left ></ion-icon>Email Distribution</button>
+                </ion-list>
+                <ion-list>
+                    <button ion-item (click)="delete()" style="color: red;"><ion-icon name="trash" item-left ></ion-icon>Delete</button>
+                </ion-list>
             </div>
         </div>
 
