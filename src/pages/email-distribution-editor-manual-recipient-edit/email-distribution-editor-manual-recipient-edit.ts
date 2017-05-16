@@ -1,6 +1,8 @@
-import { IForm } from './../../modelinterfaces/base';
+import { FormControl } from '@angular/forms';
+import { IForm, IFormControlDefinition } from './../../modelinterfaces/base';
 import { Component } from '@angular/core';
 import { IonicPage, ViewController } from 'ionic-angular';
+import { BaseModalEdit } from "../base-modal-edit/base-modal-edit";
 
 /**
  * Generated class for the EmailDistributionEditorManualRecipientEditPage page.
@@ -13,20 +15,11 @@ import { IonicPage, ViewController } from 'ionic-angular';
   selector: 'page-email-distribution-editor-manual-recipient-edit',
   templateUrl: 'email-distribution-editor-manual-recipient-edit.html',
 })
-export class EmailDistributionEditorManualRecipientEditPage {
+export class EmailDistributionEditorManualRecipientEditPage extends BaseModalEdit<AIMC.Baltic.Dto.MediaDatabase.EmailDistributionManualRecipientDto>{
 
-  form: IForm<AIMC.Baltic.Dto.MediaDatabase.EmailDistributionManualRecipientDto>;
-
-  constructor(private viewController: ViewController) {
-
+  constructor(viewController: ViewController) {
+    super({viewController: viewController});
   }
 
-  close() {
-    this.viewController.dismiss();
-  }
-
-  ionViewDidLoad() {
-    this.form = this.viewController.getNavParams().data;
-  }
 
 }

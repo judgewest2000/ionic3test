@@ -1,14 +1,3 @@
-<!--<ion-card *ngFor="let item of filtered(); let i = index">
-    <ion-card-content>
-        <formcontrol-text [definition]="createFormControlDefinition('Email', item.controls['emailAddress'])"></formcontrol-text>
-        <formcontrol-text [definition]="createFormControlDefinition('First', item.controls['firstName'])"></formcontrol-text>
-        <formcontrol-text [definition]="createFormControlDefinition('Last', item.controls['lastName'])"></formcontrol-text>
-        <formcontrol-text [definition]="createFormControlDefinition('Salutation', item.controls['salutation'])"></formcontrol-text>
-    </ion-card-content>
-</ion-card>-->
-
-
-
 <ion-list>
     <ion-item-sliding *ngFor="let item of filtered();">
         <button ion-item (click)="editItem(item)">

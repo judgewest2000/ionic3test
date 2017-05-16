@@ -3,7 +3,6 @@ import { ModalService } from '../../providers/modal-service';
 import { IForm, IFormControlDefinition, IFormArray } from '../../modelinterfaces/base';
 import { FormControl } from '@angular/forms';
 import { BaseEntityService } from '../../providers/baseentity-service';
-import { BehaviorSubject } from "rxjs/Rx";
 
 export abstract class BaseRootEdit<T extends AIMC.Baltic.Dto.RestrictedVisibilityDtoRootBase> {
 

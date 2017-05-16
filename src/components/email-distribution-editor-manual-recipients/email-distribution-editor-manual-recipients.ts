@@ -49,8 +49,8 @@ export class EmailDistributionEditorManualRecipients {
   }
 
   async editItem(item: FormGroup) {
-    var iFormGroup = this.emailDistributionManualRecipientFormModel.getItemFromArray(this.formArray, item);
-    await this.modalService.customEmailDistributionEditorManualRecipientEdit(iFormGroup);
+    var iform = this.emailDistributionManualRecipientFormModel.getItemFromArray(this.formArray, item);
+    await this.editItemDisplay(iform);
   }
 
   private async editItemDisplay(item: IForm<AIMC.Baltic.Dto.MediaDatabase.EmailDistributionManualRecipientDto>) {
