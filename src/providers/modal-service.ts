@@ -1,3 +1,6 @@
+import { IForm } from './../modelinterfaces/base';
+import { EmailDistributionEditorManualRecipientEditPage } from './../pages/email-distribution-editor-manual-recipient-edit/email-distribution-editor-manual-recipient-edit';
+import { FormGroup } from '@angular/forms';
 import { ContactSelect } from './../pages/contact-select/contact-select';
 import { BaseSelectParameters } from './../pages/base-select/base-select';
 import { Injectable } from '@angular/core';
@@ -135,7 +138,7 @@ export class ModalService {
         alert.present();
     }
 
-    getContacts(params: BaseSelectParameters) {
+    contactSelect(params: BaseSelectParameters) {
 
         let contactSelect = this.modalController.create(ContactSelect, params);
         contactSelect.present();
@@ -145,9 +148,16 @@ export class ModalService {
                 resolve(items);
             });
         });
-
-
     }
 
+    customEmailDistributionEditorManualRecipientEdit(params: IForm<AIMC.Baltic.Dto.MediaDatabase.EmailDistributionManualRecipientDto>) {
+        let modal = this.modalController.create(EmailDistributionEditorManualRecipientEditPage, params);
+        modal.present();
 
+        return new Promise(resolve => {
+            modal.onWillDismiss(() => {
+                resolve();
+            });
+        });
+    }
 }

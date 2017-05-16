@@ -1,6 +1,6 @@
 import { NavController, NavParams } from 'ionic-angular';
 import { ModalService } from '../../providers/modal-service';
-import { IForm, IFormControlDefinition, IFormArrayDefinition } from '../../modelinterfaces/base';
+import { IForm, IFormControlDefinition, IFormArray } from '../../modelinterfaces/base';
 import { FormControl } from '@angular/forms';
 import { BaseEntityService } from '../../providers/baseentity-service';
 import { BehaviorSubject } from "rxjs/Rx";
@@ -29,9 +29,8 @@ export abstract class BaseEdit<T extends AIMC.Baltic.Dto.RestrictedVisibilityDto
         };
     }
 
-    createFormArrayDefinition(name: string) {
-        return <IFormArrayDefinition<T>>{
-            submitAttemptMade: this.submitAttemptMade,
+    createIFormArray(name: string) {
+        return <IFormArray<T>>{
             formArray: this.item.form.controls[name],
             array: this.item.viewModel[name]
         };

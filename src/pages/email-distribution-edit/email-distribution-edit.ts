@@ -69,7 +69,7 @@ export class EmailDistributionEdit extends BaseEdit<AIMC.Baltic.Dto.MediaDatabas
   }
 
   async getContacts() {
-    let ids = await this.modalService.getContacts({
+    let ids = await this.modalService.contactSelect({
       idsToExclude: [94822]
     });
 

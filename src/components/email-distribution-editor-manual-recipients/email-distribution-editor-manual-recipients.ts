@@ -1,7 +1,8 @@
+import { ModalController } from 'ionic-angular';
 import { ModalService } from './../../providers/modal-service';
 import { EmailDistributionManualRecipientFormModel } from './../../formmodels/emaildistribution-manualrecipient-formmodel';
-import { FormControl, FormGroup } from '@angular/forms';
-import { IFormControlDefinition, IFormArrayDefinition } from './../../modelinterfaces/base';
+import { FormGroup } from '@angular/forms';
+import { IFormArray, IForm } from './../../modelinterfaces/base';
 import { Component, Input } from '@angular/core';
 
 
@@ -17,21 +18,24 @@ import { Component, Input } from '@angular/core';
 })
 export class EmailDistributionEditorManualRecipients {
 
-  @Input() formArrayDefinition: IFormArrayDefinition<AIMC.Baltic.Dto.MediaDatabase.EmailDistributionManualRecipientDto>;
+  @Input() formArray: IFormArray<AIMC.Baltic.Dto.MediaDatabase.EmailDistributionManualRecipientDto>;
+  @Input() submitAttemptMade: boolean;
 
   filtered() {
-    let items = this.formArrayDefinition.formArray.controls.filter(c => !((c as FormGroup).controls['deleted'].value));
+    let items = this.formArray.formArray.controls.filter(c => !((c as FormGroup).controls['deleted'].value));
     return items;
   }
 
   constructor(
     private emailDistributionManualRecipientFormModel: EmailDistributionManualRecipientFormModel,
-    private modalService: ModalService
+    private modalService: ModalService,
+    private modalController: ModalController
   ) {
   }
 
-  add() {
-    this.emailDistributionManualRecipientFormModel.addNewRow(this.formArrayDefinition);
+  async add() {
+    let iFormGroup = this.emailDistributionManualRecipientFormModel.addNewRow(this.formArray);
+    await this.editItemDisplay(iFormGroup);
   }
 
   remove(item: FormGroup) {
@@ -39,19 +43,18 @@ export class EmailDistributionEditorManualRecipients {
       title: 'Confirm Deletion',
       body: `Confirm deletion ${item.controls['emailAddress'].value !== null ? ' of ' + item.controls['emailAddress'].value : ''}`,
       confirmCallback: () => {
-        this.emailDistributionManualRecipientFormModel.softOrHardDeleteFromArray(this.formArrayDefinition, item);
+        this.emailDistributionManualRecipientFormModel.softOrHardDeleteFromArray(this.formArray, item);
       }
     });
   }
 
-  createFormControlDefinition(title: string, formControlItem: FormControl) {
-    return <IFormControlDefinition>{
-      title: title,
-      formControlItem: formControlItem,
-      submitAttemptMade: this.formArrayDefinition.submitAttemptMade
-    };
+  async editItem(item: FormGroup) {
+    var iFormGroup = this.emailDistributionManualRecipientFormModel.getItemFromArray(this.formArray, item);
+    await this.modalService.customEmailDistributionEditorManualRecipientEdit(iFormGroup);
   }
 
-
+  private async editItemDisplay(item: IForm<AIMC.Baltic.Dto.MediaDatabase.EmailDistributionManualRecipientDto>) {
+    await this.modalService.customEmailDistributionEditorManualRecipientEdit(item);
+  }
 
 }

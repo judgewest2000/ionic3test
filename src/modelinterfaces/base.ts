@@ -1,14 +1,6 @@
 import { FormGroup, FormControl, FormArray } from '@angular/forms';
 
-export interface IForm<T extends AIMC.Baltic.Dto.RestrictedVisibilityDtoRootBase> {
-    viewModel: T;
-    form: FormGroup;
-}
 
-export interface IArray<T> {
-    formArray: FormArray,
-    array: T[]
-}
 
 export interface ISearch {
     id: number;
@@ -38,13 +30,18 @@ export interface ILogin {
     userName: string;
 }
 
+export interface IForm<T> {
+    viewModel: T;
+    form: FormGroup;
+}
+
+export interface IFormArray<T> {
+    formArray: FormArray,
+    array: T[]
+}
 
 export interface IFormControlDefinition {
     title: string;
     formControlItem: FormControl;
-    submitAttemptMade: boolean;
-}
-
-export interface IFormArrayDefinition<T> extends IArray<T> {
     submitAttemptMade: boolean;
 }

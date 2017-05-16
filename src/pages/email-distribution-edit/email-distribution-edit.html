@@ -34,7 +34,7 @@
                     <formcontrol-text [definition]="createFormControlDefinition('From Email Address i.e. username@', item.form.controls['sendFromEmailPrefix'])"></formcontrol-text>
                 </ion-col>
                 <ion-col col-8 no-padding>
-                    <button (click)="updateSendFromEmailDomain()" style="text-align:center;" ion-item>@{{item.form.controls['sendFromEmailDomain'].value}}</button>
+                    <button (click)="updateSendFromEmailDomain()" ion-item>@{{item.form.controls['sendFromEmailDomain'].value}}</button>
                 </ion-col>
             </ion-row>
 
@@ -42,7 +42,7 @@
         </div>
 
         <div *ngIf="segment === 'manual'">
-            <email-distribution-editor-manual-recipients [formArrayDefinition]="createFormArrayDefinition('manualRecipients')"></email-distribution-editor-manual-recipients>
+            <email-distribution-editor-manual-recipients [submitAttemptMade]="submitAttemptMade" [formArray]="createIFormArray('manualRecipients')"></email-distribution-editor-manual-recipients>
         </div>
 
         <div *ngIf="segment === 'contact'">

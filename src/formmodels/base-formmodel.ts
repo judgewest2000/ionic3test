@@ -1,4 +1,4 @@
-import { IArray } from './../modelinterfaces/base';
+import { IFormArray, IForm } from './../modelinterfaces/base';
 import { FormArray } from '@angular/forms/forms';
 import { FormBuilder, FormGroup } from '@angular/forms'
 import { TemplateGetHelper } from "../helpers/template-helper";
@@ -51,14 +51,29 @@ export abstract class BaseFormModel<T> {
         return myForm;
     }
 
-    addNewRow(arr: IArray<T>) {
+    addNewRow(arr: IFormArray<T>) {
         let rawViewModel = TemplateGetHelper<T>(this.params.templateName);
         let form = this.create(rawViewModel);
         arr.array.push(rawViewModel);
         arr.formArray.controls.push(form);
+
+        return <IForm<T>>{
+            form: form,
+            viewModel: rawViewModel
+        };
     }
 
-    softOrHardDeleteFromArray(arr: IArray<T>, item: FormGroup) {
+    getItemFromArray(arr: IFormArray<T>, item: FormGroup) {
+        let uuid = item.controls['___uuid'].value;
+        let viewModel = arr.array.filter(a => a['___uuid'] === uuid)[0];
+
+        return <IForm<T>>{
+            form: item,
+            viewModel: viewModel
+        };
+    }
+
+    softOrHardDeleteFromArray(arr: IFormArray<T>, item: FormGroup) {
 
         if (item.controls['id'].value !== 0) {
             item.controls['deleted'].setValue(true);
