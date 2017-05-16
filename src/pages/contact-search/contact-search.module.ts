@@ -1,4 +1,4 @@
-import { ComponentsModule } from './../../components/components.module';
+import { FormControlsModule } from './../../formcontrols/formcontrols.module';
 import { NgModule } from '@angular/core';
 import { IonicPageModule } from 'ionic-angular';
 import { ContactSearch } from './contact-search';
@@ -9,7 +9,7 @@ import { ContactSearch } from './contact-search';
   ],
   imports: [
     IonicPageModule.forChild(ContactSearch),
-    ComponentsModule
+    FormControlsModule
   ],
   exports: [
     ContactSearch

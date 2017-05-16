@@ -1,4 +1,5 @@
-import { ComponentsModule } from './../../components/components.module';
+import { FormControlsModule } from './../../formcontrols/formcontrols.module';
+
 import { NgModule } from '@angular/core';
 import { IonicPageModule } from 'ionic-angular';
 import { EmailDistributionEditorManualRecipientEditPage } from './email-distribution-editor-manual-recipient-edit';
@@ -9,7 +10,7 @@ import { EmailDistributionEditorManualRecipientEditPage } from './email-distribu
   ],
   imports: [
     IonicPageModule.forChild(EmailDistributionEditorManualRecipientEditPage),
-    ComponentsModule
+    FormControlsModule
   ],
   exports: [
     EmailDistributionEditorManualRecipientEditPage

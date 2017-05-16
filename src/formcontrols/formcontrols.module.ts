@@ -21,4 +21,4 @@ import { IonicModule } from 'ionic-angular';
         FormcontrolRichtextModule
     ]
 })
-export class ComponentsModule { }
+export class FormControlsModule { }
