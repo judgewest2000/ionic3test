@@ -1,11 +1,9 @@
 import { IForm } from './../modelinterfaces/base';
-
 import { EmailDistributionEditorManualRecipientEditPage } from './../pages/email-distribution-editor-manual-recipient-edit/email-distribution-editor-manual-recipient-edit';
-import { FormGroup } from '@angular/forms';
 import { ContactSelect } from './../pages/contact-select/contact-select';
 import { BaseSelectParameters } from './../pages/base-select/base-select';
 import { Injectable } from '@angular/core';
-import { AlertController, LoadingController, Loading, ModalController } from 'ionic-angular';
+import { AlertController, LoadingController, Loading, ModalController, ModalOptions } from 'ionic-angular';
 
 export interface AlertDefinition {
     title: string;
@@ -36,6 +34,12 @@ export class ModalService {
         private loadingController: LoadingController,
         private modalController: ModalController) {
 
+    }
+
+    private getModalOptions() {
+        return <ModalOptions>{
+            enableBackdropDismiss: false
+        };
     }
 
     loading: Loading
@@ -109,7 +113,7 @@ export class ModalService {
     }
 
     selectSingleItem(definition: SelectSingleItemDefinition) {
-        let alert = this.alertController.create();
+        let alert = this.alertController.create(this.getModalOptions());
 
         alert.setTitle(definition.title);
 
@@ -141,7 +145,7 @@ export class ModalService {
 
     contactSelect(params: BaseSelectParameters) {
 
-        let contactSelect = this.modalController.create(ContactSelect, params);
+        let contactSelect = this.modalController.create(ContactSelect, params, this.getModalOptions());
         contactSelect.present();
 
         return new Promise(resolve => {
@@ -152,8 +156,10 @@ export class ModalService {
     }
 
     customEmailDistributionEditorManualRecipientEdit(params: IForm<AIMC.Baltic.Dto.MediaDatabase.EmailDistributionManualRecipientDto>) {
-        
-        let modal = this.modalController.create(EmailDistributionEditorManualRecipientEditPage, params);
+
+
+
+        let modal = this.modalController.create(EmailDistributionEditorManualRecipientEditPage, params, this.getModalOptions());
         modal.present();
 
         return new Promise(resolve => {

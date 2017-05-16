@@ -5,13 +5,6 @@ import { FormGroup } from '@angular/forms';
 import { IFormArray, IForm } from './../../modelinterfaces/base';
 import { Component, Input } from '@angular/core';
 
-
-/**
- * Generated class for the EmailDistributionEditorManualRecipients component.
- *
- * See https://angular.io/docs/ts/latest/api/core/index/ComponentMetadata-class.html
- * for more info on Angular Components.
- */
 @Component({
   selector: 'email-distribution-editor-manual-recipients',
   templateUrl: 'email-distribution-editor-manual-recipients.html'
@@ -34,8 +27,11 @@ export class EmailDistributionEditorManualRecipients {
   }
 
   async add() {
-    let iFormGroup = this.emailDistributionManualRecipientFormModel.addNewRow(this.formArray);
-    await this.editItemDisplay(iFormGroup);
+    let newItem = this.emailDistributionManualRecipientFormModel.getNewRowItem();
+    await this.editItemDisplay(newItem);
+    if (!newItem.form.invalid) {
+      this.emailDistributionManualRecipientFormModel.addRowItem(this.formArray, newItem);
+    }
   }
 
   remove(item: FormGroup) {

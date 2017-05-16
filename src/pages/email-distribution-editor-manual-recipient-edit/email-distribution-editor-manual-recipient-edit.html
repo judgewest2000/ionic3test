@@ -2,16 +2,19 @@
 
     <ion-navbar>
         <ion-buttons start left>
-            <button ion-button (click)="close()">Close</button>
+            <button ion-button (click)="cancel()">Cancel</button>
         </ion-buttons>
         <ion-title>Edit Manual Recipient</ion-title>
+        <ion-buttons start right>
+            <button ion-button (click)="save()">Save</button>
+        </ion-buttons>
     </ion-navbar>
 
 </ion-header>
 
 
-<ion-content padding>
-    <ion-list padding>
+<ion-content>
+    <ion-list>
         <formcontrol-text [definition]="createFormControlDefinition('Email', item.form.controls['emailAddress'])"></formcontrol-text>
         <formcontrol-text [definition]="createFormControlDefinition('First', item.form.controls['firstName'])"></formcontrol-text>
         <formcontrol-text [definition]="createFormControlDefinition('Last', item.form.controls['lastName'])"></formcontrol-text>

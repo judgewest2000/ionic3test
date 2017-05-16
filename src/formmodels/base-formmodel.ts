@@ -51,16 +51,19 @@ export abstract class BaseFormModel<T> {
         return myForm;
     }
 
-    addNewRow(arr: IFormArray<T>) {
+    getNewRowItem() {
         let rawViewModel = TemplateGetHelper<T>(this.params.templateName);
         let form = this.create(rawViewModel);
-        arr.array.push(rawViewModel);
-        arr.formArray.controls.push(form);
 
         return <IForm<T>>{
             form: form,
             viewModel: rawViewModel
         };
+    }
+
+    addRowItem(arr: IFormArray<T>, item: IForm<T>) {
+        arr.array.push(item.viewModel);
+        arr.formArray.controls.push(item.form);
     }
 
     getItemFromArray(arr: IFormArray<T>, item: FormGroup) {

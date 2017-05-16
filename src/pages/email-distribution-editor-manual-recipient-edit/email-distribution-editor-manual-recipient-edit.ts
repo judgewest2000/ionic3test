@@ -1,5 +1,3 @@
-import { FormControl } from '@angular/forms';
-import { IForm, IFormControlDefinition } from './../../modelinterfaces/base';
 import { Component } from '@angular/core';
 import { IonicPage, ViewController } from 'ionic-angular';
 import { BaseModalEdit } from "../base-modal-edit/base-modal-edit";

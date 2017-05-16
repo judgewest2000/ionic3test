@@ -1,18 +1,19 @@
 import { FormControl } from '@angular/forms';
 import { IForm, IFormControlDefinition } from './../../modelinterfaces/base';
-import { Component } from '@angular/core';
-import { IonicPage, ViewController } from 'ionic-angular';
+import { ViewController } from 'ionic-angular';
 
 export abstract class BaseModalEdit<T> {
 
   item: IForm<T>;
   submitAttemptMade = false;
   formLoaded = false;
+  originalFormData: any;
 
   constructor(private params: {
     viewController: ViewController
   }) {
     this.item = this.params.viewController.getNavParams().data;
+    this.originalFormData = this.item.form.getRawValue();
     this.formLoaded = true;
   }
 
@@ -24,7 +25,17 @@ export abstract class BaseModalEdit<T> {
     };
   }
 
-  close() {
+  save() {
+    this.submitAttemptMade = true;
+    if (!this.item.form.invalid) {
+      this.params.viewController.dismiss();
+    }
+  }
+
+  cancel() {
+    if (this.item.form.dirty) {
+      this.item.form.setValue(this.originalFormData);
+    }
     this.params.viewController.dismiss();
   }
 
