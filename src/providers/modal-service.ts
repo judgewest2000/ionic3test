@@ -1,9 +1,12 @@
+import { ContactSelect } from './../modalselectors/contact-select/contact-select';
+
 import { IForm } from './../modelinterfaces/base';
-import { EmailDistributionEditorManualRecipientEditPage } from './../pages/email-distribution-editor-manual-recipient-edit/email-distribution-editor-manual-recipient-edit';
-import { ContactSelect } from './../pages/contact-select/contact-select';
-import { BaseSelectParameters } from './../pages/base-select/base-select';
+
+
 import { Injectable } from '@angular/core';
 import { AlertController, LoadingController, Loading, ModalController, ModalOptions } from 'ionic-angular';
+import { BaseSelectParameters } from "../modalselectors/base-select/base-select";
+import { EmailDistributionEditorManualRecipientEditPage } from "../modals/email-distribution-editor-manual-recipient-edit/email-distribution-editor-manual-recipient-edit";
 
 export interface AlertDefinition {
     title: string;

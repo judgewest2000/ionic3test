@@ -1,4 +1,6 @@
-﻿import { SelectModule } from './../pages/select.module';
+﻿import { ModalSelectorsModule } from './../modalselectors/modalselectors.module';
+import { ModalsModule } from './../modals/modals.module';
+
 import { NgModule, ErrorHandler } from '@angular/core';
 
 import { BrowserModule } from '@angular/platform-browser';
@@ -28,7 +30,8 @@ import { ProvidersModule } from '../providers/providers.module';
         }),
         ProvidersModule,
         FormModelsModule,
-        SelectModule
+        ModalsModule,
+        ModalSelectorsModule
     ],
     bootstrap: [IonicApp],
     entryComponents: [
