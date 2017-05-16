@@ -5,10 +5,10 @@ import { FormControl } from '@angular/forms';
 import { BaseEntityService } from '../../providers/baseentity-service';
 import { BehaviorSubject } from "rxjs/Rx";
 
-export abstract class BaseEdit<T extends AIMC.Baltic.Dto.RestrictedVisibilityDtoRootBase> {
+export abstract class BaseRootEdit<T extends AIMC.Baltic.Dto.RestrictedVisibilityDtoRootBase> {
 
     item: IForm<T>;
-    itemLoaded = new BehaviorSubject(false);
+    itemLoaded = false;
 
     constructor(private params: {
         navCtrl: NavController,
@@ -40,7 +40,7 @@ export abstract class BaseEdit<T extends AIMC.Baltic.Dto.RestrictedVisibilityDto
 
         let form = await this.params.baseEntityService.getForm(id);
         this.item = form;
-        this.itemLoaded.next(true);
+        this.itemLoaded = true;
     }
 
     delete() {

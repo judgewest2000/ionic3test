@@ -3,7 +3,7 @@ import { EmailDistributionService } from './../../providers/email-distribution-s
 import { Component } from '@angular/core';
 import { NavController, NavParams, IonicPage, ModalController } from 'ionic-angular';
 import { ModalService } from '../../providers/modal-service';
-import { BaseEdit } from '../base-edit/base-edit';
+import { BaseRootEdit } from "../base-root-edit/base-root-edit";
 
 
 @IonicPage({
@@ -13,7 +13,7 @@ import { BaseEdit } from '../base-edit/base-edit';
   selector: 'page-email-distribution-edit',
   templateUrl: 'email-distribution-edit.html'
 })
-export class EmailDistributionEdit extends BaseEdit<AIMC.Baltic.Dto.MediaDatabase.EmailDistributionDto> {
+export class EmailDistributionEdit extends BaseRootEdit<AIMC.Baltic.Dto.MediaDatabase.EmailDistributionDto> {
 
   segment = 'main';
 

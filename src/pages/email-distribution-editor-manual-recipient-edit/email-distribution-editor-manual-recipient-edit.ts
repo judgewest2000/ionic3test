@@ -1,5 +1,5 @@
-import { FormGroup } from '@angular/forms';
-import { Component, ViewChild } from '@angular/core';
+import { IForm } from './../../modelinterfaces/base';
+import { Component } from '@angular/core';
 import { IonicPage, ViewController } from 'ionic-angular';
 
 /**
@@ -15,18 +15,18 @@ import { IonicPage, ViewController } from 'ionic-angular';
 })
 export class EmailDistributionEditorManualRecipientEditPage {
 
-  form: FormGroup;
+  form: IForm<AIMC.Baltic.Dto.MediaDatabase.EmailDistributionManualRecipientDto>;
 
   constructor(private viewController: ViewController) {
-    
+
   }
 
-  close(){
+  close() {
     this.viewController.dismiss();
   }
 
   ionViewDidLoad() {
-    var form =  this.viewController.getNavParams().get('params') as FormGroup;
+    this.form = this.viewController.getNavParams().data;
   }
 
 }

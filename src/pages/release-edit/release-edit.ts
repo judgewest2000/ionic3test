@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { ReleaseService } from '../../providers/release-service';
 import { ModalService } from '../../providers/modal-service';
-import { BaseEdit } from '../base-edit/base-edit';
+import { BaseRootEdit } from "../base-root-edit/base-root-edit";
 
 
 
@@ -13,7 +13,7 @@ import { BaseEdit } from '../base-edit/base-edit';
   selector: 'page-release-edit',
   templateUrl: 'release-edit.html',
 })
-export class ReleaseEdit extends BaseEdit<AIMC.Baltic.Dto.MediaDatabase.ReleaseDto>{
+export class ReleaseEdit extends BaseRootEdit<AIMC.Baltic.Dto.MediaDatabase.ReleaseDto>{
 
   segment = 'main';
 

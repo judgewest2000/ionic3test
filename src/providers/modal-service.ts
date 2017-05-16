@@ -151,6 +151,7 @@ export class ModalService {
     }
 
     customEmailDistributionEditorManualRecipientEdit(params: IForm<AIMC.Baltic.Dto.MediaDatabase.EmailDistributionManualRecipientDto>) {
+        
         let modal = this.modalController.create(EmailDistributionEditorManualRecipientEditPage, params);
         modal.present();
 
