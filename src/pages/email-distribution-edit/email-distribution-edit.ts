@@ -19,7 +19,7 @@ export class EmailDistributionEdit extends BaseRootEdit<AIMC.Baltic.Dto.MediaDat
 
   release: AIMC.Baltic.Dto.MediaDatabase.ReleaseDto;
   emailDistributionClientDetails: AIMC.Baltic.Dto.MediaDatabase.EmailDistributionClientDetailsDto;
-  emailTemplates: AIMC.Baltic.Dto.MediaDatabase.EmailTemplateDto[];
+  //emailTemplates: AIMC.Baltic.Dto.MediaDatabase.EmailTemplateDto[];
 
   everythingLoaded = false;
 
@@ -50,12 +50,12 @@ export class EmailDistributionEdit extends BaseRootEdit<AIMC.Baltic.Dto.MediaDat
       super.get(id),
       this.releaseService.get(id),
       this.emailDistributionService.getEmailDistributionClientDetails(),
-      this.emailDistributionService.getEmailTemplates()
+      //this.emailDistributionService.getEmailTemplates()
     ]);
 
     this.release = all[1];
     this.emailDistributionClientDetails = all[2];
-    this.emailTemplates = all[3];
+    //this.emailTemplates = all[3];
     this.everythingLoaded = true;
     this.modalService.turnOffLoading();
 
@@ -68,14 +68,6 @@ export class EmailDistributionEdit extends BaseRootEdit<AIMC.Baltic.Dto.MediaDat
 
   }
 
-  async getContacts() {
-    let ids = await this.modalService.contactSelect({
-      idsToExclude: [94822]
-    });
-
-    alert(`Received: ${ids} back`);
-
-  }
 
   updateSendFromEmailDomain() {
 

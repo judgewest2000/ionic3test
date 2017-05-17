@@ -1,3 +1,4 @@
+import { EmailDistributionContactFormModel } from './emaildistribution-contact-formmodel';
 import { EmailDistributionManualRecipientFormModel } from './emaildistribution-manualrecipient-formmodel';
 
 import { Injectable } from '@angular/core';
@@ -9,7 +10,8 @@ import { BaseFormModel } from './base-formmodel'
 export class EmailDistributionFormModel extends BaseFormModel<AIMC.Baltic.Dto.MediaDatabase.EmailDistributionDto> {
 
     constructor(formBuilder: FormBuilder,
-    emailDistributionManualRecipientFormModel: EmailDistributionManualRecipientFormModel
+        emailDistributionManualRecipientFormModel: EmailDistributionManualRecipientFormModel,
+        emailDistributionContactFormModel: EmailDistributionContactFormModel
     ) {
         super({
             formBuilder: formBuilder,
@@ -28,10 +30,12 @@ export class EmailDistributionFormModel extends BaseFormModel<AIMC.Baltic.Dto.Me
                     name: ['']
                 }),
 
-                manualRecipients: formBuilder.array([])
+                manualRecipients: formBuilder.array([]),
+                contacts: formBuilder.array([])
             }),
             complexMapper: {
-                manualRecipients: emailDistributionManualRecipientFormModel
+                manualRecipients: emailDistributionManualRecipientFormModel,
+                contacts: emailDistributionContactFormModel
             },
             templateName: 'emaildistribution'
         });

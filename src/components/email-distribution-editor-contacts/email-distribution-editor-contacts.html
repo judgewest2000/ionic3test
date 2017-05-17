@@ -1,0 +1,14 @@
+<ion-list>
+    <ion-item-sliding *ngFor="let item of filtered()">
+        <ion-item>
+            <h2>{{ item.controls['contact'].controls['communicationEmailAddress'].value }}</h2>
+            <p>{{ item.controls['contact'].controls['name'].value }}</p>
+            <p>{{ item.controls['contact'].controls['outletName'].value }}</p>
+        </ion-item>
+        <ion-item-options side="right">
+            <button ion-button color="danger" (click)="remove(item)">Remove</button>
+        </ion-item-options>
+    </ion-item-sliding>
+</ion-list>
+
+<button ion-button full (click)="add()">Add</button>

@@ -14,7 +14,6 @@ export abstract class BaseFormModel<T> {
     }) { }
 
     create(viewModel: T) {
-
         // http://stackoverflow.com/questions/6860853/generate-random-string-for-div-id
         function guidGenerator() {
             var S4 = function () {

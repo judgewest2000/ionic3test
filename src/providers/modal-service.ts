@@ -146,22 +146,17 @@ export class ModalService {
         alert.present();
     }
 
-    contactSelect(params: BaseSelectParameters) {
+    contactSelect(params: BaseSelectParameters): Promise<number[]> {
 
         let contactSelect = this.modalController.create(ContactSelect, params, this.getModalOptions());
         contactSelect.present();
 
         return new Promise(resolve => {
-            contactSelect.onWillDismiss((items: number[]) => {
-                resolve(items);
-            });
+            contactSelect.onWillDismiss((items: number[]) => resolve(items));
         });
     }
 
     customEmailDistributionEditorManualRecipientEdit(params: IForm<AIMC.Baltic.Dto.MediaDatabase.EmailDistributionManualRecipientDto>) {
-
-
-
         let modal = this.modalController.create(EmailDistributionEditorManualRecipientEditPage, params, this.getModalOptions());
         modal.present();
 

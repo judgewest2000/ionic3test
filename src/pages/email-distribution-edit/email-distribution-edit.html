@@ -17,6 +17,9 @@
             <ion-segment-button value="contact">
                 Contacts
             </ion-segment-button>
+            <ion-segment-button value="group">
+                Groups
+            </ion-segment-button>
         </ion-segment>
     </ion-toolbar>
 </ion-header>
@@ -46,7 +49,7 @@
         </div>
 
         <div *ngIf="segment === 'contact'">
-            <button (click)="getContacts()" ion-button>Get Contacts</button>
+            <email-distribution-editor-contacts [submitAttemptMade]="submitAttemptMade" [formArray]="createIFormArray('contacts')"></email-distribution-editor-contacts>
         </div>
 
     </form>

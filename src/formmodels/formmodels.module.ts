@@ -1,3 +1,4 @@
+import { EmailDistributionContactFormModel, EmailDistributionContactListItemFormModel } from './emaildistribution-contact-formmodel';
 import { EmailDistributionManualRecipientFormModel } from './emaildistribution-manualrecipient-formmodel';
 
 import { NgModule } from '@angular/core';
@@ -9,7 +10,9 @@ import { EmailDistributionFormModel } from './emaildistribution-formmodel';
     providers: [
         ReleaseFormModel,
         EmailDistributionFormModel,
-        EmailDistributionManualRecipientFormModel
+        EmailDistributionManualRecipientFormModel,
+        EmailDistributionContactFormModel,
+        EmailDistributionContactListItemFormModel
     ]
 })
 export class FormModelsModule { }

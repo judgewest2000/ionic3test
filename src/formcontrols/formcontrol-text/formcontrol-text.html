@@ -1,5 +1,5 @@
 <ion-item>
-    <ion-input [placeholder]="definition.title" type="text" [formControl]="definition.formControlItem">
+    <ion-input [placeholder]="definition.title" [type]="getType()" [formControl]="definition.formControlItem">
     </ion-input>
 </ion-item>
 <formcontrol-validation [definition]="definition"></formcontrol-validation>

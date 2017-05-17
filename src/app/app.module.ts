@@ -13,9 +13,11 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 import { FormModelsModule } from '../formmodels/formmodels.module';
 import { ProvidersModule } from '../providers/providers.module';
 
+
 @NgModule({
     declarations: [
-        MyApp],
+        MyApp
+    ],
     imports: [
         BrowserModule,
         IonicModule.forRoot(MyApp, {
