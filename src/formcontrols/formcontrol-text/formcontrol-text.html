@@ -1,5 +1,6 @@
 <ion-item>
-    <ion-input [placeholder]="definition.title" [type]="getType()" [formControl]="definition.formControlItem">
+    <ion-label stacked>{{definition.title}}</ion-label>
+    <ion-input [type]="getType()" [formControl]="definition.formControlItem">
     </ion-input>
 </ion-item>
 <formcontrol-validation [definition]="definition"></formcontrol-validation>

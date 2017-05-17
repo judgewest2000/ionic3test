@@ -29,35 +29,32 @@
 
     <form [formGroup]="item.form" *ngIf="everythingLoaded">
         <div *ngIf="segment === 'main'">
-            <ion-item-divider>From Details</ion-item-divider>
-            <formcontrol-text [definition]="createFormControlDefinition('From Name', item.form.controls['sendFromName'])"></formcontrol-text>
 
-            <ion-row no-padding>
-                <ion-col col-4 no-padding>
-                    <formcontrol-text [definition]="createFormControlDefinition('From Email Address i.e. username@', item.form.controls['sendFromEmailPrefix'])"></formcontrol-text>
-                </ion-col>
-                <ion-col col-8 no-padding>
-                    <button (click)="updateSendFromEmailDomain()" ion-item>@{{item.form.controls['sendFromEmailDomain'].value}}</button>
-                </ion-col>
-            </ion-row>
-
+            <ion-list>
+                <formcontrol-text [definition]="createFormControlDefinition('From Name', item.form.controls['sendFromName'])"></formcontrol-text>
+                <formcontrol-text [definition]="createFormControlDefinition('From Email Address i.e. username@', item.form.controls['sendFromEmailPrefix'])"></formcontrol-text>
+                <ion-item>
+                    <h2>@{{item.form.controls['sendFromEmailDomain'].value}}</h2>
+                    <button clear item-right ion-button (click)="updateSendFromEmailDomain()">Change</button>
+                </ion-item>
+            </ion-list>
 
         </div>
 
-        <div *ngIf="segment === 'manual'">
-            <email-distribution-editor-manual-recipients [submitAttemptMade]="submitAttemptMade" [formArray]="createIFormArray('manualRecipients')"></email-distribution-editor-manual-recipients>
+        <div *ngIf="segment==='manual' ">
+            <email-distribution-editor-manual-recipients [submitAttemptMade]="submitAttemptMade " [formArray]="createIFormArray( 'manualRecipients') "></email-distribution-editor-manual-recipients>
         </div>
 
-        <div *ngIf="segment === 'contact'">
-            <email-distribution-editor-contacts [submitAttemptMade]="submitAttemptMade" [formArray]="createIFormArray('contacts')"></email-distribution-editor-contacts>
+        <div *ngIf="segment==='contact' ">
+            <email-distribution-editor-contacts [submitAttemptMade]="submitAttemptMade " [formArray]="createIFormArray( 'contacts') "></email-distribution-editor-contacts>
         </div>
 
-        <div *ngIf="segment === 'outlet'">
-            <email-distribution-editor-outlets [submitAttemptMade]="submitAttemptMade" [formArray]="createIFormArray('outlets')"></email-distribution-editor-outlets>
+        <div *ngIf="segment==='outlet' ">
+            <email-distribution-editor-outlets [submitAttemptMade]="submitAttemptMade " [formArray]="createIFormArray( 'outlets') "></email-distribution-editor-outlets>
         </div>
 
-        <div *ngIf="segment === 'group'">
-            <email-distribution-editor-groups [submitAttemptMade]="submitAttemptMade" [formArray]="createIFormArray('groups')"></email-distribution-editor-groups>
+        <div *ngIf="segment==='group' ">
+            <email-distribution-editor-groups [submitAttemptMade]="submitAttemptMade " [formArray]="createIFormArray( 'groups') "></email-distribution-editor-groups>
         </div>
 
 
