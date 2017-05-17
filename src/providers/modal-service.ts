@@ -1,3 +1,4 @@
+import { GroupSelect } from './../modalselectors/group-select/group-select';
 import { OutletSelect } from './../modalselectors/outlet-select/outlet-select';
 import { ContactSelect } from './../modalselectors/contact-select/contact-select';
 
@@ -157,7 +158,7 @@ export class ModalService {
         });
     }
 
-    
+
     outletSelect(params: BaseSelectParameters): Promise<number[]> {
 
         let outletSelect = this.modalController.create(OutletSelect, params, this.getModalOptions());
@@ -167,6 +168,16 @@ export class ModalService {
             outletSelect.onWillDismiss((items: number[]) => resolve(items));
         });
     }
+
+    groupSelect(params: BaseSelectParameters): Promise<number[]> {
+        let groupSelect = this.modalController.create(GroupSelect, params, this.getModalOptions());
+        groupSelect.present();
+
+        return new Promise(resolve => {
+            groupSelect.onWillDismiss((items: number[]) => resolve(items));
+        });
+    }
+
 
 
     customEmailDistributionEditorManualRecipientEdit(params: IForm<AIMC.Baltic.Dto.MediaDatabase.EmailDistributionManualRecipientDto>) {

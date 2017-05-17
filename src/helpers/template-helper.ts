@@ -995,7 +995,10 @@ export function TemplateGetHelper<T>(templateName: string) {
             "name": "emaildistributiongroupdto",
             "blob": {
                 "deleted": false,
-                "group": null,
+                "group": {
+                    "id": 0,
+                    "name": null
+                },
                 "id": 0
             }
         },

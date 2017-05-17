@@ -1,3 +1,4 @@
+import { EmailDistributionGroupFormModel } from './emaildistribution-group-formmodel';
 import { EmailDistributionOutletFormModel } from './emaildistribution-outlet-formmodel';
 import { EmailDistributionContactFormModel } from './emaildistribution-contact-formmodel';
 import { EmailDistributionManualRecipientFormModel } from './emaildistribution-manualrecipient-formmodel';
@@ -13,7 +14,8 @@ export class EmailDistributionFormModel extends BaseFormModel<AIMC.Baltic.Dto.Me
     constructor(formBuilder: FormBuilder,
         emailDistributionManualRecipientFormModel: EmailDistributionManualRecipientFormModel,
         emailDistributionContactFormModel: EmailDistributionContactFormModel,
-        emailDistributionOutletFormModel: EmailDistributionOutletFormModel
+        emailDistributionOutletFormModel: EmailDistributionOutletFormModel,
+        emailDistributionGroupFormModel: EmailDistributionGroupFormModel
     ) {
         super({
             formBuilder: formBuilder,
@@ -34,12 +36,14 @@ export class EmailDistributionFormModel extends BaseFormModel<AIMC.Baltic.Dto.Me
 
                 manualRecipients: formBuilder.array([]),
                 contacts: formBuilder.array([]),
-                outlets: formBuilder.array([])
+                outlets: formBuilder.array([]),
+                groups: formBuilder.array([])
             }),
             complexMapper: {
                 manualRecipients: emailDistributionManualRecipientFormModel,
                 contacts: emailDistributionContactFormModel,
-                outlets: emailDistributionOutletFormModel
+                outlets: emailDistributionOutletFormModel,
+                groups: emailDistributionGroupFormModel
             },
             templateName: 'emaildistribution'
         });

@@ -56,6 +56,10 @@
             <email-distribution-editor-outlets [submitAttemptMade]="submitAttemptMade" [formArray]="createIFormArray('outlets')"></email-distribution-editor-outlets>
         </div>
 
+        <div *ngIf="segment === 'group'">
+            <email-distribution-editor-groups [submitAttemptMade]="submitAttemptMade" [formArray]="createIFormArray('groups')"></email-distribution-editor-groups>
+        </div>
+
 
     </form>
 
