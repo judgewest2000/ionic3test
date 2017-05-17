@@ -12,6 +12,13 @@
     <allow-intent href="sms:*" />
     <allow-intent href="mailto:*" />
     <allow-intent href="geo:*" />
+
+    <access origin="tel:*" launch-external="yes"/>
+    <access origin="geo:*" launch-external="yes"/>
+    <access origin="mailto:*" launch-external="yes"/>
+    <access origin="sms:*" launch-external="yes"/>
+    <access origin="market:*" launch-external="yes"/>   
+
     <platform name="android">
         <allow-intent href="market:*" />
         <icon density="ldpi" src="resources\android\icon\drawable-ldpi-icon.png" />

@@ -11,7 +11,7 @@
         <ion-grid>
             <ion-row *ngIf="displayAvatar()">
                 <ion-col style="text-align: center;">
-                    <img [src]="item.communication.avatarUrl" width="75" height="75" />
+                    <img style="border-radius: 50%; width:75px; height: 75px;" [src]="item.communication.avatarUrl" />
                 </ion-col>
             </ion-row>
             <ion-row>
@@ -24,30 +24,36 @@
                     <span style="font-size: 1.5em;">{{item.outlet.name}}</span>
                 </ion-col>
             </ion-row>
-            <ion-row>
-                <ion-col></ion-col>
-                <ion-col style="text-align: center;">
 
-                    <button ion-button color="primary" (click)="sendEmail()" clear style="font-size: 2.0em; height: 1.0em;">
-                      <ion-icon name='mail'></ion-icon>
-                    </button>
-
-                </ion-col>
-                <ion-col style="text-align: center;">
-
-                    <button ion-button color="primary" (click)="call()" clear style="font-size: 2.0em; height: 1.0em;">
-                      <ion-icon name='call'></ion-icon>
-                    </button>
-
-                </ion-col>
-                <ion-col></ion-col>
-            </ion-row>
         </ion-grid>
 
         <ion-list>
-            <ion-list-header>Profile</ion-list-header>
+            <ion-item text-wrap>
+                <p>
+                    {{item.profile}}
+                </p>
+            </ion-item>
+        </ion-list>
+
+        <ion-list>
+            <button ion-item (click)="gotoSite()" *ngIf="displaySite()">
+                <ion-icon name="link" color="primary" item-left></ion-icon>
+                <p>{{item.communication.mainHomepage}}</p>
+            </button>
+            <button ion-item (click)="sendEmail()" *ngIf="displayEmail()">
+                <ion-icon name="mail" color="primary" item-left></ion-icon>
+                <p>{{item.communication.emailAddress}}</p>
+            </button>
+            <button ion-item (click)="call()" *ngIf="displayCall()">
+                <ion-icon name="call" color="primary" item-left></ion-icon>
+                <p>{{item.communication.phoneNumber}}</p>
+            </button>
             <ion-item>
-                <p text-wrap>{{item.profile}}</p>
+                <ion-icon name="home" item-left color="vueliogrey"></ion-icon>
+                <p>{{item.address.line1}}</p>
+                <p>{{item.address.line2}}</p>
+                <p>{{item.address.city}}</p>
+                <p>{{item.address.postalCode}}</p>
             </ion-item>
         </ion-list>
 

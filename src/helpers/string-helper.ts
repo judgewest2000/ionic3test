@@ -3,6 +3,10 @@ import * as moment from 'moment';
 
 export module StringHelper {
 
+    export function getNumbers(value: string){
+        return value.replace(/\D/g,'');
+    }
+
     export function contains(source: string, lookupValue: string): boolean {
         if (source === undefined || source === null) {
             return false;

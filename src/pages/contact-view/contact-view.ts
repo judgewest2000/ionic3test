@@ -42,15 +42,31 @@ export class ContactViewPage {
     return StringHelper.isNotNullOrWhiteSpace(this.item.communication.avatarUrl);
   }
 
+
+  displayEmail() {
+    return StringHelper.isNotNullOrWhiteSpace(this.item.communication.emailAddress);
+  }
+
   sendEmail() {
-    let url = `emailto:${this.item.communication.emailAddress}`;
-    window.open(url);
+    let url = `mailto:${this.item.communication.emailAddress}`;
+    window.open(url, '_system');
+  }
+
+  displaySite() {
+    return StringHelper.isNotNullOrWhiteSpace(this.item.communication.mainHomepage);
+  }
+
+  gotoSite() {
+    window.open(this.item.communication.mainHomepage, '_system');
+  }
+
+  displayCall() {
+    return StringHelper.isNotNullOrWhiteSpace(this.item.communication.phoneNumber);
   }
 
   call() {
-
-    let url = `tel:${this.item.communication.phoneNumber}`;
-    window.open(url);
+    let url = `tel:${StringHelper.getNumbers(this.item.communication.phoneNumber)}`;
+    window.open(url, '_system');
   }
 
 }
