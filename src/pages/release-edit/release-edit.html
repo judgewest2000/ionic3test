@@ -39,10 +39,10 @@
             </ion-list>
             <div *ngIf="displayDelete()">
                 <ion-list>
-                    <button ion-item (click)="gotoEmailDistribution()"><ion-icon name="mail" item-left ></ion-icon>Email Distribution</button>
+                    <button ion-item (click)="gotoEmailDistribution()"><ion-icon name="mail" color="icongrey" item-left ></ion-icon>Email Distribution</button>
                 </ion-list>
                 <ion-list>
-                    <button ion-item (click)="delete()" style="color: red;"><ion-icon name="trash" item-left ></ion-icon>Delete</button>
+                    <button ion-item (click)="delete()"><ion-icon name="trash" color="danger" item-left ></ion-icon>Delete</button>
                 </ion-list>
             </div>
         </div>
