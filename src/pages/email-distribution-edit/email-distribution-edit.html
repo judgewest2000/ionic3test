@@ -35,10 +35,13 @@
                 <formcontrol-text [definition]="createFormControlDefinition('From Email Address i.e. username@', item.form.controls['sendFromEmailPrefix'])"></formcontrol-text>
                 <ion-item>
                     <h2>@{{item.form.controls['sendFromEmailDomain'].value}}</h2>
-                    <button clear item-right ion-button (click)="updateSendFromEmailDomain()">Change</button>
+                    <button outline item-right ion-button (click)="updateSendFromEmailDomain()">Change</button>
                 </ion-item>
             </ion-list>
 
+            <div style="text-align: center;">
+                <p>From: {{getFullEmailAddress()}}</p>
+            </div>
         </div>
 
         <div *ngIf="segment==='manual' ">

@@ -104,6 +104,11 @@ export class EmailDistributionEdit extends BaseRootEdit<AIMC.Baltic.Dto.MediaDat
     });
   }
 
+  getFullEmailAddress() {
+    return this.item.form.controls.sendFromName.value + ' (' +
+      this.item.form.controls.sendFromEmailPrefix.value + '@' + 
+      this.item.form.controls.sendFromEmailDomain.value + ')';
+  }
 
 
   ionViewDidLoad() {
