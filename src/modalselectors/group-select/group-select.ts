@@ -21,7 +21,7 @@ export class GroupSelect extends BaseSelect<AIMC.Baltic.Dto.Kendo.GroupKendoAzDt
       mapResult: item => ({
         id: item.id,
         name: item.name,
-        description1: `Organisations: ${item.countOutlets}`,
+        description1: `Organizations: ${item.countOutlets}`,
         description2: `Contacts: ${item.countContacts}`
       })
     });
