@@ -19,7 +19,7 @@ export class ContactSearch extends BaseSearch<AIMC.Baltic.Dto.Kendo.ContactKendo
   constructor(navController: NavController, searchService: SearchService) {
     super({
       endPoint: 'contact/search',
-      navGoto: 'ContactView',
+      navGoto: 'ContactViewPage',
       mapResult: item => ({
         id: item.id,
         name: item.name,

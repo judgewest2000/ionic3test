@@ -47,10 +47,9 @@ export module StringHelper {
         }
 
         let lower = value.toLowerCase();
-        
+
         let istrue = lower === '1' || lower === 'true' || lower === 'yes';
-        
+
         return istrue;
     }
-
 };

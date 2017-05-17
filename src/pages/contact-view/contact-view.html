@@ -1,0 +1,56 @@
+<ion-header>
+    <ion-navbar>
+        <ion-title>Contact View</ion-title>
+    </ion-navbar>
+</ion-header>
+
+<ion-content>
+
+    <div *ngIf="itemLoaded">
+
+        <ion-grid>
+            <ion-row *ngIf="displayAvatar()">
+                <ion-col style="text-align: center;">
+                    <img [src]="item.communication.avatarUrl" width="75" height="75" />
+                </ion-col>
+            </ion-row>
+            <ion-row>
+                <ion-col style="text-align: center;">
+                    <span style="font-size: 2.5em;">{{item.name}}</span>
+                </ion-col>
+            </ion-row>
+            <ion-row>
+                <ion-col style="text-align: center;">
+                    <span style="font-size: 1.5em;">{{item.outlet.name}}</span>
+                </ion-col>
+            </ion-row>
+            <ion-row>
+                <ion-col></ion-col>
+                <ion-col style="text-align: center;">
+
+                    <button ion-button color="primary" (click)="sendEmail()" clear style="font-size: 2.0em; height: 1.0em;">
+                      <ion-icon name='mail'></ion-icon>
+                    </button>
+
+                </ion-col>
+                <ion-col style="text-align: center;">
+
+                    <button ion-button color="primary" (click)="call()" clear style="font-size: 2.0em; height: 1.0em;">
+                      <ion-icon name='call'></ion-icon>
+                    </button>
+
+                </ion-col>
+                <ion-col></ion-col>
+            </ion-row>
+        </ion-grid>
+
+        <ion-list>
+            <ion-list-header>Profile</ion-list-header>
+            <ion-item>
+                <p text-wrap>{{item.profile}}</p>
+            </ion-item>
+        </ion-list>
+
+
+    </div>
+</ion-content>
