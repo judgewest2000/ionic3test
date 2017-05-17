@@ -1,3 +1,4 @@
+import { OutletSelect } from './../modalselectors/outlet-select/outlet-select';
 import { ContactSelect } from './../modalselectors/contact-select/contact-select';
 
 import { IForm } from './../modelinterfaces/base';
@@ -155,6 +156,18 @@ export class ModalService {
             contactSelect.onWillDismiss((items: number[]) => resolve(items));
         });
     }
+
+    
+    outletSelect(params: BaseSelectParameters): Promise<number[]> {
+
+        let outletSelect = this.modalController.create(OutletSelect, params, this.getModalOptions());
+        outletSelect.present();
+
+        return new Promise(resolve => {
+            outletSelect.onWillDismiss((items: number[]) => resolve(items));
+        });
+    }
+
 
     customEmailDistributionEditorManualRecipientEdit(params: IForm<AIMC.Baltic.Dto.MediaDatabase.EmailDistributionManualRecipientDto>) {
         let modal = this.modalController.create(EmailDistributionEditorManualRecipientEditPage, params, this.getModalOptions());

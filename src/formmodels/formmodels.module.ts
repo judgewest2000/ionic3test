@@ -1,3 +1,4 @@
+import { EmailDistributionOutletFormModel, EmailDistributionOutletListItemFormModel } from './emaildistribution-outlet-formmodel';
 import { EmailDistributionContactFormModel, EmailDistributionContactListItemFormModel } from './emaildistribution-contact-formmodel';
 import { EmailDistributionManualRecipientFormModel } from './emaildistribution-manualrecipient-formmodel';
 
@@ -12,7 +13,9 @@ import { EmailDistributionFormModel } from './emaildistribution-formmodel';
         EmailDistributionFormModel,
         EmailDistributionManualRecipientFormModel,
         EmailDistributionContactFormModel,
-        EmailDistributionContactListItemFormModel
+        EmailDistributionContactListItemFormModel,
+        EmailDistributionOutletFormModel,
+        EmailDistributionOutletListItemFormModel
     ]
 })
 export class FormModelsModule { }

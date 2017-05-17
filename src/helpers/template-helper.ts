@@ -110,7 +110,11 @@ export function TemplateGetHelper<T>(templateName: string) {
             "blob": {
                 "id": 0,
                 "deleted": false,
-                "outlet": null
+                "outlet": {
+                    "id": 0,
+                    "name": null,
+                    "communicationEmailAddress": null
+                }
             }
         },
         {
