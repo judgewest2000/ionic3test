@@ -25,7 +25,7 @@ import { ProvidersModule } from '../providers/providers.module';
             platforms: {
                 ios: {
                     //backButtonText: ''
-                    pageTransition: 'md-transition'
+                    //pageTransition: 'md-transition'
                 }
             }
         }),
