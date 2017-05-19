@@ -42,6 +42,10 @@ export class ContactViewPage {
     return StringHelper.isNotNullOrWhiteSpace(this.item.communication.avatarUrl);
   }
 
+  displayProfile(){
+    return StringHelper.isNotNullOrWhiteSpace(this.item.profile);
+  }
+
   getProfileChunks() {
     return this.item.profile.split('\n');
   }

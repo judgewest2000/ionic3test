@@ -28,7 +28,7 @@ export class ContactSearch extends BaseSearch<AIMC.Baltic.Dto.Kendo.ContactKendo
       }),
       navcontroller: navController,
       searchService: searchService,
-      title: 'Contact',
+      title: 'Contacts',
 
     });
 

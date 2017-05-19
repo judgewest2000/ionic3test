@@ -27,7 +27,7 @@
 
         </ion-grid>
 
-        <ion-list>
+        <ion-list *ngIf="displayProfile()">
             <ion-item text-wrap>
                 <p *ngFor="let chunk of getProfileChunks()">
                     {{chunk}}

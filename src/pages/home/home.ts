@@ -21,7 +21,7 @@ export class HomePage {
     }
 
     gotoReleases() {
-        this.navCtrl.push('ReleaseManagement');
+        this.navCtrl.push('ReleaseSearch');
     }
 
     gotoContacts(){

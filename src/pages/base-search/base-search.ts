@@ -14,7 +14,8 @@ export abstract class BaseSearch<T> {
     title: string,
     endPoint: string,
     mapResult: (item: T) => ISearch,
-    defaultSortField?: SortField
+    defaultSortField?: SortField,
+    addGoto?: string
   }
   ) {
     this.title = params.title;
@@ -23,6 +24,14 @@ export abstract class BaseSearch<T> {
   title: string;
 
   performingSearch = true;
+
+  displayAdd() {
+    return this.params.addGoto !== undefined;
+  }
+
+  add() {
+    this.params.navcontroller.push(this.params.addGoto, { id: 0 });
+  }
 
   redirect(data: ISearch) {
     this.params.navcontroller.push(this.params.navGoto, { id: data.id });

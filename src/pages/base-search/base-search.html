@@ -11,6 +11,9 @@
 
     <ion-navbar>
         <ion-title>{{title}}</ion-title>
+        <ion-buttons start right *ngIf="displayAdd()">
+            <button ion-button (click)="add()">Add</button>
+        </ion-buttons>
     </ion-navbar>
 
     <ion-searchbar #searchElement placeholder="Search..." (ionInput)="getFilteredItems($event.target.value)"></ion-searchbar>

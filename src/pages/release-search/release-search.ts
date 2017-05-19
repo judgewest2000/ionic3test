@@ -25,11 +25,12 @@ export class ReleaseSearch extends BaseSearch<AIMC.Baltic.Dto.Kendo.ReleaseKendo
       }),
       navcontroller: navController,
       searchService: searchService,
-      title: 'Release',
+      title: 'Releases',
       defaultSortField: {
         field: 'created',
         dir: 'desc'
-      }
+      },
+      addGoto: 'ReleaseEdit'
     });
   }
 
