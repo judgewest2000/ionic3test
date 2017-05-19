@@ -36,6 +36,7 @@ export class ContactSearch extends BaseSearch<AIMC.Baltic.Dto.Kendo.ContactKendo
 
 
   ionViewDidLoad() {
+    super.ionViewDidLoad();
     console.log('ionViewDidLoad ContactSearch');
   }
 

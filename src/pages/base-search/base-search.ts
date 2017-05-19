@@ -40,7 +40,6 @@ export abstract class BaseSearch<T> {
   _filteredItems: ISearch[];
   async getFilteredItems(searchText?: string) {
 
-
     if (searchText === undefined) {
       searchText = '';
     }
@@ -67,11 +66,10 @@ export abstract class BaseSearch<T> {
     this.performingSearch = false;
   }
 
-  ionViewDidEnter() {
-
+  ionViewDidLoad() {
     let previousSearchValue = this.searchElement.value as string;
-
     this.getFilteredItems(previousSearchValue);
   }
+
 
 }

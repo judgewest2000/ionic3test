@@ -48,13 +48,13 @@
                 <ion-icon name="call" color="primary" item-left></ion-icon>
                 <p>{{item.communication.phoneNumber}}</p>
             </button>
-            <ion-item>
-                <ion-icon name="home" item-left color="icongrey"></ion-icon>
+            <button ion-item (click)="gotoMapLink()" *ngIf="displayAddress()">
+                <ion-icon name="home" item-left color="primary"></ion-icon>
                 <p>{{item.address.line1}}</p>
                 <p>{{item.address.line2}}</p>
                 <p>{{item.address.city}}</p>
                 <p>{{item.address.postalCode}}</p>
-            </ion-item>
+            </button>
         </ion-list>
 
 

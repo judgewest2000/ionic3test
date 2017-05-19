@@ -76,6 +76,17 @@ export class ContactViewPage {
     } else {
       this.callNumber.callNumber(tel, false);
     }
+  }
+
+  displayAddress() {
+    return [this.item.address.line1, this.item.address.city].every(a => !StringHelper.isNullOrWhiteSpace(a));
+  }
+
+  gotoMapLink() {
+    let allChunks = (this.item.address.line1 + ' ' + this.item.address.city + ' ' + this.item.address.postalCode)
+      .split(' ').join('+');
+
+    window.open(`https://www.google.com/maps/place/${allChunks}`, '_system');
 
   }
 
