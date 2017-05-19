@@ -9,6 +9,7 @@ import { MyApp } from './app.component';
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
+import { CallNumber } from '@ionic-native/call-number';
 
 import { FormModelsModule } from '../formmodels/formmodels.module';
 import { ProvidersModule } from '../providers/providers.module';
@@ -41,6 +42,7 @@ import { ProvidersModule } from '../providers/providers.module';
     providers: [
         StatusBar,
         SplashScreen,
+        CallNumber,
         { provide: ErrorHandler, useClass: IonicErrorHandler }
     ]
 })

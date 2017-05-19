@@ -1,15 +1,10 @@
 import { ModalService } from './../../providers/modal-service';
 import { DataAccessService } from './../../providers/data-access-service';
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, Platform } from 'ionic-angular';
 import { StringHelper } from "../../helpers/string-helper";
+import { CallNumber } from '@ionic-native/call-number';
 
-/**
- * Generated class for the ContactViewPage page.
- *
- * See http://ionicframework.com/docs/components/#navigation for more info
- * on Ionic pages and navigation.
- */
 @IonicPage()
 @Component({
   selector: 'page-contact-view',
@@ -24,7 +19,9 @@ export class ContactViewPage {
     private navCtrl: NavController,
     private navParams: NavParams,
     private dataAccessService: DataAccessService,
-    private modalService: ModalService
+    private modalService: ModalService,
+    private callNumber: CallNumber,
+    private platform: Platform
   ) {
 
     let id = parseInt(this.navParams.get('id')) as number;
@@ -42,7 +39,7 @@ export class ContactViewPage {
     return StringHelper.isNotNullOrWhiteSpace(this.item.communication.avatarUrl);
   }
 
-  displayProfile(){
+  displayProfile() {
     return StringHelper.isNotNullOrWhiteSpace(this.item.profile);
   }
 
@@ -72,8 +69,14 @@ export class ContactViewPage {
   }
 
   call() {
-    let url = `tel:${StringHelper.getNumbers(this.item.communication.phoneNumber)}`;
-    window.open(url, '_system');
+    let tel = StringHelper.getNumbers(this.item.communication.phoneNumber);
+
+    if (this.platform.is('core')) {
+      window.open(`tel:${tel}`, '_system');
+    } else {
+      this.callNumber.callNumber(tel, false);
+    }
+
   }
 
 }
