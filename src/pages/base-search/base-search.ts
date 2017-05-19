@@ -1,3 +1,4 @@
+import { SessionHelper } from './../../helpers/session-helper';
 import { NavController } from 'ionic-angular';
 import { ISearch } from '../../modelinterfaces/base';
 import { SearchService, SortField, SearchRequest } from '../../providers/search-service';
@@ -66,9 +67,17 @@ export abstract class BaseSearch<T> {
     this.performingSearch = false;
   }
 
+
   ionViewDidLoad() {
     let previousSearchValue = this.searchElement.value as string;
     this.getFilteredItems(previousSearchValue);
+  }
+
+  ionViewDidEnter() {
+    if (SessionHelper.getRefreshGrid()) {
+      let previousSearchValue = this.searchElement.value as string;
+      this.getFilteredItems(previousSearchValue);
+    }
   }
 
 

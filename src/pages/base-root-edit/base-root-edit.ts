@@ -1,3 +1,4 @@
+import { SessionHelper } from './../../helpers/session-helper';
 import { NavController, NavParams } from 'ionic-angular';
 import { ModalService } from '../../providers/modal-service';
 import { IForm, IFormControlDefinition, IFormArray } from '../../modelinterfaces/base';
@@ -75,6 +76,7 @@ export abstract class BaseRootEdit<T extends AIMC.Baltic.Dto.RestrictedVisibilit
                     title: `${this.params.entityTitle} saved`,
                     body: `Your ${this.params.entityTitle} has been saved successfully`,
                     confirmCallback: () => {
+                        SessionHelper.setRefreshGrid(true);
                         this.params.navCtrl.pop();
                     }
                 });

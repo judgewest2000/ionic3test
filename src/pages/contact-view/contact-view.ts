@@ -1,7 +1,7 @@
 import { ModalService } from './../../providers/modal-service';
 import { DataAccessService } from './../../providers/data-access-service';
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, Platform } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, Platform, NavOptions } from 'ionic-angular';
 import { StringHelper } from "../../helpers/string-helper";
 import { CallNumber } from '@ionic-native/call-number';
 
@@ -34,7 +34,7 @@ export class ContactViewPage {
       });
 
   }
-
+  
   displayAvatar() {
     return StringHelper.isNotNullOrWhiteSpace(this.item.communication.avatarUrl);
   }
