@@ -1,3 +1,4 @@
+import { MapViewPage } from './../pages/map-view/map-view';
 import { GroupSelect } from './../modalselectors/group-select/group-select';
 import { OutletSelect } from './../modalselectors/outlet-select/outlet-select';
 import { ContactSelect } from './../modalselectors/contact-select/contact-select';
@@ -178,7 +179,10 @@ export class ModalService {
         });
     }
 
-
+    mapView() {
+        let modal = this.modalController.create(MapViewPage);
+        modal.present();
+    }
 
     customEmailDistributionEditorManualRecipientEdit(params: IForm<AIMC.Baltic.Dto.MediaDatabase.EmailDistributionManualRecipientDto>) {
         let modal = this.modalController.create(EmailDistributionEditorManualRecipientEditPage, params, this.getModalOptions());

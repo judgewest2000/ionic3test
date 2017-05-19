@@ -79,4 +79,8 @@ export class ContactViewPage {
 
   }
 
+  gotoMap() {
+    this.modalService.mapView();
+  }
+
 }
