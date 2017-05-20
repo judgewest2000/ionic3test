@@ -64,7 +64,8 @@ export class ModalService {
     private createModal(definition) {
         const modal = this.alertController.create({
             title: definition.title,
-            message: definition.body
+            message: definition.body,
+            enableBackdropDismiss: false
         });
 
         if (definition.subTitle !== undefined) {
