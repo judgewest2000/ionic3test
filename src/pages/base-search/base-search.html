@@ -28,7 +28,7 @@
     <ion-list *ngIf="!performingSearch">
         <button ion-item *ngFor="let data of _filteredItems" (click)="redirect(data)">
             <ion-avatar item-left *ngIf="data.avatarUrl !== undefined && data.avatarUrl !== null">
-                <img src="{{data.avatarUrl}}" onerror="this.style.display = 'none'" />
+                <img [src]="data.avatarUrl.replace('_normal','_bigger')" onerror="this.style.display = 'none'" />
             </ion-avatar>
             {{data.name}}
             <p *ngIf="data.description1 !== undefined && data.description1 !== null">{{data.description1}}</p>

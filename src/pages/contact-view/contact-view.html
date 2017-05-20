@@ -11,7 +11,7 @@
         <ion-grid>
             <ion-row *ngIf="displayAvatar()">
                 <ion-col style="text-align: center;">
-                    <img style="border-radius: 50%; width:75px; height: 75px;" [src]="item.communication.avatarUrl" onerror="this.style.display = 'none'" />
+                    <img style="border-radius: 50%; width:75px; height: 75px;" [src]="item.communication.avatarUrl.replace('_normal','')" onerror="this.style.display = 'none'" />
                 </ion-col>
             </ion-row>
             <ion-row>
