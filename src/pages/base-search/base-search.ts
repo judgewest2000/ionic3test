@@ -1,6 +1,5 @@
 import { BaseSelectParameters } from './../../modalselectors/base-select/base-select';
 import { FormBuilder, Validators } from '@angular/forms';
-import { BaseSearchOptionsPage } from './../base-search-options/base-search-options';
 import { SessionHelper } from './../../helpers/session-helper';
 import { NavController, ModalController } from 'ionic-angular';
 import { ISearch } from '../../modelinterfaces/base';

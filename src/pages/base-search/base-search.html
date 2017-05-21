@@ -2,8 +2,8 @@
     <ion-navbar>
         <ion-searchbar #searchElement [placeholder]="params.title + '...'" (ionInput)="getFilteredItems($event.target.value)"></ion-searchbar>
         <ion-buttons start right>
-            <button *ngIf="displayAdd()" ion-button (click)="add()"><ion-icon ios="md-create" md="md-create"></ion-icon></button>
-            <button ion-button (click)="configToggle()"><ion-icon name="settings"></ion-icon></button>
+            <button *ngIf="displayAdd()" ion-button (click)="add()">New</button>
+            <button *ngIf="params.showClientOnlyTogglable" ion-button (click)="configToggle()"><ion-icon name="menu"></ion-icon></button>
         </ion-buttons>
     </ion-navbar>
 </ion-header>
@@ -12,16 +12,12 @@
 <ion-content>
 
     <ion-list *ngIf="configDisplay">
-
-        <ion-item-divider color="primary">Filters</ion-item-divider>
-
         <form [formGroup]="configForm">
             <ion-item *ngIf="params.showClientOnlyTogglable">
                 <ion-label>Private records only</ion-label>
-                <ion-checkbox item-right formControlName="showClientOnly" checked="false"></ion-checkbox>
+                <ion-checkbox item-right formControlName="showClientOnly" checked="false" [disabled]="performingSearch"></ion-checkbox>
             </ion-item>
         </form>
-
     </ion-list>
 
     <custom-spinner *ngIf="performingSearch"></custom-spinner>
