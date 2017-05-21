@@ -21,13 +21,14 @@ interface SearchRequestDefinition {
 
 export interface SortField {
     field: string;
-    dir: 'asc'|'desc';
+    dir: 'asc' | 'desc';
 }
 
 export interface SearchRequest {
     endPoint: string;
     searchText: string;
-    sortField?: SortField
+    sortField?: SortField;
+    showClientOnly?: boolean;
 }
 
 export interface SearchResult<T> {
@@ -44,7 +45,7 @@ export class SearchService {
 
     private constructSearchRequestDefinition(searchRequest: SearchRequest) {
         const d: SearchRequestDefinition = {
-            showClientOnly: false,
+            showClientOnly: searchRequest.showClientOnly !== undefined ? searchRequest.showClientOnly : false,
             searchText: searchRequest.searchText,
             sort: [],
             take: 50,

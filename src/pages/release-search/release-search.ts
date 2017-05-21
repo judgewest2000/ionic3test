@@ -1,5 +1,6 @@
+import { FormBuilder } from '@angular/forms';
 import { Component } from '@angular/core';
-import { IonicPage, NavController } from 'ionic-angular';
+import { IonicPage, NavController, ModalController } from 'ionic-angular';
 
 import { SearchService } from '../../providers/search-service';
 import { BaseSearch } from '../base-search/base-search';
@@ -13,10 +14,10 @@ import { StringHelper } from '../../helpers/string-helper';
 })
 export class ReleaseSearch extends BaseSearch<AIMC.Baltic.Dto.Kendo.ReleaseKendoAzDto> {
 
-  constructor(navController: NavController, searchService: SearchService) {
+  constructor(navController: NavController, searchService: SearchService, modalController: ModalController, formBuilder: FormBuilder) {
     super({
       endPoint: 'release/search',
-      navGoto: 'ReleaseEdit',
+      navGotoPage: 'ReleaseEdit',
       mapResult: item => ({
         id: item.id,
         name: item.name,
@@ -24,13 +25,16 @@ export class ReleaseSearch extends BaseSearch<AIMC.Baltic.Dto.Kendo.ReleaseKendo
         description2: item.displayDateTime !== null ? StringHelper.formatDate(item.displayDateTime) : ''
       }),
       navcontroller: navController,
+      modalController: modalController,
+      formBuilder: formBuilder,
       searchService: searchService,
       title: 'Releases',
       defaultSortField: {
         field: 'created',
         dir: 'desc'
       },
-      addGoto: 'ReleaseEdit'
+      addItemGotoPage: 'ReleaseEdit',
+      showClientOnlyTogglable: false
     });
   }
 

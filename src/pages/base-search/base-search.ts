@@ -1,5 +1,8 @@
+import { BaseSelectParameters } from './../../modalselectors/base-select/base-select';
+import { FormBuilder, Validators } from '@angular/forms';
+import { BaseSearchOptionsPage } from './../base-search-options/base-search-options';
 import { SessionHelper } from './../../helpers/session-helper';
-import { NavController } from 'ionic-angular';
+import { NavController, ModalController } from 'ionic-angular';
 import { ISearch } from '../../modelinterfaces/base';
 import { SearchService, SortField, SearchRequest } from '../../providers/search-service';
 import { ViewChild } from '@angular/core';
@@ -8,15 +11,18 @@ export abstract class BaseSearch<T> {
 
   @ViewChild('searchElement') searchElement: any;
 
-  constructor(private params: {
+  constructor(public params: {
     navcontroller: NavController,
+    modalController: ModalController,
+    formBuilder: FormBuilder,
     searchService: SearchService,
-    navGoto: string,
+    navGotoPage: string,
     title: string,
     endPoint: string,
     mapResult: (item: T) => ISearch,
     defaultSortField?: SortField,
-    addGoto?: string
+    addItemGotoPage?: string,
+    showClientOnlyTogglable: boolean
   }
   ) {
     this.title = params.title;
@@ -24,20 +30,34 @@ export abstract class BaseSearch<T> {
 
   title: string;
 
-  performingSearch = true;
+  configDisplay = false;
+
+
+  configToggle() {
+    this.configDisplay = !this.configDisplay;
+  }
+
+  configForm = this.params.formBuilder.group(
+    { showClientOnly: [false] }
+  );
+
 
   displayAdd() {
-    return this.params.addGoto !== undefined;
+    return this.params.addItemGotoPage !== undefined;
+  }
+  add() {
+    this.params.navcontroller.push(this.params.addItemGotoPage, { id: 0 });
   }
 
-  add() {
-    this.params.navcontroller.push(this.params.addGoto, { id: 0 });
-  }
+
 
   redirect(data: ISearch) {
-    this.params.navcontroller.push(this.params.navGoto, { id: data.id });
+    this.params.navcontroller.push(this.params.navGotoPage, { id: data.id });
   }
 
+
+
+  performingSearch = true;
   _filteredItems: ISearch[];
   async getFilteredItems(searchText?: string) {
 
@@ -53,8 +73,9 @@ export abstract class BaseSearch<T> {
 
     let searchRequest: SearchRequest = {
       endPoint: this.params.endPoint,
-      searchText: searchText
-    }
+      searchText: searchText,
+      showClientOnly: this.configForm.controls.showClientOnly.value
+    };
 
     if (this.params.defaultSortField !== undefined) {
       searchRequest.sortField = this.params.defaultSortField;
@@ -71,6 +92,11 @@ export abstract class BaseSearch<T> {
   ionViewDidLoad() {
     let previousSearchValue = this.searchElement.value as string;
     this.getFilteredItems(previousSearchValue);
+
+    this.configForm.valueChanges.subscribe(x => {
+      this.getFilteredItems();
+    });
+
   }
 
   ionViewDidEnter() {

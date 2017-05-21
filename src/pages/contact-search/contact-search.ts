@@ -1,6 +1,7 @@
+import { FormBuilder } from '@angular/forms';
 import { SearchService } from './../../providers/search-service';
 import { Component } from '@angular/core';
-import { IonicPage, NavController } from 'ionic-angular';
+import { IonicPage, NavController, ModalController } from 'ionic-angular';
 import { BaseSearch } from "../base-search/base-search";
 
 /**
@@ -16,10 +17,10 @@ import { BaseSearch } from "../base-search/base-search";
 })
 export class ContactSearch extends BaseSearch<AIMC.Baltic.Dto.Kendo.ContactKendoAzDto> {
 
-  constructor(navController: NavController, searchService: SearchService) {
+  constructor(navController: NavController, searchService: SearchService, modalController: ModalController, formBuilder: FormBuilder) {
     super({
       endPoint: 'contact/search',
-      navGoto: 'ContactViewPage',
+      navGotoPage: 'ContactViewPage',
       mapResult: item => ({
         id: item.id,
         name: item.name,
@@ -27,9 +28,11 @@ export class ContactSearch extends BaseSearch<AIMC.Baltic.Dto.Kendo.ContactKendo
         description1: item.outletName
       }),
       navcontroller: navController,
+      modalController: modalController,
+      formBuilder: formBuilder,
       searchService: searchService,
       title: 'Contacts',
-
+      showClientOnlyTogglable: true
     });
 
   }
