@@ -25,8 +25,7 @@ import { ProvidersModule } from '../providers/providers.module';
             swipeBackEnabled: false,
             platforms: {
                 ios: {
-                    //backButtonText: ''
-                    //pageTransition: 'md-transition'
+                    pageTransition: 'wp-transition'
                 }
             }
         }),
